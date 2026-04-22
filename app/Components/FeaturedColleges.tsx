@@ -13,7 +13,7 @@ const FeaturedColleges: React.FC = () => {
   const displayedColleges = showAll ? allColleges : allColleges.slice(0, 18);
 
   const handleCollegeClick = (slug: string) => {
-    router.push(`/university/${slug}`);
+    router.push(`/colleges/${slug}`);
   };
 
   return (
