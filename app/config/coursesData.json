@@ -1,0 +1,288 @@
+{
+  "categories": [
+    {
+      "id": "pg-courses",
+      "name": "PG Courses",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg"
+    },
+    {
+      "id": "gen-ai",
+      "name": "Gen AI/Agentic AI",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg"
+    },
+    {
+      "id": "executive-education",
+      "name": "Executive Education",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg"
+    },
+    {
+      "id": "doctorate",
+      "name": "Doctorate/Ph.D.",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg"
+    },
+    {
+      "id": "ug-courses",
+      "name": "UG Courses",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg"
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg"
+    }
+  ],
+  "courses": [
+    {
+      "id": "online-mba",
+      "categoryId": "pg-courses",
+      "title": "Online MBA",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 135,
+      "badge": "90+ Specializations",
+      "badgeColor": "blue"
+    },
+    {
+      "id": "1-year-mba",
+      "categoryId": "pg-courses",
+      "title": "1 Year MBA Online",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 8,
+      "badge": "ROI 100%",
+      "badgeColor": "green"
+    },
+    {
+      "id": "distance-mba",
+      "categoryId": "pg-courses",
+      "title": "Distance MBA",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 45,
+      "badge": "Trending",
+      "badgeColor": "orange"
+    },
+    {
+      "id": "online-executive-mba",
+      "categoryId": "pg-courses",
+      "title": "Online Executive MBA",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 20,
+      "badge": "Global",
+      "badgeColor": "purple"
+    },
+    {
+      "id": "online-mca",
+      "categoryId": "pg-courses",
+      "title": "Online MCA",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 30,
+      "badge": "Dr'Title",
+      "badgeColor": "blue"
+    },
+    {
+      "id": "online-msc",
+      "categoryId": "pg-courses",
+      "title": "Online M.Sc",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 25,
+      "badge": "Edu Leader",
+      "badgeColor": "green"
+    },
+    {
+      "id": "ms-degree-online",
+      "categoryId": "pg-courses",
+      "title": "MS Degree Online",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 18,
+      "badge": "2 Years",
+      "badgeColor": "gray"
+    },
+    {
+      "id": "online-ma",
+      "categoryId": "pg-courses",
+      "title": "Online MA",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 22,
+      "badge": "1-2 Years",
+      "badgeColor": "gray"
+    },
+    {
+      "id": "online-mcom",
+      "categoryId": "pg-courses",
+      "title": "Online M.Com",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 12,
+      "badge": "2 Years",
+      "badgeColor": "gray"
+    },
+    {
+      "id": "ai-ml-course",
+      "categoryId": "gen-ai",
+      "title": "AI & Machine Learning",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 25,
+      "badge": "Trending",
+      "badgeColor": "orange"
+    },
+    {
+      "id": "generative-ai",
+      "categoryId": "gen-ai",
+      "title": "Generative AI",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 18,
+      "badge": "NEW",
+      "badgeColor": "red"
+    },
+    {
+      "id": "agentic-ai",
+      "categoryId": "gen-ai",
+      "title": "Agentic AI",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 12,
+      "badge": "Hot",
+      "badgeColor": "purple"
+    },
+    {
+      "id": "data-science-ai",
+      "categoryId": "gen-ai",
+      "title": "Data Science with AI",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 30,
+      "badge": "Best Seller",
+      "badgeColor": "green"
+    },
+    {
+      "id": "prompt-engineering",
+      "categoryId": "gen-ai",
+      "title": "Prompt Engineering",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 15,
+      "badge": "Skill",
+      "badgeColor": "blue"
+    },
+    {
+      "id": "llm-development",
+      "categoryId": "gen-ai",
+      "title": "LLM Development",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 10,
+      "badge": "Advanced",
+      "badgeColor": "gray"
+    },
+    {
+      "id": "exec-mba",
+      "categoryId": "executive-education",
+      "title": "Executive MBA",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 40,
+      "badge": "Premium",
+      "badgeColor": "purple"
+    },
+    {
+      "id": "leadership-program",
+      "categoryId": "executive-education",
+      "title": "Leadership Program",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 22,
+      "badge": "ROI 100%",
+      "badgeColor": "green"
+    },
+    {
+      "id": "management-cert",
+      "categoryId": "executive-education",
+      "title": "Management Certificate",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 35,
+      "badge": "Fast Track",
+      "badgeColor": "orange"
+    },
+    {
+      "id": "phd-management",
+      "categoryId": "doctorate",
+      "title": "Ph.D. in Management",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 15,
+      "badge": "Doctorate",
+      "badgeColor": "blue"
+    },
+    {
+      "id": "phd-computer-science",
+      "categoryId": "doctorate",
+      "title": "Ph.D. Computer Science",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 12,
+      "badge": "Research",
+      "badgeColor": "green"
+    },
+    {
+      "id": "phd-education",
+      "categoryId": "doctorate",
+      "title": "Ph.D. in Education",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 8,
+      "badge": "Scholar",
+      "badgeColor": "purple"
+    },
+    {
+      "id": "online-bba",
+      "categoryId": "ug-courses",
+      "title": "Online BBA",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 50,
+      "badge": "Popular",
+      "badgeColor": "blue"
+    },
+    {
+      "id": "online-bca",
+      "categoryId": "ug-courses",
+      "title": "Online BCA",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 45,
+      "badge": "Tech",
+      "badgeColor": "green"
+    },
+    {
+      "id": "online-bcom",
+      "categoryId": "ug-courses",
+      "title": "Online B.Com",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 35,
+      "badge": "Finance",
+      "badgeColor": "orange"
+    },
+    {
+      "id": "online-ba",
+      "categoryId": "ug-courses",
+      "title": "Online BA",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 40,
+      "badge": "Arts",
+      "badgeColor": "purple"
+    },
+    {
+      "id": "online-btech",
+      "categoryId": "engineering",
+      "title": "Online B.Tech",
+      "icon": "https://cdn.collegevidya.com/icon/online-mba.svg",
+      "compareCount": 25,
+      "badge": "Engineering",
+      "badgeColor": "blue"
+    },
+    {
+      "id": "online-mtech",
+      "categoryId": "engineering",
+      "title": "Online M.Tech",
+      "icon": "https://cdn.collegevidya.com/icon/1-year-mba-online.svg",
+      "compareCount": 20,
+      "badge": "Tech",
+      "badgeColor": "green"
+    },
+    {
+      "id": "online-civil",
+      "categoryId": "engineering",
+      "title": "Online Civil Engineering",
+      "icon": "https://cdn.collegevidya.com/icon/distance-mba.svg",
+      "compareCount": 15,
+      "badge": "Infrastructure",
+      "badgeColor": "orange"
+    }
+  ]
+}
