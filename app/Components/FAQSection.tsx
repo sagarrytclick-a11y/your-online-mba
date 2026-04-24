@@ -1,35 +1,32 @@
 "use client";
 import React, { useState, useMemo } from 'react';
-import { ChevronDown, Search, Phone, Mail, MessageCircle } from 'lucide-react';
-import { faqData, contactMethods, colors } from '../config/data';
-import { siteIdentity } from '../config/site';
+import { ChevronDown, Search } from 'lucide-react';
+import { faqData, contactMethods } from '../config/data';
 import { DynamicIcon } from '../config/icons';
-import { themeColors, colorCombos, themeClasses } from '../config/theme';
 
 const FAQSection = () => {
   const [activeIndex, setActiveIndex] = useState<number | string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // 1. Dynamically extract unique categories from data
   const categories = useMemo(() => {
-    const uniqueCategories = Array.from(new Set(faqData.map(f => f.category)));
-    return ["All", ...uniqueCategories];
+    const unique = Array.from(new Set(faqData.map(f => f.category)));
+    return ["All", ...unique];
   }, []);
 
-  // 2. Dynamic Filtering Logic
   const filteredFAQs = useMemo(() => {
     return faqData.filter(faq => {
-      const matchesCategory = selectedCategory === "All" || faq.category === selectedCategory;
-      const matchesSearch = 
+      const matchesCategory =
+        selectedCategory === "All" || faq.category === selectedCategory;
+
+      const matchesSearch =
         faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
         faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
-      
+
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchQuery]);
 
-  // 3. Dynamic Column Splitting
   const leftCol = filteredFAQs.filter((_, i) => i % 2 === 0);
   const rightCol = filteredFAQs.filter((_, i) => i % 2 !== 0);
 
@@ -37,26 +34,45 @@ const FAQSection = () => {
     const isOpen = activeIndex === faq.id;
 
     return (
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden mb-4 h-fit transition-all hover:shadow-md">
+      <div
+        className="bg-white/80 backdrop-blur-lg rounded-2xl mb-4 overflow-hidden transition-all duration-300 hover:shadow-xl"
+        style={{
+          border: '1px solid #E2E8F0',
+          boxShadow: '0 8px 30px rgba(15,23,42,0.06)'
+        }}
+      >
         <button
           onClick={() => setActiveIndex(isOpen ? null : faq.id)}
-          className="w-full flex items-center justify-between p-4 text-left hover:bg-slate-50 transition-colors"
-          aria-expanded={isOpen}
+          className="w-full flex items-center justify-between p-5 text-left"
         >
-          <span className={`font-semibold text-sm md:text-base pr-4 ${isOpen ? "" : "text-slate-800"}`} style={{color: isOpen ? themeColors.primary : undefined}}>
+          <span
+            className="font-semibold text-sm md:text-base pr-4"
+            style={{
+              color: isOpen ? '#2563EB' : '#0F172A',
+              fontFamily: "'DM Sans', sans-serif"
+            }}
+          >
             {faq.question}
           </span>
-          <ChevronDown 
-            size={18} 
-            className={`shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{color: isOpen ? themeColors.primary : "rgb(148 163 184)"}}
+
+          <ChevronDown
+            size={18}
+            className={`transition-transform duration-300 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+            style={{ color: '#94A3B8' }}
           />
         </button>
-        <div 
-          className={`transition-all duration-300 ease-in-out overflow-hidden ${
-            isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+
+        <div
+          className={`transition-all duration-300 overflow-hidden ${
+            isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="p-4 pt-0 text-sm md:text-base text-slate-600 border-t border-slate-50 leading-relaxed">
+          <div
+            className="px-5 pb-5 text-sm text-gray-500 leading-relaxed"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
             {faq.answer}
           </div>
         </div>
@@ -65,52 +81,74 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="bg-slate-50 py-16 px-4 min-h-[700px]">
-      <div className="max-w-6xl mx-auto">
-        
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+    <section className="relative bg-[#F8FAFC] py-24 px-6 overflow-hidden">
+
+      {/* Glow Background */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-100 opacity-40 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-indigo-100 opacity-40 blur-[100px] rounded-full" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* HEADER */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 bg-[#F8F9F9] text-[#1E40AF] px-6 py-3 rounded-full text-sm font-bold tracking-wider border border-[#F97316] mb-4">
-              <span className="w-2 h-2 bg-[#F97316] rounded-full animate-pulse" />
-              FAQ
+            <div
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-4"
+              style={{
+                background: '#EFF6FF',
+                border: '1px solid #BFDBFE',
+                color: '#2563EB'
+              }}
+            >
+              <span className="w-2 h-2 bg-blue-500 rounded-full animate-ping" />
+              <span className="text-xs font-bold tracking-widest">FAQ</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-              Frequently Asked Question
+
+            <h2
+              className="text-3xl md:text-4xl font-black"
+              style={{ fontFamily: "'Syne', sans-serif", color: '#0F172A' }}
+            >
+              Frequently Asked{' '}
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+                Questions
+              </span>
             </h2>
-            <p className="text-slate-500 mt-2">Find quick answers to common admission queries.</p>
+
+            <p className="text-gray-500 mt-2">
+              Find quick answers to common admission queries.
+            </p>
           </div>
-          
+
+          {/* SEARCH */}
           <div className="relative w-full md:w-80">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Search keywords..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-200 focus:ring-2 focus:ring-[#1E40AF]/20 outline-none transition-all"
-              onChange={(e) => setSearchQuery(e.target.value)}
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input
+              type="text"
+              placeholder="Search questions..."
+              className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/80 backdrop-blur-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-200"
               value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
         </div>
 
-        {/* Dynamic Category Navigation */}
-        <div className="flex gap-2 overflow-x-auto pb-6 mb-4 no-scrollbar">
-          {categories.map(cat => (
+        {/* CATEGORIES */}
+        <div className="flex gap-3 overflow-x-auto pb-6 mb-6">
+          {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => {
                 setSelectedCategory(cat);
-                setActiveIndex(null); // Close active FAQ when switching categories
+                setActiveIndex(null);
               }}
-              className={`px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap border transition-all ${
-                selectedCategory === cat 
-                ? " shadow-sm" 
-                : "bg-white text-slate-600 border-slate-200 hover:border-slate-400"
-              }`}
+              className="px-5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all"
               style={{
-                backgroundColor: selectedCategory === cat ? themeColors.primary : undefined,
-                color: selectedCategory === cat ? 'white' : undefined,
-                borderColor: selectedCategory === cat ? themeColors.primary : undefined
+                background:
+                  selectedCategory === cat
+                    ? 'linear-gradient(135deg, #2563EB, #4F46E5)'
+                    : '#FFFFFF',
+                color: selectedCategory === cat ? '#fff' : '#64748B',
+                border: '1px solid #E2E8F0'
               }}
             >
               {cat}
@@ -118,46 +156,39 @@ const FAQSection = () => {
           ))}
         </div>
 
-        {/* Responsive Grid Results */}
+        {/* FAQ GRID */}
         {filteredFAQs.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 items-start">
-            <div className="flex flex-col">
-              {leftCol.map((faq) => <FAQItem key={faq.id} faq={faq} />)}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              {leftCol.map((faq) => (
+                <FAQItem key={faq.id} faq={faq} />
+              ))}
             </div>
-            <div className="flex flex-col">
-              {rightCol.map((faq) => <FAQItem key={faq.id} faq={faq} />)}
+            <div>
+              {rightCol.map((faq) => (
+                <FAQItem key={faq.id} faq={faq} />
+              ))}
             </div>
           </div>
         ) : (
-          <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-300">
-            <p className="text-slate-500 font-medium">No matches found for "{searchQuery}"</p>
-            <button 
-              onClick={() => {setSearchQuery(""); setSelectedCategory("All");}}
-              className="mt-2 text-sm font-bold hover:underline"
-              style={{color: themeColors.primary}}
-            >
-              Clear filters
-            </button>
+          <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-gray-300">
+            <p className="text-gray-500">No results found</p>
           </div>
         )}
 
-        {/* Contact Support Section */}
-        <div className="mt-16 flex flex-wrap justify-center gap-8 py-8 border-t border-slate-200">
+        {/* CONTACT */}
+        <div className="mt-16 flex flex-wrap justify-center gap-8 pt-10 border-t border-gray-200">
           {contactMethods.map((contact) => (
-            <div 
+            <div
               key={contact.id}
-              className={`flex items-center gap-3 text-slate-700 transition-colors ${
-                contact.type === 'phone' ? 'cursor-pointer hover:text-[#1E40AF]' : ''
-              }`}
-              style={{color: contact.type === 'phone' ? themeColors.primary : undefined}}
+              className="flex items-center gap-3 text-gray-600 hover:text-blue-600 transition"
             >
-              <span style={{color: themeColors.primary}}>
-                <DynamicIcon name={contact.type as any} size={20} />
-              </span>
-              <span className="font-semibold">{contact.value}</span>
+              <DynamicIcon name={contact.type as any} size={20} />
+              <span className="font-medium">{contact.value}</span>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

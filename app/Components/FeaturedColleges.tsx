@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { getFeaturedColleges } from '../config/colleges';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const FeaturedColleges: React.FC = () => {
   const router = useRouter();
   const [showAll, setShowAll] = useState(false);
-  // Saare colleges dikhao - 47 total colleges hai
+
   const allColleges = getFeaturedColleges(47);
   const displayedColleges = showAll ? allColleges : allColleges.slice(0, 18);
 
@@ -17,60 +17,98 @@ const FeaturedColleges: React.FC = () => {
   };
 
   return (
-    <section className="py-12 px-4 bg-[#F8FAFC]"> {/* Background light rakha hai contrast ke liye */}
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-6 bg-[#F8FAFC] overflow-hidden">
+      
+      {/* Subtle background glow */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-100 opacity-40 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-indigo-100 opacity-40 blur-[100px] rounded-full" />
+
+      <div className="relative max-w-7xl mx-auto">
         
-        {/* Section Header - Image style text */}
-        <div className="mb-10">
-            <div className="flex items-center gap-2 mb-2">
-                <span className="text-gray-500 font-medium">100+ Online Universities</span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#12141D]">
-                <span className="text-[#1E40AF]">UGC-approved universities</span>, verified by us and reviewed by learners, on 30+ factors
-            </h2>
+        {/* 🔥 HEADER */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-sm font-semibold tracking-widest uppercase text-blue-600 mb-3"
+             style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            100+ Universities
+          </p>
+
+          <h2
+            className="text-3xl md:text-4xl font-black leading-tight"
+            style={{ fontFamily: "'Syne', sans-serif", color: '#0F172A' }}
+          >
+            Explore{' '}
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+              UGC-Approved Universities
+            </span>
+          </h2>
+
+          <p
+            className="text-gray-500 mt-4 text-sm md:text-base"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            Carefully verified and reviewed across 30+ parameters to help you choose the right MBA path.
+          </p>
         </div>
 
-        {/* Colleges Grid - Spacing tight rakhi hai */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-10">
+        {/* 🔥 GRID */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5 mb-14">
           {displayedColleges.map((college) => (
             <div
               key={college.college_id}
               onClick={() => handleCollegeClick(college.slug)}
-              className="bg-white border border-gray-100 rounded-lg p-4 hover:shadow-md transition-all cursor-pointer group flex flex-col items-center justify-between min-h-[160px]"
+              className="group relative bg-white/80 backdrop-blur-lg border border-gray-200 rounded-2xl p-5 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              {/* College Logo */}
-              <div className="relative w-full h-16 mb-3">
+              {/* Logo */}
+              <div className="relative w-full h-14 mb-4">
                 <Image
                   src={college.media?.cover || '/placeholder.png'}
                   alt={college.short_name}
                   fill
-                  className="object-contain"
+                  className="object-contain group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
-              <div className="text-center mt-auto">
-                {/* Course Count - Small and Muted */}
-                <p className="text-[11px] font-bold text-gray-900 uppercase mb-1">
+              {/* Content */}
+              <div className="text-center">
+                <p className="text-[10px] font-bold tracking-wider uppercase text-blue-600 mb-1">
                   {college.courses_offered.length} Courses
                 </p>
 
-                {/* College Name - Clean typography */}
-                <h3 className="text-[13px] font-medium text-gray-600 leading-tight">
+                <h3
+                  className="text-[13px] font-medium text-gray-700 leading-tight group-hover:text-gray-900"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
                   {college.short_name}
                 </h3>
               </div>
+
+              {/* Hover Glow */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(99,102,241,0.06))'
+                }}
+              />
             </div>
           ))}
         </div>
 
-        {/* View More/Less Button */}
+        {/* 🔥 CTA BUTTON */}
         <div className="text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="bg-[#1E40AF] text-white px-6 py-3 rounded-md text-sm font-bold inline-flex items-center gap-2 transition-all active:scale-95"
+            className="group inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white transition-all duration-300 active:scale-95"
+            style={{
+              background: 'linear-gradient(135deg, #2563EB, #4F46E5)',
+              boxShadow: '0 6px 30px rgba(37,99,235,0.3)',
+              fontFamily: "'Syne', sans-serif"
+            }}
           >
-            {showAll ? 'View Less' : 'View More Universities'}
-            <ChevronDown size={16} className={`transition-transform ${showAll ? 'rotate-180' : ''}`} />
+            {showAll ? 'Show Less' : 'View All Universities'}
+
+            <ChevronDown
+              size={18}
+              className={`transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
+            />
           </button>
         </div>
       </div>

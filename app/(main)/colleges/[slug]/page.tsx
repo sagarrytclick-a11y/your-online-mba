@@ -177,16 +177,7 @@ export default function CollegeDynamicPage() {
         </div>
       </div>
 
-      {/* College Image */}
-      <div className="max-w-7xl mx-auto px-4 -mt-8 relative z-10">
-        <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-          <img
-            src={college.media?.cover || '/colleges/default-cover.jpg'}
-            alt={college.name}
-            className="w-full h-80 md:h-96 object-cover"
-          />
-        </div>
-      </div>
+     
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
