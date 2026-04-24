@@ -1,40 +1,88 @@
 "use client";
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, PhoneCall } from 'lucide-react';
 import { useModal } from '../Context/ModalContext';
 
 const DreamCollegeCTA: React.FC = () => {
   const { openModal } = useModal();
 
   return (
-    <section className="bg-[#F8F9F9] py-20 px-6">
-      <div className="max-w-7xl mx-auto rounded-[3rem] overflow-hidden shadow-2xl relative bg-[#1E40AF] p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12">
+    <section className="relative bg-[#F8FAFC] py-24 px-6 overflow-hidden">
+
+      {/* 🔥 Background Glow */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-200 opacity-40 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-indigo-200 opacity-40 blur-[100px] rounded-full" />
+
+      <div className="relative max-w-7xl mx-auto">
         
-        {/* Geometric Pattern Background */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
+        <div
+          className="relative rounded-[2.5rem] overflow-hidden p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-10"
+          style={{
+            background: 'linear-gradient(135deg, #2563EB, #4F46E5)',
+            boxShadow: '0 30px 80px rgba(37,99,235,0.35)'
+          }}
+        >
 
-        {/* Left: Text Content */}
-        <div className="flex-1 text-white z-10">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
-            Have questions about our college or courses?
-          </h2>
-        </div>
+          {/* Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
+                backgroundSize: "28px 28px",
+              }}
+            />
+          </div>
 
-        {/* Right: Button */}
-        <div className="flex-shrink-0 z-10">
-          <button 
-            onClick={openModal}
-            className="bg-[#1E40AF] hover:bg-[#1E3A8A] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 flex items-center gap-3 border-2 border-white/20 hover:border-white/40"
-          >
-            Ready to answers!
-            <ArrowRight size={20} />
-          </button>
-        </div>
+          {/* 🔥 LEFT CONTENT */}
+          <div className="flex-1 text-white z-10">
+            
+            <p className="text-xs uppercase tracking-widest mb-3 opacity-80"
+               style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              Free MBA Counselling
+            </p>
 
+            <h2
+              className="text-3xl md:text-4xl font-black leading-tight"
+              style={{ fontFamily: "'Syne', sans-serif" }}
+            >
+              Confused About Your{' '}
+              <span className="text-white/80">
+                MBA Admission?
+              </span>
+              <br />
+              Talk to an Expert Today.
+            </h2>
+
+            <p className="mt-4 text-white/80 text-sm md:text-base max-w-lg"
+               style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              Get personalized college recommendations, admission guidance, and interview preparation — all at zero cost.
+            </p>
+          </div>
+
+          {/* 🔥 RIGHT CTA */}
+          <div className="flex-shrink-0 z-10">
+            <button
+              onClick={openModal}
+              className="group flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white transition-all duration-300 active:scale-95"
+              style={{
+                background: 'rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                fontFamily: "'Syne', sans-serif"
+              }}
+            >
+              <PhoneCall size={18} />
+              Talk to MBA Expert
+
+              <ArrowRight
+                size={18}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -15,35 +15,36 @@ interface IconProps {
   name: IconName;
   size?: number;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export const DynamicIcon: React.FC<IconProps> = ({ name, size = 20, className = "" }) => {
+export const DynamicIcon: React.FC<IconProps> = ({ name, size = 20, className = "", style }) => {
   const iconMap = {
-    users: <Users size={size} className={className} />,
-    target: <Target size={size} className={className} />,
-    award: <Award size={size} className={className} />,
-    clock: <Clock size={size} className={className} />,
-    shield: <Shield size={size} className={className} />,
-    bookOpen: <BookOpen size={size} className={className} />,
-    phone: <Phone size={size} className={className} />,
-    mail: <Mail size={size} className={className} />,
-    mapPin: <MapPin size={size} className={className} />,
-    star: <Star size={size} className={className} />,
-    checkCircle: <CheckCircle size={size} className={className} />,
-    arrowRight: <ArrowRight size={size} className={className} />,
-    helpCircle: <HelpCircle size={size} className={className} />,
-    chevronDown: <ChevronDown size={size} className={className} />,
-    search: <Search size={size} className={className} />,
-    trendingUp: <TrendingUp size={size} className={className} />,
-    headphones: <Headphones size={size} className={className} />,
-    graduationCap: <GraduationCap size={size} className={className} />,
-    home: <Home size={size} className={className} />,
-    info: <Info size={size} className={className} />,
-    menu: <Menu size={size} className={className} />,
-    x: <X size={size} className={className} />
+    users: <Users size={size} className={className} style={style} />,
+    target: <Target size={size} className={className} style={style} />,
+    award: <Award size={size} className={className} style={style} />,
+    clock: <Clock size={size} className={className} style={style} />,
+    shield: <Shield size={size} className={className} style={style} />,
+    bookOpen: <BookOpen size={size} className={className} style={style} />,
+    phone: <Phone size={size} className={className} style={style} />,
+    mail: <Mail size={size} className={className} style={style} />,
+    mapPin: <MapPin size={size} className={className} style={style} />,
+    star: <Star size={size} className={className} style={style} />,
+    checkCircle: <CheckCircle size={size} className={className} style={style} />,
+    arrowRight: <ArrowRight size={size} className={className} style={style} />,
+    helpCircle: <HelpCircle size={size} className={className} style={style} />,
+    chevronDown: <ChevronDown size={size} className={className} style={style} />,
+    search: <Search size={size} className={className} style={style} />,
+    trendingUp: <TrendingUp size={size} className={className} style={style} />,
+    headphones: <Headphones size={size} className={className} style={style} />,
+    graduationCap: <GraduationCap size={size} className={className} style={style} />,
+    home: <Home size={size} className={className} style={style} />,
+    info: <Info size={size} className={className} style={style} />,
+    menu: <Menu size={size} className={className} style={style} />,
+    x: <X size={size} className={className} style={style} />
   };
 
-  return iconMap[name] || <div className={className} />;
+  return iconMap[name] || <div className={className} style={style} />;
 };
 
 // Helper function to get icon component directly

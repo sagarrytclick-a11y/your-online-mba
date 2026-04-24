@@ -98,13 +98,13 @@ const TestimonialsSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-28">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#F8F9F9] text-[#1E40AF] px-4 py-2 rounded-lg mb-6 border border-[#F97316]">
+            <div className="inline-flex items-center gap-2 bg-[#F8F9F9] text-[#1E40AF] px-4 py-2 rounded-lg mb-6 border border-[#1E40AF]">
               <GraduationCap size={18} className="text-[#1E40AF]" />
               <span className="text-sm font-bold tracking-wide text-[#1E40AF]">TRUSTED BY STUDENTS</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight text-[#1A1A1B]">
               10.6k+ <br/>
-              <span className="text-[#F97316]">Students Made A Choice</span>
+              <span className="text-[#1E40AF]">Students Made A Choice</span>
             </h2>
             <p className="text-xl max-w-lg mb-10 text-[#2C3E50]">
               That opened the right doors. Unlock your potential and find the perfect college path with expert guidance.
@@ -119,7 +119,7 @@ const TestimonialsSection = () => {
                 <div>
                   <div className="flex items-center gap-1.5 mb-1">
                     <span className="font-bold text-[#1A1A1B] text-lg">4.8</span>
-                    <Star size={16} className="fill-[#F97316] text-[#F97316]" />
+                    <Star size={16} className="fill-[#1E40AF] text-[#1E40AF]" />
                   </div>
                   <p className="text-sm text-[#2C3E50]">Trusted by 5,200+ Reviews</p>
                 </div>
@@ -183,12 +183,12 @@ const TestimonialsSection = () => {
                       {testimonial.text}
                     </p>
                     <div className="flex items-center gap-4">
-                      <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-[#F97316]" />
+                      <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-[#1E40AF]" />
                       <div>
                         <h4 className="font-bold text-[#1A1A1B]">{testimonial.name}</h4>
                         <p className="text-xs text-gray-500">{testimonial.college}</p>
                         <div className="flex gap-0.5 mt-1">
-                            {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#F97316] text-[#F97316]" />)}
+                            {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-[#1E40AF] text-[#1E40AF]" />)}
                         </div>
                       </div>
                     </div>
@@ -208,7 +208,7 @@ const TestimonialsSection = () => {
               className="h-1.5 rounded-full transition-all duration-500"
               style={{
                 width: index === selectedIndex ? '40px' : '8px',
-                backgroundColor: index === selectedIndex ? '#F97316' : '#CBD5E1'
+                backgroundColor: index === selectedIndex ? '#1E40AF' : '#CBD5E1'
               }}
             />
           ))}

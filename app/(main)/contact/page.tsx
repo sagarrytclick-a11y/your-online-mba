@@ -1,203 +1,185 @@
 "use client";
-import { Phone, Mail, MapPin, Clock, MessageCircle, ArrowRight, Building2, Users, GraduationCap, Award, Headphones, Instagram, Linkedin, Youtube } from 'lucide-react';
+import {
+  Phone, Mail, MapPin, Clock, MessageCircle, ArrowRight,
+  Building2, Users, GraduationCap, Award, Headphones,
+  Instagram, Linkedin, Youtube
+} from 'lucide-react';
 import { siteIdentity } from '../../config/site';
 import DreamCollegeCTA from '../../Components/DreamCollegeCTA';
 
 export default function ContactPage() {
-
   return (
-    <div className="min-h-screen bg-[#F8F9F9]">
-      {/* Hero Section */}
-      <section className="relative py-20 px-6 overflow-hidden bg-linear-to-br from-[#1E40AF] to-[#1E3A8A]">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#F97316] rounded-full blur-3xl" />
+    <div className="min-h-screen bg-[#0B0F19] text-white">
+
+      {/* HERO */}
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B0F19] via-[#111827] to-[#1E293B]" />
+
+        {/* Glow Effects */}
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#3B82F6]/20 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#F97316]/20 blur-[120px]" />
+
+        <div className="max-w-7xl mx-auto relative z-10 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full text-sm font-semibold border border-white/10">
+            <Phone size={18} />
+            CONTACT US
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+            Start Your <span className="text-[#3B82F6]">Career Journey</span>
+          </h1>
+
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            Confused about college or career? Our experts will guide you step-by-step.
+          </p>
         </div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center space-y-6">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-3 rounded-full text-sm font-bold border border-white/30 text-white">
-              <Phone size={20} />
-              CONTACT US
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
-              Let's Start Your <span className="text-[#F97316]">MBA Journey</span>
-            </h1>
-            
-            <p className="text-xl max-w-3xl mx-auto leading-relaxed text-white/90">
-              Have questions about MBA admissions? Need guidance for your career path? 
-              Our expert team is here to help you achieve your dreams.
-            </p>
+      </section>
+
+      {/* WHY US */}
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: GraduationCap, title: "Expert Guidance", desc: "Personal mentorship from experts" },
+              { icon: Building2, title: "500+ Colleges", desc: "Top universities access" },
+              { icon: Users, title: "10,000+ Students", desc: "Trusted by thousands" },
+              { icon: Award, title: "98% Success", desc: "Proven results" },
+            ].map((item, i) => (
+              <div key={i} className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl hover:border-[#3B82F6] transition-all">
+                <item.icon className="mb-4 text-[#3B82F6]" size={28} />
+                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-sm">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 px-6 -mt-10 relative z-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1B] mb-4">Why Choose Us?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">We provide comprehensive guidance to help you achieve your academic and career goals</p>
+      {/* CONTACT CARDS */}
+      <section className="py-20 px-6 border-t border-white/10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {/* Phone */}
+          <div className="glass-card">
+            <Phone size={26} />
+            <h3>Call Us</h3>
+            <p>{siteIdentity.contact.phone[0]}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 rounded-xl bg-[#1E40AF]/10 flex items-center justify-center text-[#1E40AF] mb-4">
-                <GraduationCap size={28} />
-              </div>
-              <h3 className="text-lg font-bold text-[#1A1A1B] mb-2">Expert Guidance</h3>
-              <p className="text-sm text-gray-600">Get personalized advice from industry experts with years of experience</p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 rounded-xl bg-[#F97316]/10 flex items-center justify-center text-[#F97316] mb-4">
-                <Building2 size={28} />
-              </div>
-              <h3 className="text-lg font-bold text-[#1A1A1B] mb-2">500+ Colleges</h3>
-              <p className="text-sm text-gray-600">Access to top universities and colleges across India</p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 rounded-xl bg-[#1E40AF]/10 flex items-center justify-center text-[#1E40AF] mb-4">
-                <Users size={28} />
-              </div>
-              <h3 className="text-lg font-bold text-[#1A1A1B] mb-2">10,000+ Students</h3>
-              <p className="text-sm text-gray-600">Join thousands of successful students who found their dream college</p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 rounded-xl bg-[#F97316]/10 flex items-center justify-center text-[#F97316] mb-4">
-                <Award size={28} />
-              </div>
-              <h3 className="text-lg font-bold text-[#1A1A1B] mb-2">98% Success Rate</h3>
-              <p className="text-sm text-gray-600">Our proven track record speaks for itself</p>
-            </div>
+          {/* Email */}
+          <div className="glass-card">
+            <Mail size={26} />
+            <h3>Email</h3>
+            <p>{siteIdentity.contact.email}</p>
           </div>
+
+          {/* Address */}
+          <div className="glass-card">
+            <MapPin size={26} />
+            <h3>Office</h3>
+            <p className="text-sm">{siteIdentity.contact.address}</p>
+          </div>
+
+          {/* WhatsApp */}
+          <a href={siteIdentity.social.whatsapp} target="_blank" className="glass-card hover:border-green-400">
+            <MessageCircle size={26} />
+            <h3>WhatsApp</h3>
+            <p>Chat instantly</p>
+          </a>
         </div>
       </section>
 
-      {/* Contact Info Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1B] mb-4">Get In Touch</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Reach out to us through any of these channels</p>
-          </div>
+      {/* OFFICE HOURS */}
+      <section className="py-20 px-6 bg-white/5">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10">
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Phone Card */}
-            <div className="bg-linear-to-br from-[#1E40AF] to-[#1E3A8A] rounded-2xl shadow-lg p-6 text-white hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center mb-4">
-                <Phone size={28} />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Call Us</h3>
-              <p className="text-white/90 font-semibold mb-1">{siteIdentity.contact.phone[0]}</p>
-              <p className="text-sm text-white/70">{siteIdentity.contact.phone[1]}</p>
-              <p className="text-xs text-white/60 mt-3">Mon-Sat: 9:00 AM - 7:00 PM</p>
-            </div>
-
-            {/* Email Card */}
-            <div className="bg-gradient-to-br from-[#F97316] to-[#EA580C] rounded-2xl shadow-lg p-6 text-white hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center mb-4">
-                <Mail size={28} />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Email Us</h3>
-              <p className="text-white/90 font-semibold break-all">{siteIdentity.contact.email}</p>
-              <p className="text-xs text-white/60 mt-3">We respond within 24 hours</p>
-            </div>
-
-            {/* Address Card */}
-            <div className="bg-linear-to-br from-[#1E40AF] to-[#1E3A8A] rounded-2xl shadow-lg p-6 text-white hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center mb-4">
-                <MapPin size={28} />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Visit Us</h3>
-              <p className="text-sm text-white/90 leading-relaxed">{siteIdentity.contact.address}</p>
-            </div>
-
-            {/* WhatsApp Card */}
-            <a href={siteIdentity.social.whatsapp} target="_blank" rel="noopener noreferrer" className="bg-linear-to-br from-[#25d366] to-[#128C7E] rounded-2xl shadow-lg p-6 text-white hover:shadow-xl transition-shadow flex flex-col justify-between">
-              <div>
-                <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center mb-4">
-                  <MessageCircle size={28} />
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Office Hours</h2>
+            <div className="space-y-4">
+              <div className="glass-row">
+                <Clock />
+                <div>
+                  <p className="font-semibold">Mon - Sat</p>
+                  <p className="text-gray-400">9 AM - 7 PM</p>
                 </div>
-                <h3 className="text-lg font-bold mb-2">WhatsApp</h3>
-                <p className="text-white/90 font-semibold">Chat with us instantly</p>
               </div>
-              <ArrowRight size={20} className="self-end mt-4" />
+
+              <div className="glass-row">
+                <Clock />
+                <div>
+                  <p className="font-semibold">Sunday</p>
+                  <p className="text-gray-400">Closed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* URGENT HELP */}
+          <div className="bg-gradient-to-br from-[#3B82F6] to-[#1E40AF] rounded-2xl p-8">
+            <Headphones size={30} className="mb-4" />
+            <h3 className="text-2xl font-bold mb-3">Need Help Fast?</h3>
+            <p className="text-white/80 mb-6">Talk directly with our support team.</p>
+
+            <a
+              href={`tel:${siteIdentity.contact.phone[0]}`}
+              className="bg-white text-black px-6 py-3 rounded-lg font-bold inline-flex items-center gap-2"
+            >
+              <Phone size={18} /> Call Now
             </a>
           </div>
         </div>
       </section>
 
-      {/* Office Hours Section */}
-      <section className="py-20 px-6 bg-[#F8F9F9]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1B] mb-6">Office Hours</h2>
-              <p className="text-gray-600 mb-8">Our team is available during these hours to assist you with your queries</p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md">
-                  <Clock className="text-[#1E40AF]" size={24} />
-                  <div>
-                    <h4 className="font-bold text-[#1A1A1B]">Monday - Saturday</h4>
-                    <p className="text-gray-600">9:00 AM - 7:00 PM</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md">
-                  <Clock className="text-[#F97316]" size={24} />
-                  <div>
-                    <h4 className="font-bold text-[#1A1A1B]">Sunday</h4>
-                    <p className="text-gray-600">Closed</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-linear-to-br from-[#1E40AF] to-[#1E3A8A] rounded-3xl p-8 text-white">
-              <div className="flex items-center gap-4 mb-6">
-                <Headphones size={32} />
-                <h3 className="text-2xl font-bold">Need Urgent Help?</h3>
-              </div>
-              <p className="text-white/90 mb-6">Our support team is available 24/7 for emergency queries. Reach out to us anytime.</p>
-              <a href={`tel:${siteIdentity.contact.phone[0].replace(/\s/g, '')}`} className="inline-flex items-center gap-2 bg-white text-[#1E40AF] px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors">
-                <Phone size={20} />
-                Call Now
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
+      {/* CTA */}
       <DreamCollegeCTA />
 
-      {/* Social Media Section */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-[#1A1A1B] mb-4">Connect with Us</h2>
-          <p className="text-gray-600 mb-8">Follow us on social media for latest updates and insights</p>
+      {/* SOCIAL */}
+      <section className="py-16 text-center">
+        <h2 className="text-2xl font-bold mb-6">Follow Us</h2>
 
-          <div className="flex justify-center gap-4">
-            <a href={siteIdentity.social.whatsapp} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#25d366] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-              <MessageCircle size={28} />
+        <div className="flex justify-center gap-4">
+          {[ 
+            { icon: MessageCircle, link: siteIdentity.social.whatsapp, color: "bg-green-500" },
+            { icon: Instagram, link: siteIdentity.social.instagram, color: "bg-pink-500" },
+            { icon: Linkedin, link: siteIdentity.social.linkedin, color: "bg-blue-600" },
+            { icon: Youtube, link: siteIdentity.social.youtube, color: "bg-red-500" },
+          ].map((item, i) => (
+            <a key={i} href={item.link} target="_blank"
+              className={`w-12 h-12 flex items-center justify-center rounded-full ${item.color} hover:scale-110 transition`}>
+              <item.icon size={22} />
             </a>
-            <a href={siteIdentity.social.instagram} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-              <Instagram size={28} />
-            </a>
-            <a href={siteIdentity.social.linkedin} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#0077b5] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-              <Linkedin size={28} />
-            </a>
-            <a href={siteIdentity.social.youtube} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full bg-[#FF0000] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
-              <Youtube size={28} />
-            </a>
-          </div>
+          ))}
         </div>
       </section>
-    </div>
-  )
 
+      {/* STYLES */}
+      <style jsx>{`
+        .glass-card {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.1);
+          padding: 24px;
+          border-radius: 16px;
+          backdrop-filter: blur(10px);
+          transition: 0.3s;
+        }
+        .glass-card:hover {
+          border-color: #3B82F6;
+          transform: translateY(-4px);
+        }
+        .glass-row {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background: rgba(255,255,255,0.05);
+          padding: 14px;
+          border-radius: 12px;
+        }
+      `}</style>
+    </div>
+  );
 }

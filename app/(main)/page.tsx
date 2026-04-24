@@ -7,6 +7,9 @@ import WhyChooseUs from '../Components/WhyChooseUs';
 import FAQSection from '../Components/FAQSection';
 import FeaturedColleges from '../Components/FeaturedColleges';
 import BrandPartner from '../Components/BrandPartner';
+import InfiniteScrollPrograms from '../Components/InfiniteScrollPrograms';
+import DownloadBrochureButton from '../Components/DownloadBrochureButton';
+
 
 
 const page = () => {
@@ -20,6 +23,8 @@ const page = () => {
       <TestimonialsSection/>
       <WhyChooseUs/>
       <FAQSection/>
+      <InfiniteScrollPrograms/>
+      <DownloadBrochureButton/>
     </div>
   )
 }

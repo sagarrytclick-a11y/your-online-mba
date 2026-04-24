@@ -9,7 +9,7 @@ export const siteIdentity = {
   colors: themeColors,
   contact: {
     phone: ["+91-9839865347", "+91-9569985339"],
-    email: "support@vidyavriddhi.com",
+    email: "Abhishek@vidyavriddhi.com",
     address: "S0-1, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4, Noida, Uttar Pradesh - 201301"
   },
   social: {

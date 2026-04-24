@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import { ShieldCheck, Building2, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
 
 const companies = [
   {
@@ -42,58 +40,70 @@ const duplicatedCompanies = [...companies, ...companies];
 
 export default function BrandPartner() {
   return (
-    <section className="w-full bg-white py-16 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 mb-12 text-center">
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Globe className="w-3 h-3 text-[#1E40AF]" />
-          <p className="text-xs font-bold tracking-[0.3em] uppercase text-[#1E40AF]">
+    <section className="relative w-full py-20 bg-[#F8FAFC] overflow-hidden">
+
+      {/* 🔥 Background Glow */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-100 opacity-40 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-indigo-100 opacity-40 blur-[100px] rounded-full" />
+
+      <div className="relative max-w-7xl mx-auto px-6 mb-14 text-center">
+        
+        {/* Badge */}
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Globe className="w-3 h-3 text-blue-600" />
+          <p className="text-xs font-bold tracking-[0.3em] uppercase text-blue-600"
+             style={{ fontFamily: "'DM Sans', sans-serif" }}>
             Global Recognition
           </p>
         </div>
 
-        <h2 className="font-black text-[#1A1A1B] text-3xl md:text-4xl leading-tight">
-          Our Alumni At Work
+        {/* Heading */}
+        <h2
+          className="font-black text-3xl md:text-4xl leading-tight"
+          style={{ fontFamily: "'Syne', sans-serif", color: '#0F172A' }}
+        >
+          Our Alumni Work At{' '}
+          <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">
+            Top Global Companies
+          </span>
         </h2>
       </div>
 
-      {/* Slider */}
+      {/* 🔥 Slider */}
       <div className="relative flex w-full">
-        <div className="flex animate-marquee whitespace-nowrap gap-12 py-6 items-center">
+        <div className="flex animate-marquee whitespace-nowrap gap-14 py-6 items-center">
           {duplicatedCompanies.map((company, idx) => (
             <div
               key={`${company.name}-${idx}`}
-              className="flex flex-col items-center gap-4 min-w-[140px] sm:min-w-[180px] group"
+              className="group flex flex-col items-center gap-4 min-w-[150px]"
             >
-              <div className="relative">
-                {/* Logo Container - Uses Surface Color */}
-                <div className="w-20 h-20 sm:w-28 sm:h-28 bg-gray-50 rounded-2xl flex items-center justify-center p-5 border border-gray-200 shadow-md">
-                  <img
-                    src={company.logo}
-                    alt={company.name}
-                    className="w-full h-full object-contain brightness-100"
-                  />
-                </div>
-
+              {/* Card */}
+              <div className="w-24 h-24 sm:w-28 sm:h-28 bg-white/80 backdrop-blur-lg rounded-2xl flex items-center justify-center p-5 border border-gray-200 shadow-md transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1">
+                <img
+                  src={company.logo}
+                  alt={company.name}
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
 
-              {/* Text - Uses Primary Text Color */}
-              <div className="text-center">
-                <p className="text-sm sm:text-base font-semibold text-[#1A1A1B] leading-tight">
-                  {company.name}
-                </p>
-
-              
-              </div>
+              {/* Name */}
+              <p
+                className="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {company.name}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Soft gradients for Light Theme */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
+        {/* Gradient fades */}
+        <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10" />
       </div>
 
-      <style jsx>{`
+      {/* Animation */}
+      <style>{`
         @keyframes marquee {
           0% {
             transform: translateX(0);
@@ -102,9 +112,11 @@ export default function BrandPartner() {
             transform: translateX(-50%);
           }
         }
+
         .animate-marquee {
-          animation: marquee 35s linear infinite;
+          animation: marquee 30s linear infinite;
         }
+
         .animate-marquee:hover {
           animation-play-state: paused;
         }

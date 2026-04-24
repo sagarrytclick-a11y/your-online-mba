@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Menu, X, Home, Info, Mail, BookOpen, GraduationCap, ChevronDown } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 import { useModal } from '../Context/ModalContext';
 import { siteIdentity } from '../config/site';
 import { DynamicIcon } from '../config/icons';
@@ -16,10 +16,9 @@ const Navbar: React.FC = () => {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
   const { openModal } = useModal();
 
-  // Top universities (IIMs, ISB, XLRI, etc.)
-  const topUniversities = collegesData.filter(college => 
-    college.slug.includes('iim') || 
-    college.slug.includes('isb') || 
+  const topUniversities = collegesData.filter(college =>
+    college.slug.includes('iim') ||
+    college.slug.includes('isb') ||
     college.slug.includes('xlri') ||
     college.slug.includes('goa-institute') ||
     college.slug.includes('iiitb')
@@ -29,98 +28,163 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', href: '/', icon: 'home' },
-    { name: 'Online Programmes', href: '/colleges', icon: 'bookOpen', hasDropdown: true, dropdownKey: 'online' }, 
+    { name: 'Online Programmes', href: '/colleges', icon: 'bookOpen', hasDropdown: true, dropdownKey: 'online' },
     { name: 'About', href: '/about', icon: 'info' },
     { name: 'Top Programmes', href: '/colleges', icon: 'graduationCap', hasDropdown: true, dropdownKey: 'top' },
     { name: 'Contact', href: '/contact', icon: 'mail' },
   ];
 
   return (
-    <nav className="w-full text-black bg-white border-b border-gray-100 sticky top-0 z-50">
-      {/* Top Contact Bar */}
-      <div className="hidden sm:flex bg-linear-to-r from-[#1A1A1B] to-[#2D2D2D] text-white px-6 py-2.5 justify-between text-[12px] font-medium tracking-wide">
+    <nav
+      className="w-full sticky top-0 z-50"
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
+    >
+      {/* ── Top contact bar ── */}
+      <div
+        className="hidden sm:flex px-6 py-2.5 justify-between text-[11px] font-semibold tracking-wide"
+        style={{ background: '#0F172A', color: 'rgba(255,255,255,0.9)' }}
+      >
         <div className="flex gap-6">
-          <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
-            <DynamicIcon name="phone" size={12} className="text-[#F97316]" />
+          <span
+            className="flex items-center gap-1.5 cursor-pointer transition-colors text-white duration-200"
+            style={{ color: 'rgba(255,255,255,0.9)' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.9)')}
+          >
+            <DynamicIcon name="phone" size={11} style={{ color: '#3B82F6' }} />
             {siteIdentity.contact.phone[0]}
           </span>
-          <span className="flex items-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity cursor-pointer">
-            <DynamicIcon name="mail" size={12} className="text-[#F97316]" />
+          <span
+            className="flex items-center gap-1.5 cursor-pointer transition-colors duration-200"
+            style={{ color: 'rgba(255,255,255,0.9)' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.9)')}
+          >
+            <DynamicIcon name="mail" size={11} style={{ color: '#3B82F6' }} />
             {siteIdentity.contact.email}
           </span>
         </div>
-        <div className="hidden lg:block opacity-70">
-          <span>{siteIdentity.contact.address}</span>
-        </div>
+        <span className="hidden lg:block" style={{ color: 'rgba(255,255,255,0.9)' }}>
+          {siteIdentity.contact.address}
+        </span>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Navbar Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 items-center h-20">
+      {/* ── Main bar ── */}
+      <div
+        style={{
+          background: '#FFFFFF',
+          borderBottom: '1px solid #E2E8F0',
+          boxShadow: '0 1px 6px rgba(15,23,42,0.06)',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 items-center h-18" style={{ height: 72 }}>
 
-          {/* 1. Left: Logo Section */}
-          <div className="flex justify-start">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="relative w-14 h-14 md:w-16 md:h-16 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                <Image
-                  src='/favicon.png'
-                  alt={siteIdentity.name}
-                  fill
-                  className="object-contain drop-shadow-sm"
-                />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="font-extrabold text-base md:text-lg text-[#1A1A1B] tracking-tight group-hover:text-[#1E40AF] transition-colors">{siteIdentity.name}</span>
-                <span className="text-[8px] text-[#F97316] font-bold tracking-[0.15em] uppercase italic group-hover:text-[#1E40AF] transition-colors">{siteIdentity.tagline}</span>
-              </div>
-            </Link>
-          </div>
+            {/* ── Logo ── */}
+            <div className="flex justify-start">
+              <Link href="/" className="flex items-center gap-2.5 group">
+                <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-105">
+                  <Image
+                    src="/favicon.png"
+                    alt={siteIdentity.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-col leading-tight">
+                  <span
+                    className="font-extrabold text-base md:text-lg tracking-tight transition-colors duration-200"
+                    style={{ fontFamily: "'Syne', sans-serif", color: '#0F172A' }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#2563EB')}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = '#0F172A')}
+                  >
+                    {siteIdentity.name}
+                  </span>
+                  <span
+                    className="text-[9px] font-bold tracking-[0.18em] uppercase italic"
+                    style={{ color: '#2563EB' }}
+                  >
+                    {siteIdentity.tagline}
+                  </span>
+                </div>
+              </Link>
+            </div>
 
-            <div className="hidden lg:flex justify-center items-center">
-            <div className="flex gap-3  text-[14px] font-bold text-gray-700 uppercase tracking-wide">
+            {/* ── Desktop nav links ── */}
+            <div className="hidden lg:flex justify-center items-center gap-1">
               {navLinks.map((link) => (
                 <div
                   key={link.name}
                   className="relative"
                   onMouseEnter={() => {
-                    if (link.hasDropdown) {
-                      if (link.dropdownKey === 'top') setIsTopDropdownOpen(true);
-                      if (link.dropdownKey === 'online') setIsOnlineDropdownOpen(true);
-                    }
+                    if (link.dropdownKey === 'top') setIsTopDropdownOpen(true);
+                    if (link.dropdownKey === 'online') setIsOnlineDropdownOpen(true);
                   }}
                   onMouseLeave={() => {
-                    if (link.hasDropdown) {
-                      if (link.dropdownKey === 'top') setIsTopDropdownOpen(false);
-                      if (link.dropdownKey === 'online') setIsOnlineDropdownOpen(false);
-                    }
+                    if (link.dropdownKey === 'top') setIsTopDropdownOpen(false);
+                    if (link.dropdownKey === 'online') setIsOnlineDropdownOpen(false);
                   }}
                 >
                   <Link
                     href={link.href}
-                    className="hover:bg-[#1E40AF] hover:text-white transition-all whitespace-nowrap duration-300 relative group py-2 px-4 rounded-lg flex items-center gap-2"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 whitespace-nowrap"
+                    style={{ color: '#475569' }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = '#EFF6FF';
+                      el.style.color = '#1D4ED8';
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.background = 'transparent';
+                      el.style.color = '#475569';
+                    }}
                   >
                     {link.name}
-                    {link.hasDropdown && <ChevronDown size={14} />}
+                    {link.hasDropdown && <ChevronDown size={13} />}
                   </Link>
 
-                  {/* Dropdown Menu */}
+                  {/* Dropdown */}
                   {link.hasDropdown && (
                     <>
                       {link.dropdownKey === 'top' && isTopDropdownOpen && (
-                        <div className="absolute top-full left-0 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 py-4 z-50">
-                          <div className="grid grid-cols-2 gap-2 px-4">
+                        <div
+                          className="absolute top-full left-0 w-96 py-3 rounded-2xl z-50"
+                          style={{
+                            background: '#FFFFFF',
+                            border: '1px solid #E2E8F0',
+                            boxShadow: '0 16px 48px rgba(15,23,42,0.12)',
+                          }}
+                        >
+                          <p
+                            className="px-4 pb-2 text-[10px] font-bold uppercase tracking-widest"
+                            style={{ color: '#94A3B8' }}
+                          >
+                            Top Universities
+                          </p>
+                          <div className="grid grid-cols-2 gap-1 px-3">
                             {topUniversities.map((college) => (
                               <Link
                                 key={college.slug}
                                 href={`/colleges/${college.slug}`}
-                                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#F8F9F9] transition-colors group/item"
+                                className="flex items-center gap-2.5 p-2.5 rounded-xl transition-all duration-200"
+                                style={{ color: '#475569' }}
+                                onMouseEnter={(e) => {
+                                  (e.currentTarget as HTMLElement).style.background = '#F8FAFC';
+                                  (e.currentTarget as HTMLElement).style.color = '#1D4ED8';
+                                }}
+                                onMouseLeave={(e) => {
+                                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                                  (e.currentTarget as HTMLElement).style.color = '#475569';
+                                }}
                               >
                                 <img
                                   src={college.media?.cover || '/colleges/default-cover.jpg'}
                                   alt={college.name}
-                                  className="w-10 h-10 object-cover rounded-lg group-hover/item:scale-110 transition-transform"
+                                  className="w-9 h-9 object-cover rounded-lg shrink-0"
+                                  style={{ border: '1px solid #E2E8F0' }}
                                 />
-                                <span className="text-xs font-semibold text-gray-700 group-hover/item:text-[#1E40AF] transition-colors line-clamp-2">
+                                <span className="text-xs font-semibold leading-tight line-clamp-2">
                                   {college.name}
                                 </span>
                               </Link>
@@ -128,21 +192,46 @@ const Navbar: React.FC = () => {
                           </div>
                         </div>
                       )}
+
                       {link.dropdownKey === 'online' && isOnlineDropdownOpen && (
-                        <div className="absolute top-full left-0 w-125 mt-0 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50">
-                          <div className="grid grid-cols-2 gap-2 px-4">
+                        <div
+                          className="absolute top-full left-0 py-3 rounded-2xl z-50"
+                          style={{
+                            width: 480,
+                            background: '#FFFFFF',
+                            border: '1px solid #E2E8F0',
+                            boxShadow: '0 16px 48px rgba(15,23,42,0.12)',
+                          }}
+                        >
+                          <p
+                            className="px-4 pb-2 text-[10px] font-bold uppercase tracking-widest"
+                            style={{ color: '#94A3B8' }}
+                          >
+                            Online Programmes
+                          </p>
+                          <div className="grid grid-cols-2 gap-1 px-3">
                             {onlineColleges.map((college) => (
                               <Link
                                 key={college.slug}
                                 href={`/colleges/${college.slug}`}
-                                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#F8F9F9] transition-colors group/item"
+                                className="flex items-center gap-2.5 p-2.5 rounded-xl transition-all duration-200"
+                                style={{ color: '#475569' }}
+                                onMouseEnter={(e) => {
+                                  (e.currentTarget as HTMLElement).style.background = '#F8FAFC';
+                                  (e.currentTarget as HTMLElement).style.color = '#1D4ED8';
+                                }}
+                                onMouseLeave={(e) => {
+                                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                                  (e.currentTarget as HTMLElement).style.color = '#475569';
+                                }}
                               >
                                 <img
                                   src={college.media?.cover || '/colleges/default-cover.jpg'}
                                   alt={college.name}
-                                  className="w-10 h-10 object-cover rounded-lg group-hover/item:scale-110 transition-transform"
+                                  className="w-9 h-9 object-cover rounded-lg shrink-0"
+                                  style={{ border: '1px solid #E2E8F0' }}
                                 />
-                                <span className="text-xs font-semibold text-gray-700 group-hover/item:text-[#1E40AF] transition-colors line-clamp-2">
+                                <span className="text-xs font-semibold leading-tight line-clamp-2">
                                   {college.name}
                                 </span>
                               </Link>
@@ -155,73 +244,121 @@ const Navbar: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* ── Right: CTA + Mobile toggle ── */}
+            <div className="flex justify-end items-center gap-3">
+              <button
+                onClick={openModal}
+                className="hidden sm:flex items-center gap-2 text-white text-[13px] font-bold px-5 py-2.5 rounded-xl transition-all duration-200 active:scale-95"
+                style={{
+                  background: 'linear-gradient(135deg, #2563EB, #4F46E5)',
+                  boxShadow: '0 4px 16px rgba(37,99,235,0.25)',
+                  fontFamily: "'Syne', sans-serif",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 6px 24px rgba(37,99,235,0.40)';
+                  (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 16px rgba(37,99,235,0.25)';
+                  (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)';
+                }}
+              >
+                <DynamicIcon name="phone" size={13} />
+                Get Guidance
+              </button>
+
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 rounded-xl transition-all duration-200"
+                style={{ color: '#475569' }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background = '#F1F5F9';
+                  (e.currentTarget as HTMLButtonElement).style.color = '#1D4ED8';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.background = 'transparent';
+                  (e.currentTarget as HTMLButtonElement).style.color = '#475569';
+                }}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+
           </div>
-
-          {/* 3. Right: CTA Button & Mobile Toggle */}
-          <div className="flex justify-end items-center gap-4">
-            <button
-              onClick={openModal}
-              className="hidden sm:flex bg-gradient-to-r from-[#1E40AF] to-[#1E3A8A] hover:from-[#F97316] hover:to-[#EA580C] text-white px-6 py-2.5 rounded items-center gap-2 text-[13px] font-bold transition-all duration-300 shadow-lg shadow-[#1E40AF]/20 hover:shadow-xl hover:shadow-[#F97316]/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
-            >
-              <DynamicIcon name="phone" size={14} /> Get Guidance
-            </button>
-
-            {/* Mobile Toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-gray-800 p-2 hover:bg-[#F8F9F9] hover:text-[#1E40AF] rounded-lg transition-all duration-300"
-            >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* ── Mobile menu ── */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 bg-white border-t border-gray-100 shadow-2xl h-screen overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="p-6 space-y-3">
+        <div
+          className="lg:hidden fixed inset-x-0 h-screen overflow-y-auto z-40"
+          style={{
+            background: '#F8FAFC',
+            borderTop: '1px solid #E2E8F0',
+            boxShadow: '0 16px 48px rgba(15,23,42,0.10)',
+          }}
+        >
+          <div className="p-5 space-y-2">
             {navLinks.map((link) => (
               <div key={link.name}>
                 {link.hasDropdown ? (
                   <div>
                     <button
-                      onClick={() => setMobileDropdownOpen(mobileDropdownOpen === link.dropdownKey ? null : link.dropdownKey)}
-                      className="flex items-center justify-between w-full p-4 bg-gradient-to-r from-gray-50 to-white text-gray-800 font-bold text-lg rounded-2xl hover:from-[#1E40AF]/5 hover:to-[#1E40AF]/10 hover:text-[#1E40AF] transition-all duration-300 hover:shadow-lg border border-gray-100 hover:border-[#1E40AF]/20"
+                      onClick={() =>
+                        setMobileDropdownOpen(
+                          mobileDropdownOpen === link.dropdownKey ? null : link.dropdownKey
+                        )
+                      }
+                      className="flex items-center justify-between w-full p-4 rounded-2xl font-semibold text-base transition-all duration-200"
+                      style={{
+                        background: mobileDropdownOpen === link.dropdownKey ? '#EFF6FF' : '#FFFFFF',
+                        border: `1px solid ${mobileDropdownOpen === link.dropdownKey ? '#BFDBFE' : '#E2E8F0'}`,
+                        color: mobileDropdownOpen === link.dropdownKey ? '#1D4ED8' : '#334155',
+                      }}
                     >
-                      <div className="flex items-center gap-4">
-                        <DynamicIcon name={link.icon as any} size={22} className="text-gray-400" />
+                      <div className="flex items-center gap-3">
+                        <DynamicIcon name={link.icon as any} size={18} style={{ color: '#94A3B8' }} />
                         {link.name}
                       </div>
-                      <ChevronDown size={16} className={`transition-transform ${mobileDropdownOpen === link.dropdownKey ? 'rotate-180' : ''}`} />
+                      <ChevronDown
+                        size={15}
+                        style={{
+                          color: '#94A3B8',
+                          transform: mobileDropdownOpen === link.dropdownKey ? 'rotate(180deg)' : 'rotate(0)',
+                          transition: 'transform 0.2s',
+                        }}
+                      />
                     </button>
+
                     {mobileDropdownOpen === link.dropdownKey && (
-                      <div className="mt-2 ml-4 space-y-2">
-                        {link.dropdownKey === 'top' && topUniversities.map((college) => (
+                      <div className="mt-2 ml-3 space-y-1.5">
+                        {(link.dropdownKey === 'top' ? topUniversities : onlineColleges).map((college) => (
                           <Link
                             key={college.slug}
                             href={`/colleges/${college.slug}`}
-                            onClick={() => {
-                              setIsMobileMenuOpen(false);
-                              setMobileDropdownOpen(null);
+                            onClick={() => { setIsMobileMenuOpen(false); setMobileDropdownOpen(null); }}
+                            className="flex items-center gap-3 p-3 rounded-xl text-sm font-medium transition-all duration-200"
+                            style={{
+                              background: '#FFFFFF',
+                              border: '1px solid #E2E8F0',
+                              color: '#475569',
                             }}
-                            className="block p-3 bg-gray-50 rounded-lg text-sm text-gray-700 hover:bg-[#1E40AF]/10 hover:text-[#1E40AF] transition-colors"
-                          >
-                            {college.name}
-                          </Link>
-                        ))}
-                        {link.dropdownKey === 'online' && onlineColleges.map((college) => (
-                          <Link
-                            key={college.slug}
-                            href={`/colleges/${college.slug}`}
-                            onClick={() => {
-                              setIsMobileMenuOpen(false);
-                              setMobileDropdownOpen(null);
+                            onMouseEnter={(e) => {
+                              (e.currentTarget as HTMLElement).style.borderColor = '#BFDBFE';
+                              (e.currentTarget as HTMLElement).style.color = '#1D4ED8';
                             }}
-                            className="block p-3 bg-gray-50 rounded-lg text-sm text-gray-700 hover:bg-[#1E40AF]/10 hover:text-[#1E40AF] transition-colors"
+                            onMouseLeave={(e) => {
+                              (e.currentTarget as HTMLElement).style.borderColor = '#E2E8F0';
+                              (e.currentTarget as HTMLElement).style.color = '#475569';
+                            }}
                           >
-                            {college.name}
+                            <img
+                              src={college.media?.cover || '/colleges/default-cover.jpg'}
+                              alt={college.name}
+                              className="w-8 h-8 object-cover rounded-lg shrink-0"
+                            />
+                            <span className="line-clamp-1">{college.name}</span>
                           </Link>
                         ))}
                       </div>
@@ -231,27 +368,42 @@ const Navbar: React.FC = () => {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-white text-gray-800 font-bold text-lg rounded-2xl hover:from-[#1E40AF]/5 hover:to-[#1E40AF]/10 hover:text-[#1E40AF] transition-all duration-300 hover:shadow-lg hover:-translate-x-1 border border-gray-100 hover:border-[#1E40AF]/20"
+                    className="flex items-center gap-3 p-4 rounded-2xl font-semibold text-base transition-all duration-200"
+                    style={{
+                      background: '#FFFFFF',
+                      border: '1px solid #E2E8F0',
+                      color: '#334155',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = '#EFF6FF';
+                      (e.currentTarget as HTMLElement).style.borderColor = '#BFDBFE';
+                      (e.currentTarget as HTMLElement).style.color = '#1D4ED8';
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = '#FFFFFF';
+                      (e.currentTarget as HTMLElement).style.borderColor = '#E2E8F0';
+                      (e.currentTarget as HTMLElement).style.color = '#334155';
+                    }}
                   >
-                    <div className="flex items-center gap-4">
-                      <DynamicIcon name={link.icon as any} size={22} className="text-gray-400 group-hover:text-[#1E40AF] transition-colors" />
-                      {link.name}
-                    </div>
-                    <DynamicIcon name="x" size={16} className="opacity-0 group-hover:opacity-100" />
+                    <DynamicIcon name={link.icon as any} size={18} style={{ color: '#94A3B8' }} />
+                    {link.name}
                   </Link>
                 )}
               </div>
             ))}
 
-            <div className="pt-6">
+            <div className="pt-4">
               <button
-                onClick={() => {
-                  openModal();
-                  setIsMobileMenuOpen(false);
+                onClick={() => { openModal(); setIsMobileMenuOpen(false); }}
+                className="w-full py-4 rounded-2xl font-bold text-base text-white flex items-center justify-center gap-2.5 transition-all duration-200 active:scale-95"
+                style={{
+                  background: 'linear-gradient(135deg, #2563EB, #4F46E5)',
+                  boxShadow: '0 6px 24px rgba(37,99,235,0.30)',
+                  fontFamily: "'Syne', sans-serif",
                 }}
-                className="bg-gradient-to-r from-[#1E40AF] to-[#1E3A8A] hover:from-[#F97316] hover:to-[#EA580C] text-white w-full py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-xl shadow-[#1E40AF]/20 hover:shadow-xl hover:shadow-[#F97316]/30 transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
               >
-                <DynamicIcon name="phone" size={22} /> Get Admission Support
+                <DynamicIcon name="phone" size={18} />
+                Get Admission Support
               </button>
             </div>
           </div>
