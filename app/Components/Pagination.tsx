@@ -17,7 +17,17 @@ const Pagination: React.FC<PaginationProps> = ({
   totalItems,
   itemsPerPage,
 }) => {
-  if (totalPages <= 1) return null;
+  if (totalPages <= 1 && totalItems === 0) return null;
+  if (totalPages <= 1) {
+    return (
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
+        <p className="text-xs sm:text-sm text-slate-500 font-semibold">
+          Showing <span className="font-extrabold text-slate-700">{totalItems}</span>{" "}
+          {totalItems === 1 ? "result" : "results"}
+        </p>
+      </div>
+    );
+  }
 
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);

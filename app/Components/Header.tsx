@@ -27,6 +27,12 @@ const Header = () => {
 
   return (
     <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:bg-[#C81E3D] focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:text-sm focus:font-bold"
+      >
+        Skip to main content
+      </a>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
 
@@ -35,7 +41,7 @@ const Header = () => {
             <Link href="/" className="flex-shrink-0">
               <Image
                 src="/logo.png"
-                alt="EdHike Online MBA"
+                alt="Your Online MBA"
                 width={180}
                 height={50}
                 className="h-[50px] w-auto"

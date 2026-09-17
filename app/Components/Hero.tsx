@@ -1,76 +1,20 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Check, ChevronDown, GraduationCap, Briefcase, Star, Landmark, Loader2 } from 'lucide-react';
-
-import { counsellingSchema } from '../lib/validation';
+import { SPECIALIZATION_OPTIONS } from '../lib/validation';
+import { useCounsellingForm } from '../lib/use-counselling-form';
 
 const HeroSection = () => {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", specialization: "", city: "", website: "" });
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    if (submitted) {
-      const timer = setTimeout(() => {
-        setSubmitted(false);
-        setForm({ name: "", phone: "", email: "", specialization: "", city: "", website: "" });
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [submitted]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    
-    // Numeric only validation for phone
-    if (name === "phone") {
-      const numericValue = value.replace(/[^0-9]/g, "");
-      if (numericValue.length <= 15) {
-        setForm({ ...form, [name]: numericValue });
-      }
-    } else {
-      setForm({ ...form, [name]: value });
-    }
-    
-    setFieldErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setFieldErrors({});
-
-    const result = counsellingSchema.safeParse(form);
-    if (!result.success) {
-      const errors: Record<string, string> = {};
-      result.error.issues.forEach((err) => {
-        const field = err.path[0] as string;
-        if (!errors[field]) errors[field] = err.message;
-      });
-      setFieldErrors(errors);
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const res = await fetch("/api/send-counselling", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Failed to send");
-      }
-      setSubmitted(true);
-    } catch (err: any) {
-      setError(err.message || "Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    form,
+    loading,
+    submitted,
+    error,
+    fieldErrors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useCounsellingForm();
 
   return (
     <section className="relative w-full bg-[#FAFAFA] py-12 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
@@ -155,46 +99,41 @@ const HeroSection = () => {
               </div>
             ) : (
               <>
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                  {/* Honeypot field for bots */}
-                  <input type="text" name="website" style={{ display: 'none' }} onChange={handleChange} value={(form as any).website || ''} tabIndex={-1} autoComplete="off" />
+                <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+                  <input type="text" name="website" className="hidden" aria-hidden="true" tabIndex={-1} autoComplete="off" onChange={handleChange} value={form.website} />
                   <div>
                     <input
-                      name="name" value={form.name} onChange={handleChange}
-                      type="text" required placeholder="Name *"
+                      name="name" value={form.name} onChange={handleChange} onBlur={handleBlur}
+                      type="text" autoComplete="name" maxLength={60} placeholder="Name *"
                       className="w-full h-12 px-4 border border-gray-250 rounded-[10px] text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#C81E3D] focus:ring-1 focus:ring-[#C81E3D]/30 transition-all font-medium"
                     />
                     {fieldErrors.name && <p className="text-[#C81E3D] text-xs font-semibold mt-1">{fieldErrors.name}</p>}
                   </div>
                   <div>
                     <input
-                      name="phone" value={form.phone} onChange={handleChange}
-                      type="tel" required placeholder="Phone *"
+                      name="phone" value={form.phone} onChange={handleChange} onBlur={handleBlur}
+                      type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} placeholder="Phone * (10 digits)"
                       className="w-full h-12 px-4 border border-gray-250 rounded-[10px] text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#C81E3D] focus:ring-1 focus:ring-[#C81E3D]/30 transition-all font-medium"
                     />
                     {fieldErrors.phone && <p className="text-[#C81E3D] text-xs font-semibold mt-1">{fieldErrors.phone}</p>}
                   </div>
                   <div>
                     <input
-                      name="email" value={form.email} onChange={handleChange}
-                      type="email" required placeholder="Email *"
+                      name="email" value={form.email} onChange={handleChange} onBlur={handleBlur}
+                      type="email" autoComplete="email" maxLength={100} placeholder="Email *"
                       className="w-full h-12 px-4 border border-gray-250 rounded-[10px] text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#C81E3D] focus:ring-1 focus:ring-[#C81E3D]/30 transition-all font-medium"
                     />
                     {fieldErrors.email && <p className="text-[#C81E3D] text-xs font-semibold mt-1">{fieldErrors.email}</p>}
                   </div>
                   <div className="relative">
                     <select
-                      name="specialization" value={form.specialization} onChange={handleChange}
-                      required
+                      name="specialization" value={form.specialization} onChange={handleChange} onBlur={handleBlur}
                       className="w-full h-12 px-4 pr-10 border border-gray-250 rounded-[10px] text-sm text-gray-500 bg-white appearance-none outline-none focus:border-[#C81E3D] transition-all font-medium"
                     >
-                      <option value="" disabled hidden>Preferred Specialization *</option>
-                      <option value="Finance">Finance</option>
-                      <option value="Marketing">Marketing</option>
-                      <option value="Human Resource Management">Human Resource Management</option>
-                      <option value="Operations Management">Operations Management</option>
-                      <option value="Information Technology">Information Technology</option>
-                      <option value="General Management">General Management</option>
+                      <option value="" disabled>Preferred Specialization *</option>
+                      {SPECIALIZATION_OPTIONS.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
                     </select>
                     <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400">
                       <ChevronDown size={16} />
@@ -203,8 +142,8 @@ const HeroSection = () => {
                   </div>
                   <div>
                     <input
-                      name="city" value={form.city} onChange={handleChange}
-                      type="text" required placeholder="City *"
+                      name="city" value={form.city} onChange={handleChange} onBlur={handleBlur}
+                      type="text" autoComplete="address-level2" maxLength={50} placeholder="City *"
                       className="w-full h-12 px-4 border border-gray-250 rounded-[10px] text-sm text-gray-900 placeholder-gray-400 outline-none focus:border-[#C81E3D] focus:ring-1 focus:ring-[#C81E3D]/30 transition-all font-medium"
                     />
                     {fieldErrors.city && <p className="text-[#C81E3D] text-xs font-semibold mt-1">{fieldErrors.city}</p>}

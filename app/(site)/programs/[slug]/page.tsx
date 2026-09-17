@@ -5,9 +5,11 @@ import * as Icons from 'lucide-react';
 import { programs } from '../../../data/programs';
 import { notFound } from 'next/navigation';
 import PopupTrigger from '../../../Components/PopupTrigger';
+import JsonLd from '../../../Components/JsonLd';
+import { SITE_URL, breadcrumbJsonLd, buildMetadata } from '@/app/lib/seo';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -20,15 +22,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const prog = programs.find(p => p.slug === slug);
   if (!prog) return { title: "Program Not Found" };
-  return {
+  return buildMetadata({
     title: `${prog.title} - Online MBA Program Details, Duration & Career Scope`,
-    description: `Explore ${prog.title} online MBA program: ${prog.duration}, ${prog.format}. ${prog.description.slice(0, 150)}. Get free counselling.`,
-    alternates: { canonical: `https://youronlinemba.com/programs/${slug}` },
-    openGraph: {
-      title: `${prog.title} - Online MBA Program`,
-      description: prog.description.slice(0, 160),
-    },
-  };
+    description: `Explore ${prog.title} online MBA program: ${prog.duration}, ${prog.format}. ${prog.description.slice(0, 140)}. Get free counselling.`,
+    path: `/programs/${slug}`,
+  });
 }
 
 export default async function ProgramPage({ params }: PageProps) {
@@ -41,6 +39,27 @@ export default async function ProgramPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#1E293B] flex flex-col">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Programs", path: "/programs" },
+          { name: activeProgram.title, path: `/programs/${slug}` },
+        ])}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          name: activeProgram.title,
+          description: activeProgram.description,
+          provider: {
+            "@type": "Organization",
+            name: "Your Online MBA",
+            url: SITE_URL,
+          },
+          url: `${SITE_URL}/programs/${slug}`,
+        }}
+      />
 
       {/* ========================================================================= */}
       {/* 1. HERO HEADER SECTION (FIXED UPPER SECTION - Image 1) */}
@@ -56,19 +75,12 @@ export default async function ProgramPage({ params }: PageProps) {
           </div>
 
           {/* Main Hero Headline */}
-          <h1 className="text-2xl sm:text-5xl md:text-6xl font-black text-[#C81E3D] leading-tight tracking-tight">
-            Discover the Right<br />Program for Your Future
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#C81E3D] leading-tight tracking-tight px-1">
+            {activeProgram.title}
           </h1>
-
-          {/* Subtitles */}
-          <div className="space-y-2 max-w-2xl mx-auto">
-            <p className="text-slate-800 text-sm sm:text-base md:text-lg font-bold">
-              Learn from top universities with flexible, career focused programs.
-            </p>
-            <p className="text-slate-500 text-xs sm:text-sm md:text-base font-semibold">
-              Earn industry recognized degrees and certifications online, at your own pace.
-            </p>
-          </div>
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg font-semibold max-w-2xl mx-auto">
+            Discover the right online program for your future — flexible, career-focused learning from top universities.
+          </p>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">

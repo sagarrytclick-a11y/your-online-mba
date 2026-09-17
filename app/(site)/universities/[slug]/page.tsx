@@ -9,6 +9,7 @@ import WhatsAppButton from '../../../Components/WhatsAppButton';
 import ScrollReveal from '../../../Components/ScrollReveal';
 import CompareButton from '../../../Components/CompareButton';
 import JsonLd from '../../../Components/JsonLd';
+import { SITE_URL, breadcrumbJsonLd, buildMetadata } from '@/app/lib/seo';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -22,16 +23,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const col = getCollegeBySlug(slug);
   if (!col) return { title: "University Not Found" };
-  return {
-    title: `${col.name} - Reviews, Fees, Rating & More`,
-    description: `Read detailed reviews, fees (${col.fees}), rating (${col.rating}/5), courses, and admission details for ${col.name}. UGC-approved online MBA program at ${col.location}.`,
-    alternates: { canonical: `https://youronlinemba.com/universities/${slug}` },
-    openGraph: {
-      title: `${col.name} - Reviews, Fees, Rating & More`,
-      description: `${col.rating}/5 rating | Fees: ${col.fees} | ${col.location}. Read detailed reviews and compare.`,
-      images: [{ url: col.image, width: 800, height: 450 }],
-    },
-  };
+  return buildMetadata({
+    title: `${col.name} Online MBA - Reviews, Fees, Rating & Admission`,
+    description: `Read detailed reviews, fees (${col.fees}), rating (${col.rating}/5), courses, and admission details for ${col.name}. UGC-approved online MBA at ${col.location}.`,
+    path: `/universities/${slug}`,
+    image: col.image,
+  });
 }
 
 const highlights = [
@@ -88,34 +85,41 @@ export default async function UniversityPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-white flex flex-col">
 
-      <JsonLd data={{
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://youronlinemba.com/" },
-          { "@type": "ListItem", position: 2, name: "Universities", item: "https://youronlinemba.com/universities" },
-          { "@type": "ListItem", position: 3, name: col.name, item: `https://youronlinemba.com/universities/${slug}` },
-        ],
-      }} />
-      <JsonLd data={{
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: `${col.name} Online MBA`,
-        description: col.description,
-        image: col.image,
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: col.rating,
-          bestRating: "5",
-          ratingCount: col.totalReviews.replace(/,/g, ""),
-        },
-        offers: {
-          "@type": "Offer",
-          price: col.fees.replace(/[^0-9]/g, ""),
-          priceCurrency: "INR",
-          availability: "https://schema.org/InStock",
-        },
-      }} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Universities", path: "/universities" },
+          { name: col.name, path: `/universities/${slug}` },
+        ])}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollegeOrUniversity",
+          name: col.name,
+          description: col.description,
+          image: col.image.startsWith("http") ? col.image : `${SITE_URL}${col.image}`,
+          url: `${SITE_URL}/universities/${slug}`,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: col.location,
+            addressCountry: "IN",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: col.rating,
+            bestRating: "5",
+            ratingCount: String(col.totalReviews).replace(/,/g, ""),
+          },
+          offers: {
+            "@type": "Offer",
+            category: "Online MBA",
+            price: col.fees.replace(/[^0-9]/g, ""),
+            priceCurrency: "INR",
+            url: `${SITE_URL}/universities/${slug}`,
+          },
+        }}
+      />
 
       {/* 1. RED HERO BANNER */}
       <section className="w-full bg-[#C81E3D] text-white py-12 md:py-16 px-4 sm:px-6 md:px-8 relative overflow-hidden">

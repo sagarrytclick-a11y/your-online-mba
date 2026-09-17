@@ -40,7 +40,7 @@ export const siteConfig: SiteConfig = {
   phone: "+919839865347",
   phoneDisplay: "+91 9839865347",
   email: "Abhishek@vidyavriddhi.com",
-  address: "S0-1, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4, Noida, Uttar Pradesh - 201301",
+  address: "S0-2, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4, Noida, Uttar Pradesh - 201301",
   city: "Noida",
   state: "Uttar Pradesh",
   country: "India",

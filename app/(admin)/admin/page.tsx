@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Search, ChevronLeft, ChevronRight, LogOut, Trash2, AlertTriangle } from "lucide-react";
+import { Loader2, Search, LogOut, Trash2, AlertTriangle } from "lucide-react";
+import Pagination from "@/app/Components/Pagination";
 
 type Enquiry = {
   _id: string;
@@ -27,6 +28,8 @@ const STATUS_STYLES: Record<string, { bg: string; text: string }> = {
   resolved: { bg: "bg-green-50", text: "text-green-700" },
 };
 
+const LIMIT = 10;
+
 export default function AdminDashboard() {
   const router = useRouter();
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
@@ -34,30 +37,56 @@ export default function AdminDashboard() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [statusFilter, setStatusFilter] = useState("");
+  const [search, setSearch] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Enquiry | null>(null);
   const [deleting, setDeleting] = useState(false);
-
-  const limit = 10;
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const fetchEnquiries = useCallback(async () => {
     setLoading(true);
     try {
-      const params = new URLSearchParams({ page: String(page), limit: String(limit) });
+      const params = new URLSearchParams({
+        page: String(page),
+        limit: String(LIMIT),
+      });
       if (statusFilter) params.set("status", statusFilter);
+      if (search.trim()) params.set("search", search.trim());
+
       const res = await fetch(`/api/admin/enquiries?${params}`);
-      if (res.status === 401) { router.push("/admin/login"); return; }
+      if (res.status === 401) {
+        router.push("/admin/login");
+        return;
+      }
       const data = await res.json();
-      setEnquiries(data.enquiries);
-      setTotal(data.total);
-      setTotalPages(data.totalPages);
+      setEnquiries(data.enquiries || []);
+      setTotal(data.total || 0);
+      setTotalPages(data.totalPages || 0);
+
+      // If current page is empty after delete/filter, go back
+      if (data.totalPages > 0 && page > data.totalPages) {
+        setPage(data.totalPages);
+      }
     } finally {
       setLoading(false);
     }
-  }, [page, statusFilter, router]);
+  }, [page, statusFilter, search, router]);
 
-  useEffect(() => { fetchEnquiries(); }, [fetchEnquiries]);
+  useEffect(() => {
+    fetchEnquiries();
+  }, [fetchEnquiries]);
+
+  // Debounce search input
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setPage(1);
+      setSearch(searchInput);
+    }, 350);
+    return () => clearTimeout(t);
+  }, [searchInput]);
 
   const handleStatusChange = async (id: string, newStatus: string) => {
     if (!newStatus) return;
@@ -91,45 +120,61 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = async () => {
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
-    router.refresh();
+    setLoggingOut(true);
+    try {
+      await fetch("/api/admin/logout", { method: "POST" });
+      router.push("/admin/login");
+      router.refresh();
+    } finally {
+      setLoggingOut(false);
+      setShowLogoutConfirm(false);
+    }
   };
 
-  const formatDate = (d: string) => {
-    return new Date(d).toLocaleDateString("en-IN", {
-      day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit",
+  const formatDate = (d: string) =>
+    new Date(d).toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
-  };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      {/* Top bar */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+      <header className="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-black text-[#1E293B]">Enquiries Dashboard</h1>
+          <h1 className="text-lg sm:text-xl font-black text-[#1E293B]">Enquiries Dashboard</h1>
           <p className="text-xs text-[#475569] font-medium">{total} total enquiries</p>
         </div>
-        <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-[#1E293B] hover:text-[#C81E3D] transition-colors">
+        <button
+          onClick={() => setShowLogoutConfirm(true)}
+          className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-[#1E293B] hover:text-[#C81E3D] transition-colors"
+        >
           <LogOut size={16} /> Logout
         </button>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
-        {/* Filters */}
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+          <div className="relative flex-1 sm:flex-none">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B]" />
             <input
-              type="text" placeholder="Search enquiries..."
-              className="w-full sm:w-64 h-10 pl-9 pr-4 border border-gray-200 rounded-xl text-sm text-[#1E293B] outline-none focus:border-[#C81E3D] transition-all"
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search name, phone, email, city..."
+              className="w-full sm:w-72 h-10 pl-9 pr-4 border border-gray-200 rounded-xl text-sm text-[#1E293B] outline-none focus:border-[#C81E3D] transition-all"
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             {STATUS_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
-                onClick={() => { setStatusFilter(opt.value); setPage(1); }}
+                onClick={() => {
+                  setStatusFilter(opt.value);
+                  setPage(1);
+                }}
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                   statusFilter === opt.value
                     ? "bg-[#C81E3D] text-white"
@@ -142,10 +187,9 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Table */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm min-w-[800px]">
               <thead>
                 <tr className="bg-[#F8FAFC] border-b border-gray-100">
                   <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">Name</th>
@@ -184,7 +228,9 @@ export default function AdminDashboard() {
                         <td className="px-5 py-4 text-[#1E293B]">{e.city}</td>
                         <td className="px-5 py-4">
                           <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${st.bg} ${st.text}`}>
-                            {e.status === "follow-up" ? "Follow Up" : e.status.charAt(0).toUpperCase() + e.status.slice(1)}
+                            {e.status === "follow-up"
+                              ? "Follow Up"
+                              : e.status.charAt(0).toUpperCase() + e.status.slice(1)}
                           </span>
                         </td>
                         <td className="px-5 py-4 text-[#475569] text-xs font-medium">{formatDate(e.createdAt)}</td>
@@ -216,65 +262,99 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
-        </div>
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4">
-            <button
-              disabled={page <= 1}
-              onClick={() => setPage(page - 1)}
-              className="flex items-center gap-1 px-4 py-2 rounded-xl border border-gray-200 text-sm font-bold text-[#1E293B] hover:border-[#C81E3D]/30 disabled:opacity-40 transition-all"
-            >
-              <ChevronLeft size={16} /> Previous
-            </button>
-            <span className="text-sm font-bold text-[#1E293B]">
-              Page {page} of {totalPages}
-            </span>
-            <button
-              disabled={page >= totalPages}
-              onClick={() => setPage(page + 1)}
-              className="flex items-center gap-1 px-4 py-2 rounded-xl border border-gray-200 text-sm font-bold text-[#1E293B] hover:border-[#C81E3D]/30 disabled:opacity-40 transition-all"
-            >
-              Next <ChevronRight size={16} />
-            </button>
+          <div className="px-5 pb-5">
+            <Pagination
+              currentPage={page}
+              totalPages={Math.max(totalPages, 1)}
+              onPageChange={setPage}
+              totalItems={total}
+              itemsPerPage={LIMIT}
+            />
           </div>
-        )}
+        </div>
+      </div>
 
-        {/* Delete Confirmation Modal */}
-        {deleteTarget && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setDeleteTarget(null)} />
-            <div className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl p-8 text-center space-y-5">
-              <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto">
-                <AlertTriangle size={28} className="text-[#C81E3D]" />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-black text-[#1E293B]">Delete Enquiry?</h3>
-                <p className="text-sm text-[#64748B] font-medium">
-                  Are you sure you want to delete <span className="font-bold text-[#1E293B]">{deleteTarget.name}</span>&apos;s enquiry? This action cannot be undone.
-                </p>
-              </div>
-              <div className="flex gap-3 pt-2">
-                <button
-                  onClick={() => setDeleteTarget(null)}
-                  className="flex-1 h-11 rounded-xl border border-gray-200 text-sm font-bold text-[#1E293B] hover:bg-gray-50 transition-all"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleDelete}
-                  disabled={deleting}
-                  className="flex items-center justify-center gap-2 flex-1 h-11 rounded-xl bg-[#C81E3D] hover:bg-[#B01A33] text-white text-sm font-bold transition-all disabled:opacity-60"
-                >
-                  {deleting ? <Loader2 size={16} className="animate-spin" /> : null}
-                  {deleting ? "Deleting..." : "Delete"}
-                </button>
-              </div>
+      {/* Logout confirmation */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => !loggingOut && setShowLogoutConfirm(false)}
+          />
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="logout-title"
+            className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl p-8 text-center space-y-5"
+          >
+            <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto">
+              <LogOut size={26} className="text-[#C81E3D]" />
+            </div>
+            <div className="space-y-2">
+              <h3 id="logout-title" className="text-lg font-black text-[#1E293B]">
+                Are you sure you want to logout?
+              </h3>
+              <p className="text-sm text-[#64748B] font-medium">
+                You will need to sign in again to access the admin dashboard.
+              </p>
+            </div>
+            <div className="flex gap-3 pt-2">
+              <button
+                onClick={() => setShowLogoutConfirm(false)}
+                disabled={loggingOut}
+                className="flex-1 h-11 rounded-xl border border-gray-200 text-sm font-bold text-[#1E293B] hover:bg-gray-50 transition-all disabled:opacity-60"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleLogout}
+                disabled={loggingOut}
+                className="flex items-center justify-center gap-2 flex-1 h-11 rounded-xl bg-[#C81E3D] hover:bg-[#B01A33] text-white text-sm font-bold transition-all disabled:opacity-60"
+              >
+                {loggingOut ? <Loader2 size={16} className="animate-spin" /> : <LogOut size={16} />}
+                {loggingOut ? "Logging out..." : "Yes, Logout"}
+              </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Delete confirmation */}
+      {deleteTarget && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setDeleteTarget(null)} />
+          <div className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl p-8 text-center space-y-5">
+            <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto">
+              <AlertTriangle size={28} className="text-[#C81E3D]" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-black text-[#1E293B]">Delete Enquiry?</h3>
+              <p className="text-sm text-[#64748B] font-medium">
+                Are you sure you want to delete{" "}
+                <span className="font-bold text-[#1E293B]">{deleteTarget.name}</span>&apos;s enquiry? This
+                action cannot be undone.
+              </p>
+            </div>
+            <div className="flex gap-3 pt-2">
+              <button
+                onClick={() => setDeleteTarget(null)}
+                className="flex-1 h-11 rounded-xl border border-gray-200 text-sm font-bold text-[#1E293B] hover:bg-gray-50 transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={deleting}
+                className="flex items-center justify-center gap-2 flex-1 h-11 rounded-xl bg-[#C81E3D] hover:bg-[#B01A33] text-white text-sm font-bold transition-all disabled:opacity-60"
+              >
+                {deleting ? <Loader2 size={16} className="animate-spin" /> : null}
+                {deleting ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

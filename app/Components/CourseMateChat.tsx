@@ -177,7 +177,7 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
             </button>
           </div>
           <p className="text-[10px] text-gray-400 font-medium text-center mt-2">
-            Responses are AI-generated. Verify with EdHike counsellors for accuracy.
+            Responses are AI-generated. Verify with Your Online MBA counsellors for accuracy.
           </p>
         </div>
       </div>

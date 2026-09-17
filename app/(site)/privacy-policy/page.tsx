@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `Privacy Policy for ${siteConfig.name}. Learn how we collect, use, and protect your personal information when you use our education advisory services.`,
   alternates: { canonical: "https://youronlinemba.com/privacy-policy" },
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacyPolicy() {

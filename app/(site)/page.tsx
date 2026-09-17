@@ -11,37 +11,41 @@ import SuccessStories from "../Components/SuccessStories";
 import FAQSection from "../Components/FAQSection";
 import CTASection from "../Components/CTASection";
 import JsonLd from "../Components/JsonLd";
+import { siteConfig } from "../data/site";
+import { SITE_URL, buildMetadata } from "../lib/seo";
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  name: "Your Online MBA",
-  url: "https://youronlinemba.com",
-  description:
-    "India's trusted platform for comparing Online MBA programs from top UGC-approved universities.",
-  telephone: "+919839865347",
-  email: "Abhishek@vidyavriddhi.com",
+  name: siteConfig.name,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  description: siteConfig.description,
+  telephone: siteConfig.phone,
+  email: siteConfig.email,
   address: {
     "@type": "PostalAddress",
     streetAddress: "S0-1, Geniefolks Building, Block A, Plot A-28, Sector 4",
-    addressLocality: "Noida",
-    addressRegion: "Uttar Pradesh",
+    addressLocality: siteConfig.city,
+    addressRegion: siteConfig.state,
     postalCode: "201301",
     addressCountry: "IN",
   },
-  sameAs: ["https://linkedin.com", "https://facebook.com", "https://instagram.com", "https://youtube.com"],
+  sameAs: siteConfig.socials.map((s) => s.url),
+  areaServed: "IN",
 };
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Your Online MBA",
-  url: "https://youronlinemba.com",
+  name: siteConfig.name,
+  url: SITE_URL,
+  publisher: { "@type": "Organization", name: siteConfig.name },
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://youronlinemba.com/reviews?search={search_term_string}",
+      urlTemplate: `${SITE_URL}/reviews?search={search_term_string}`,
     },
     "query-input": "required name=search_term_string",
   },
@@ -94,16 +98,12 @@ const faqSchema = {
   ],
 };
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Online MBA - Top UGC-Approved Universities in India 2026",
   description:
     "Compare India's best Online MBA programs from LPU, Amity, NMIMS, Manipal, Chandigarh University & more. UGC-approved, EMI options, placement support. Get free counselling.",
-  openGraph: {
-    title: "Online MBA - Top UGC-Approved Universities in India 2026",
-    description:
-      "Compare India's best Online MBA programs. UGC-approved, EMI options, placement support. Get free counselling today.",
-  },
-};
+  path: "/",
+});
 
 const page = () => {
   return (

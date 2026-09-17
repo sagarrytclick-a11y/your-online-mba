@@ -1,7 +1,16 @@
-RESEND_API_KEY=
-RESEND_FROM_EMAIL=
-RESEND_TO_EMAIL=
+EMAIL_USER=
+EMAIL_PASS=
+# Multiple recipients: comma-separated
+EMAIL_TO=
+EMAIL_CC=
+EMAIL_BCC=
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
 MONGODB_URI=
 ADMIN_USERNAME=
 ADMIN_PASSWORD=
-GROQ_API_KEY=
+# Min 32 chars — used to sign admin JWT sessions
+JWT_SECRET=
+# OpenRouter — https://openrouter.ai/keys
+OPENROUTER_API_KEY=
+OPENROUTER_MODEL=openai/gpt-4o-mini

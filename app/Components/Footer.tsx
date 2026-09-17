@@ -24,7 +24,7 @@ const Footer = () => {
               <Link href="/">
                 <Image
                   src="/logo.png"
-                  alt="EdHike Online MBA"
+                  alt="Your Online MBA"
                   width={180}
                   height={50}
                   className="h-[50px] w-auto"
@@ -43,6 +43,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={social.name}
                   className="w-10 h-10 rounded-full bg-[#FFF1F2] hover:bg-[#C81E3D] hover:text-white flex items-center justify-center text-[#C81E3D] transition-all duration-300 shadow-sm"
                 >
                   {socialIcons[social.icon]}

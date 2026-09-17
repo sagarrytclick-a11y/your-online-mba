@@ -6,6 +6,8 @@ import { specialisations, getSpecialisationBySlug } from '../../../data/speciali
 import { notFound } from 'next/navigation';
 import PopupTrigger from '../../../Components/PopupTrigger';
 import WhatsAppButton from '../../../Components/WhatsAppButton';
+import JsonLd from '../../../Components/JsonLd';
+import { SITE_URL, breadcrumbJsonLd, buildMetadata } from '@/app/lib/seo';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -21,15 +23,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const spec = getSpecialisationBySlug(slug);
   if (!spec) return { title: "Specialisation Not Found" };
-  return {
+  return buildMetadata({
     title: `${spec.title} - Online MBA Specialisation, Fees, Scope & Salary`,
-    description: `Explore ${spec.title} online MBA: ${spec.overview.slice(0, 150)}. Avg salary ${spec.salaryRange}, ${spec.universitiesCount} universities, ${spec.duration}. Get free counselling.`,
-    alternates: { canonical: `https://youronlinemba.com/specialisations/${slug}` },
-    openGraph: {
-      title: `${spec.title} - Online MBA Specialisation`,
-      description: `Avg salary ${spec.salaryRange} | ${spec.universitiesCount} universities offering this specialisation.`,
-    },
-  };
+    description: `Explore ${spec.title} online MBA: ${spec.overview.slice(0, 140)}. Avg salary ${spec.salaryRange}, ${spec.universitiesCount} universities, ${spec.duration}. Get free counselling.`,
+    path: `/specialisations/${slug}`,
+  });
 }
 
 export default async function SpecialisationPage({ params }: PageProps) {
@@ -55,6 +53,29 @@ export default async function SpecialisationPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Specialisations", path: "/specialisations" },
+          { name: spec.title, path: `/specialisations/${slug}` },
+        ])}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          name: `Online MBA in ${spec.title}`,
+          description: spec.overview,
+          provider: {
+            "@type": "Organization",
+            name: "Your Online MBA",
+            url: SITE_URL,
+          },
+          educationalLevel: "Postgraduate",
+          timeRequired: spec.duration,
+          url: `${SITE_URL}/specialisations/${slug}`,
+        }}
+      />
 
       {/* 1. RED HERO BANNER */}
       <section className="w-full bg-[#C81E3D] text-white py-12 md:py-16 px-4 sm:px-6 md:px-8 relative overflow-hidden">
