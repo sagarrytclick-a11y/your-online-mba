@@ -9,7 +9,11 @@ import WhatsAppButton from '../../../Components/WhatsAppButton';
 import ScrollReveal from '../../../Components/ScrollReveal';
 import CompareButton from '../../../Components/CompareButton';
 import JsonLd from '../../../Components/JsonLd';
+import ROICalculator from '../../../Components/ROICalculator';
 import { SITE_URL, breadcrumbJsonLd, buildMetadata } from '@/app/lib/seo';
+import { getUniversityDetailsOrDefaults } from '../../../data/university-details';
+import { alumniSpotlights, getAlumniByCollege } from '../../../data/alumni';
+import { scholarships } from '../../../data/scholarships';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -73,6 +77,27 @@ export default async function UniversityPage({ params }: PageProps) {
   const { slug } = await params;
   const col = getCollegeBySlug(slug);
   if (!col) notFound();
+
+  const details = getUniversityDetailsOrDefaults(slug);
+  const relatedScholarships = scholarships
+    .filter(
+      (s) =>
+        s.provider.toLowerCase().includes(col.name.split(" ")[0].toLowerCase()) ||
+        s.category === "merit" ||
+        s.waiverPercent === 100
+    )
+    .slice(0, 3);
+  const matchingAlumni = getAlumniByCollege(slug);
+  const alumniForCollege =
+    matchingAlumni.length > 0 ? matchingAlumni : alumniSpotlights.slice(0, 2);
+
+  const microRatingRows = [
+    { label: "Curriculum", value: details.microRatings.curriculum },
+    { label: "LMS flexibility", value: details.microRatings.lmsFlexibility },
+    { label: "Faculty support", value: details.microRatings.facultySupport },
+    { label: "Placement help", value: details.microRatings.placementAssistance },
+    { label: "Value for money", value: details.microRatings.valueForMoney },
+  ];
 
   const ratingBars = [
     { label: "5★", val: col.ratingDistribution.fiveStar },
@@ -279,6 +304,23 @@ export default async function UniversityPage({ params }: PageProps) {
                     </div>
                   ))}
                 </div>
+                <div className="pt-4 border-t border-[#C81E3D]/15 space-y-2.5">
+                  <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#C81E3D] text-center">
+                    What students rate highest
+                  </p>
+                  {microRatingRows.map((row) => (
+                    <div key={row.label} className="flex items-center gap-3 text-xs font-bold text-slate-700">
+                      <span className="w-32 text-left">{row.label}</span>
+                      <div className="h-2 flex-grow bg-white rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-[#C81E3D] rounded-full"
+                          style={{ width: `${(row.value / 5) * 100}%` }}
+                        />
+                      </div>
+                      <span className="w-8 text-right text-slate-500">{row.value.toFixed(1)}</span>
+                    </div>
+                  ))}
+                </div>
                 <PopupTrigger className="w-full h-12 bg-blue-500 hover:bg-blue-600 text-white font-extrabold rounded-xl shadow-md transition-all active:scale-[0.98] text-sm tracking-wide">
                   View Detailed Reviews
                 </PopupTrigger>
@@ -287,6 +329,84 @@ export default async function UniversityPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* 3b. ROI SNAPSHOT */}
+      <section className="w-full bg-[#FAFBFD] py-16 md:py-20 px-4 sm:px-6 md:px-8">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <ScrollReveal>
+              <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Return on Investment</p>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">What This Programme Returns</h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <p className="text-slate-500 text-sm sm:text-base font-medium max-w-2xl mx-auto">
+                Average package ₹{details.avgPackageLpa}L on a total fee of ₹{(details.totalFee / 100000).toFixed(2)}L.
+                Adjust your current salary to see the break-even point for your own profile.
+              </p>
+            </ScrollReveal>
+          </div>
+          <ScrollReveal delay={150}>
+            <ROICalculator variant="widget" lockedCollegeId={slug} />
+          </ScrollReveal>
+          <ScrollReveal delay={250}>
+            <div className="text-center">
+              <Link
+                href={`/roi-calculator?university=${slug}`}
+                className="inline-flex items-center gap-2 h-12 px-7 border-2 border-[#C81E3D] text-[#C81E3D] hover:bg-[#C81E3D] hover:text-white font-extrabold rounded-full text-sm transition-all"
+              >
+                <Icons.Calculator size={16} />
+                Open full ROI projection
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* 3c. SCHOLARSHIPS */}
+      {relatedScholarships.length > 0 && (
+        <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+          <div className="max-w-7xl mx-auto space-y-8">
+            <div className="text-center space-y-3">
+              <ScrollReveal>
+                <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Fee Aid</p>
+              </ScrollReveal>
+              <ScrollReveal delay={100}>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">Scholarships Worth Applying For</h2>
+              </ScrollReveal>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedScholarships.map((s, i) => (
+                <ScrollReveal key={s.id} delay={i * 100} direction="up">
+                  <div className="h-full bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-3 flex flex-col">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-sm font-extrabold text-[#1E293B]">{s.name}</h3>
+                      <span className="flex-shrink-0 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-100 text-[9px] font-black text-emerald-700">
+                        {s.waiverPercent ? `${s.waiverPercent}% OFF` : 'FLAT'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-500 font-medium leading-relaxed flex-grow">{s.eligibility}</p>
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400">
+                      <Icons.CalendarDays size={11} className="text-[#C81E3D]" />
+                      {s.deadline}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+            <div className="text-center">
+              <Link
+                href="/scholarships"
+                className="inline-flex items-center gap-2 text-sm font-extrabold text-[#C81E3D] hover:underline"
+              >
+                Check your eligibility across all schemes
+                <Icons.ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 4. PROGRAMS OFFERED */}
       <section className="w-full bg-[#FAFBFD] py-16 md:py-20 px-4 sm:px-6 md:px-8">
@@ -505,6 +625,95 @@ export default async function UniversityPage({ params }: PageProps) {
               </div>
             </div>
           </ScrollReveal>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {[
+              { number: `₹${details.avgPackageLpa}L`, label: "Reported Avg Package" },
+              { number: `+${details.salaryUpliftPercent}%`, label: "Reported Uplift" },
+              { number: `${details.placementRate}%`, label: "Placement Rate" },
+              { number: `₹${details.emiMonthly.toLocaleString("en-IN")}`, label: "EMI / Month" },
+            ].map((stat, i) => (
+              <ScrollReveal key={i} delay={i * 80} direction="up">
+                <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-5 text-center space-y-1">
+                  <span className="block text-lg sm:text-2xl font-black tracking-tight">{stat.number}</span>
+                  <span className="text-rose-200 text-[10px] font-bold uppercase tracking-wider">{stat.label}</span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8b. ALUMNI SPOTLIGHT */}
+      <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <ScrollReveal>
+              <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Alumni</p>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">Where Learners Ended Up</h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
+                Career switches and salary outcomes, stated by the graduates themselves.
+              </p>
+            </ScrollReveal>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {alumniForCollege.map((a, i) => {
+              const uplift = Math.round(((a.currentLpa - a.priorLpa) / a.priorLpa) * 100);
+              return (
+                <ScrollReveal key={a.id} delay={i * 100} direction="up">
+                  <div className="h-full bg-[#FAFBFD] border border-gray-100 rounded-2xl p-6 sm:p-7 space-y-4">
+                    <div className="flex items-start gap-4">
+                      <span className="w-12 h-12 rounded-full bg-[#C81E3D]/10 text-[#C81E3D] flex items-center justify-center font-black text-base flex-shrink-0">
+                        {a.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="text-sm font-extrabold text-[#1E293B] flex items-center gap-1.5">
+                          {a.name}
+                          {a.verified && <Icons.BadgeCheck size={14} className="text-emerald-500" />}
+                        </h3>
+                        <p className="text-[11px] text-slate-500 font-bold">
+                          {a.role} at {a.company}
+                        </p>
+                        <p className="text-[10px] text-slate-400 font-semibold mt-0.5">
+                          {a.collegeName} · Class of {a.graduationYear}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-slate-600 font-medium leading-relaxed">{a.story}</p>
+                    <div className="grid grid-cols-3 gap-3 pt-3 border-t border-gray-100">
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Before</p>
+                        <p className="text-sm font-black text-slate-500">₹{a.priorLpa}L</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Now</p>
+                        <p className="text-sm font-black text-[#1E293B]">₹{a.currentLpa}L</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Uplift</p>
+                        <p className="text-sm font-black text-emerald-600">+{uplift}%</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-slate-500 font-semibold italic border-l-2 border-[#C81E3D]/30 pl-3">
+                      {a.quote}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+          <div className="text-center">
+            <Link
+              href="/alumni"
+              className="inline-flex items-center gap-2 text-sm font-extrabold text-[#C81E3D] hover:underline"
+            >
+              Read all alumni stories
+              <Icons.ArrowRight size={15} />
+            </Link>
+          </div>
         </div>
       </section>
 

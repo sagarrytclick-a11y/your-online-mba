@@ -50,10 +50,10 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section className="relative w-full bg-white py-10 md:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
       
       {/* Container */}
-      <div className="max-w-7xl mx-auto space-y-12 md:space-y-16 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-8 md:space-y-10 relative z-10">
         
         {/* SECTION HEADER */}
         <div className="text-center space-y-3">

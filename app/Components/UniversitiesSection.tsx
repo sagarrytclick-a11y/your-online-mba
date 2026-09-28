@@ -8,9 +8,9 @@ const UniversitiesSection = () => {
   const doubled = [...universities, ...universities, ...universities];
 
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section className="relative w-full bg-white py-10 md:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
 
-      <div className="max-w-7xl mx-auto space-y-10 md:space-y-14 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-8 relative z-10">
 
         {/* Header */}
         <div className="text-center space-y-3">

@@ -17,8 +17,8 @@ const curriculumData: TimelineItem[] = [
 
 const CurriculumTimeline = () => {
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 px-4 sm:px-6 md:px-8">
-      <div className="max-w-5xl mx-auto space-y-12 md:space-y-16 relative z-10">
+    <section className="relative w-full bg-white py-10 md:py-14 px-4 sm:px-6 md:px-8">
+      <div className="max-w-5xl mx-auto space-y-8 md:space-y-10 relative z-10">
 
         <div className="text-center space-y-3">
           <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">
@@ -35,7 +35,7 @@ const CurriculumTimeline = () => {
         <div className="relative">
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-[#C81E3D] via-[#C81E3D]/60 to-[#C81E3D]" />
 
-          <div className="space-y-12">
+          <div className="space-y-8">
             {curriculumData.map((item, index) => {
               const isEven = index % 2 === 0;
               return (

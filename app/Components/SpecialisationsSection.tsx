@@ -39,9 +39,9 @@ const themeStyles = {
 
 const SpecialisationsSection = () => {
   return (
-    <section className="relative w-full bg-[#FAFBFD] py-16 md:py-24 px-4 sm:px-6 md:px-8">
+    <section className="relative w-full bg-[#FAFBFD] py-10 md:py-14 px-4 sm:px-6 md:px-8">
       
-      <div className="max-w-7xl mx-auto space-y-12 md:space-y-16 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-8 md:space-y-10 relative z-10">
         
         {/* Header */}
         <div className="text-center space-y-3">
@@ -57,7 +57,7 @@ const SpecialisationsSection = () => {
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
-              Choose from 12+ specialisations aligned to today's job market.
+              Choose from 12+ specialisations aligned to today&apos;s job market.
             </p>
           </ScrollReveal>
         </div>

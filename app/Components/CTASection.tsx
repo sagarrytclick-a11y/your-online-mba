@@ -6,18 +6,18 @@ import { usePopupForm } from '../context/PopupFormContext';
 const CTASection = () => {
   const { open } = usePopupForm();
   return (
-    <section className="px-4 sm:px-6 py-12 md:py-16">
+    <section className="px-4 sm:px-6 py-8 md:py-10">
       <div className="max-w-7xl mx-auto overflow-hidden rounded-[2rem] bg-gradient-to-r from-[#C81E3D] to-[#B01A33] relative">
         
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-2xl -ml-10 -mb-10" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-2xl -ml-10 -mb-6" />
 
-        <div className="relative z-10 py-16 px-8 flex flex-col items-center text-center">
+        <div className="relative z-10 py-10 px-8 flex flex-col items-center text-center">
           <h2 className="text-[#F8FAFC] text-3xl md:text-4xl font-bold mb-4">
             Upgrade Your Career with an Online MBA
           </h2>
           
-          <p className="text-[#F8FAFC]/90 text-sm md:text-base mb-10 max-w-2xl">
+          <p className="text-[#F8FAFC]/90 text-sm md:text-base mb-6 max-w-2xl">
             Compare top universities, ROI & specializations — free expert guidance.
           </p>
 
