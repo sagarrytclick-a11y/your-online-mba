@@ -81,8 +81,8 @@ const SuccessStories = () => {
   const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 mb-12 md:mb-16 text-center space-y-3">
+    <section className="relative w-full bg-white py-10 md:py-14 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 mb-8 md:mb-10 text-center space-y-3">
         <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">
           Success Stories
         </p>
@@ -137,7 +137,7 @@ const SuccessStories = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mt-12 md:mt-16">
+      <div className="flex justify-center mt-8 md:mt-10">
         <PopupTrigger className="h-14 px-8 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-full shadow-lg shadow-red-700/15 active:scale-[0.98] transition-all text-sm sm:text-base tracking-wide">
           Start Your Success Story Today
         </PopupTrigger>

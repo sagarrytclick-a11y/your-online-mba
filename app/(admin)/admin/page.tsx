@@ -76,7 +76,12 @@ export default function AdminDashboard() {
   }, [page, statusFilter, search, router]);
 
   useEffect(() => {
-    fetchEnquiries();
+    // Kick the request off from a frame callback so the first paint is not
+    // forced into a cascading render by a synchronous state update.
+    const frame = requestAnimationFrame(() => {
+      void fetchEnquiries();
+    });
+    return () => cancelAnimationFrame(frame);
   }, [fetchEnquiries]);
 
   // Debounce search input

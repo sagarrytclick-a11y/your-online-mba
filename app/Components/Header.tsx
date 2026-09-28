@@ -2,12 +2,21 @@
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, Menu, X, Sparkles } from 'lucide-react';
+import { ChevronDown, Menu, X, Sparkles, Calculator, FolderOpen, GraduationCap, GraduationCapIcon, IndianRupee, MessagesSquare, CalendarDays, Scale } from 'lucide-react';
 import { programs } from '../data/programs';
 import { specialisations } from '../data/specialisations';
 import { collegeReviews } from '../data/colleges';
-import PopupTrigger from './PopupTrigger';
 import CourseMateChat from './CourseMateChat';
+
+const toolLinks = [
+  { href: '/find-my-program', label: 'Find My Program', hint: '5-step recommendation quiz', icon: GraduationCapIcon },
+  { href: '/compare-programs', label: 'Compare Programs', hint: 'Fee, accreditation and ROI', icon: Scale },
+  { href: '/roi-calculator', label: 'ROI Calculator', hint: 'Fee vs salary payoff', icon: Calculator },
+  { href: '/scholarships', label: 'Scholarships', hint: 'Eligibility checker and EMI', icon: IndianRupee },
+  { href: '/alumni', label: 'Alumni Stories', hint: 'Real career switches', icon: GraduationCap },
+  { href: '/community', label: 'Q&A Community', hint: 'Answered by counsellors', icon: MessagesSquare },
+  { href: '/book-counseling', label: 'Book Counselling', hint: 'Free 20-minute call', icon: CalendarDays },
+];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -98,8 +107,14 @@ const Header = () => {
                 <ChevronDown size={18} className="text-gray-400 transition-transform duration-200" />
               </button>
               {hoveredMenu === "programs" && (
-                <div className="absolute top-full left-0 mt-3 w-[280px] bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-50">
+                <div className="absolute top-full left-0 mt-3 w-[320px] bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-50">
                   <div className="grid grid-cols-1 gap-1">
+                    <Link
+                      href="/programs"
+                      className="block px-4 py-2.5 rounded-lg text-[#C81E3D] font-extrabold text-sm hover:bg-[#FFF1F2] transition-all border-b border-gray-100 mb-1"
+                    >
+                      All Programmes
+                    </Link>
                     {programs.map((program) => (
                       <Link
                         key={program.id}
@@ -125,7 +140,7 @@ const Header = () => {
                 <ChevronDown size={18} className="text-gray-400 transition-transform duration-200" />
               </button>
               {hoveredMenu === "universities" && (
-                <div className="absolute top-full left-0 mt-3 w-[280px] bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-50 max-h-[70vh] overflow-y-auto">
+                <div className="absolute top-full left-0 mt-3 w-[320px] bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-50 max-h-[70vh] overflow-y-auto">
                   <div className="grid grid-cols-1 gap-1">
                     <Link
                       href="/universities"
@@ -140,6 +155,43 @@ const Header = () => {
                         className="block px-4 py-2.5 rounded-lg text-[#1E293B] font-bold text-sm hover:bg-[#FFF1F2] hover:text-[#C81E3D] transition-all"
                       >
                         {col.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Tools Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("tools")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button className="flex items-center space-x-1 text-[#12141D] text-[15px] font-bold hover:text-[#C81E3D] transition-colors">
+                <span>Tools</span>
+                <ChevronDown size={18} className="text-gray-400 transition-transform duration-200" />
+              </button>
+              {hoveredMenu === "tools" && (
+                <div className="absolute top-full left-0 mt-3 w-[320px] bg-white rounded-2xl shadow-xl border border-gray-100 p-3 z-50">
+                  <div className="grid grid-cols-1 gap-1">
+                    {toolLinks.map((tool) => (
+                      <Link
+                        key={tool.href}
+                        href={tool.href}
+                        className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-[#FFF1F2] transition-all group"
+                      >
+                        <span className="w-8 h-8 rounded-lg bg-[#FFF1F2] flex items-center justify-center flex-shrink-0 group-hover:bg-white">
+                          <tool.icon size={15} className="text-[#C81E3D]" />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="block text-[#1E293B] font-bold text-sm group-hover:text-[#C81E3D] transition-colors">
+                            {tool.label}
+                          </span>
+                          <span className="block text-[11px] text-slate-400 font-semibold mt-0.5">
+                            {tool.hint}
+                          </span>
+                        </span>
                       </Link>
                     ))}
                   </div>
@@ -225,6 +277,13 @@ const Header = () => {
             </button>
             {mobileDropdown === "programs" && (
               <div className="grid grid-cols-1 gap-1 pt-2 pb-1">
+                <Link
+                  href="/programs"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-sm font-extrabold text-[#C81E3D] py-2 px-2 rounded-lg hover:bg-[#FFF1F2] transition-all border-b border-gray-100 mb-1"
+                >
+                  All Programmes
+                </Link>
                 {programs.map((program) => (
                   <Link
                     key={program.id}
@@ -272,7 +331,48 @@ const Header = () => {
             )}
           </div>
           <div className="h-[1px] bg-gray-100" />
-          
+
+          {/* Tools Accordion */}
+          <div>
+            <button
+              onClick={() => setMobileDropdown(mobileDropdown === "tools" ? null : "tools")}
+              className="flex items-center justify-between w-full text-[#C81E3D] text-[11px] font-bold tracking-widest uppercase mb-1"
+            >
+              <span>Tools</span>
+              <ChevronDown size={16} className={`text-[#C81E3D] transition-transform duration-200 ${mobileDropdown === "tools" ? "rotate-180" : ""}`} />
+            </button>
+            {mobileDropdown === "tools" && (
+              <div className="grid grid-cols-1 gap-1 pt-2 pb-1">
+                {toolLinks.map((tool) => (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-start gap-3 text-sm font-bold text-gray-900 hover:text-[#C81E3D] py-2 px-2 rounded-lg hover:bg-[#FFF1F2] transition-all"
+                  >
+                    <tool.icon size={15} className="text-[#C81E3D] flex-shrink-0 mt-0.5" />
+                    <span className="min-w-0">
+                      <span className="block">{tool.label}</span>
+                      <span className="block text-[11px] text-slate-400 font-semibold">{tool.hint}</span>
+                    </span>
+                  </Link>
+                ))}
+                <Link
+                  href="/student/dashboard"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-start gap-3 text-sm font-bold text-gray-900 hover:text-[#C81E3D] py-2 px-2 rounded-lg hover:bg-[#FFF1F2] transition-all border-t border-gray-100 mt-1 pt-3"
+                >
+                  <FolderOpen size={15} className="text-[#C81E3D] flex-shrink-0 mt-0.5" />
+                  <span className="min-w-0">
+                    <span className="block">Application Tracker</span>
+                    <span className="block text-[11px] text-slate-400 font-semibold">Shortlist to enrolment</span>
+                  </span>
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="h-[1px] bg-gray-100" />
+
           <Link href="/compare" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-gray-900">Compare</Link>
           <div className="h-[1px] bg-gray-100" />
           <Link href="/reviews" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-gray-900">Reviews</Link>

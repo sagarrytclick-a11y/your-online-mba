@@ -17,7 +17,7 @@ const HeroSection = () => {
   } = useCounsellingForm();
 
   return (
-    <section className="relative w-full bg-[#FAFAFA] py-12 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section className="relative w-full bg-[#FAFAFA] py-8 md:py-12 lg:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
       
       {/* Decorative Concentric Circles at bottom-left */}
       <div className="absolute bottom-0 left-0 -translate-x-16 translate-y-16 w-64 h-64 pointer-events-none opacity-[0.06] select-none z-0">
@@ -90,7 +90,7 @@ const HeroSection = () => {
             </h2>
 
             {submitted ? (
-              <div className="py-12 text-center space-y-3">
+              <div className="py-8 text-center space-y-3">
                 <div className="w-14 h-14 bg-[#FFF1F2] rounded-full flex items-center justify-center mx-auto">
                   <Check size={28} className="text-[#C81E3D] stroke-[3]" />
                 </div>
@@ -167,7 +167,7 @@ const HeroSection = () => {
       </div>
 
       {/* BOTTOM TRUST BAR */}
-      <div className="max-w-7xl mx-auto mt-16 md:mt-24 pt-8 border-t border-gray-200/60 grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap justify-between items-center gap-6 md:gap-8 px-4 relative z-10">
+      <div className="max-w-7xl mx-auto mt-8 md:mt-10 pt-6 border-t border-gray-200/60 grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap justify-between items-center gap-6 md:gap-8 px-4 relative z-10">
         <div className="flex items-center gap-3">
           <GraduationCap className="text-[#C81E3D] w-6 h-6 flex-shrink-0" />
           <span className="text-[11px] sm:text-xs font-bold text-slate-700 uppercase leading-tight tracking-wider">

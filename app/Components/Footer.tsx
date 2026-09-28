@@ -12,11 +12,57 @@ const socialIcons: Record<string, React.ReactNode> = {
   FaYoutube: <FaYoutube size={18} />,
 };
 
+const footerColumns = [
+  {
+    title: "Explore",
+    links: [
+      { href: "/find-my-program", label: "Find My Program" },
+      { href: "/universities", label: "All Universities" },
+      { href: "/programs", label: "All Programs" },
+      { href: "/specialisations", label: "Specializations" },
+      { href: "/reviews", label: "Student Reviews" },
+    ],
+  },
+  {
+    title: "Compare & Decide",
+    links: [
+      { href: "/compare-programs", label: "Compare Programs" },
+      { href: "/compare", label: "Compare Universities" },
+      { href: "/roi-calculator", label: "ROI Calculator" },
+      { href: "/scholarships", label: "Scholarships & EMI" },
+    ],
+  },
+  {
+    title: "Learners",
+    links: [
+      { href: "/alumni", label: "Alumni Stories" },
+      { href: "/community", label: "Q&A Community" },
+      { href: "/student/dashboard", label: "Application Tracker" },
+    ],
+  },
+  {
+    title: "Talk To Us",
+    links: [
+      { href: "/book-counseling", label: "Book Counselling" },
+      { href: "/contact-us", label: "Contact Us" },
+      { href: "/book-counseling#next-deadline", label: "Request a Callback" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { href: "/privacy-policy", label: "Privacy Policy" },
+      { href: "/terms-and-conditions", label: "Terms & Conditions" },
+      { href: "/disclaimer", label: "Disclaimer" },
+    ],
+  },
+];
+
 const Footer = () => {
   return (
     <footer className="w-full bg-[#F8FAFC] border-t-4 border-[#C81E3D] pt-16 pb-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-start justify-items-center md:justify-items-stretch">
           
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6 max-w-sm">
@@ -85,6 +131,30 @@ const Footer = () => {
             </div>
           </div>
 
+        </div>
+
+        <div className="border-t border-slate-200/60 my-10" />
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-center lg:text-left">
+          {footerColumns.map((column) => (
+            <div key={column.title} className="space-y-3">
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#1E293B]">
+                {column.title}
+              </h4>
+              <ul className="space-y-2">
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-xs font-semibold text-slate-500 hover:text-[#C81E3D] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         <div className="border-t border-slate-200/60 my-10" />

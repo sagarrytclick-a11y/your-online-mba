@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Hero from "../Components/Hero";
+import StatsBand from "../Components/StatsBand";
 import WhyChooseUs from "../Components/WhyChooseUs";
+import HomeTools from "../Components/HomeTools";
 import SpecialisationsSection from "../Components/SpecialisationsSection";
 import ComparisonSection from "../Components/ComparisonSection";
+import RankingsTable from "../Components/RankingsTable";
 import UniversitiesSection from "../Components/UniversitiesSection";
 import CareerOptionsSection from "../Components/CareerOptionsSection";
 import HiringSection from "../Components/HiringSection";
@@ -112,9 +115,12 @@ const page = () => {
       <JsonLd data={websiteSchema} />
       <JsonLd data={faqSchema} />
       <Hero />
+      <StatsBand />
+      <HomeTools />
       <WhyChooseUs />
       <SpecialisationsSection />
       <ComparisonSection />
+      <RankingsTable />
       <UniversitiesSection />
       <CareerOptionsSection />
       <HiringSection />

@@ -22,7 +22,7 @@ async function isAdminAuthenticated(req: NextRequest): Promise<boolean> {
   }
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Protect /admin dashboard (not /admin/login)

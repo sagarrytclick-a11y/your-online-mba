@@ -63,9 +63,9 @@ const ComparisonSection = () => {
   ];
 
   return (
-    <section className="relative w-full bg-[#FAFBFD] py-16 md:py-24 px-4 sm:px-6 md:px-8 border-t border-slate-100/50">
+    <section className="relative w-full bg-[#FAFBFD] py-10 md:py-14 px-4 sm:px-6 md:px-8 border-t border-slate-100/50">
       
-      <div className="max-w-7xl mx-auto space-y-12 md:space-y-16 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-8 md:space-y-10 relative z-10">
         
         {/* Header */}
         <div className="text-center space-y-3">

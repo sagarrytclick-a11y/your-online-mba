@@ -1,6 +1,7 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useCallback, useMemo } from "react";
 import { collegeReviews, CollegeReview } from "../data/colleges";
+import { useLocalStorageState } from "../lib/useLocalStorageState";
 
 const STORAGE_KEY = "compareUniversities";
 const MAX_COMPARE = 4;
@@ -20,51 +21,57 @@ interface CompareContextType {
 const CompareContext = createContext<CompareContextType | undefined>(undefined);
 
 export function CompareProvider({ children }: { children: React.ReactNode }) {
-  const [compareIds, setCompareIds] = useState<string[]>([]);
+  const [compareIds, setCompareIds] = useLocalStorageState<string[]>(STORAGE_KEY, []);
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) setCompareIds(parsed);
-      }
-    } catch { /* ignore */ }
-  }, []);
+  const add = useCallback(
+    (id: string) => {
+      setCompareIds((prev) =>
+        prev.includes(id) || prev.length >= MAX_COMPARE ? prev : [...prev, id]
+      );
+    },
+    [setCompareIds]
+  );
 
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(compareIds));
-    } catch { /* ignore */ }
-  }, [compareIds]);
+  const remove = useCallback(
+    (id: string) => {
+      setCompareIds((prev) => prev.filter((i) => i !== id));
+    },
+    [setCompareIds]
+  );
 
-  const add = useCallback((id: string) => {
-    setCompareIds((prev) => prev.includes(id) || prev.length >= MAX_COMPARE ? prev : [...prev, id]);
-  }, []);
+  const toggle = useCallback(
+    (id: string) => {
+      setCompareIds((prev) =>
+        prev.includes(id)
+          ? prev.filter((i) => i !== id)
+          : prev.length >= MAX_COMPARE
+            ? prev
+            : [...prev, id]
+      );
+    },
+    [setCompareIds]
+  );
 
-  const remove = useCallback((id: string) => {
-    setCompareIds((prev) => prev.filter((i) => i !== id));
-  }, []);
-
-  const toggle = useCallback((id: string) => {
-    setCompareIds((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : prev.length >= MAX_COMPARE ? prev : [...prev, id]);
-  }, []);
-
-  const clear = useCallback(() => setCompareIds([]), []);
+  const clear = useCallback(() => setCompareIds([]), [setCompareIds]);
 
   const isFull = compareIds.length >= MAX_COMPARE;
   const includes = useCallback((id: string) => compareIds.includes(id), [compareIds]);
   const count = compareIds.length;
 
-  const compareColleges = compareIds
-    .map((id) => collegeReviews.find((c) => c.id === id))
-    .filter((c): c is CollegeReview => c !== undefined);
-
-  return (
-    <CompareContext.Provider value={{ compareIds, compareColleges, add, remove, toggle, clear, isFull, includes, count }}>
-      {children}
-    </CompareContext.Provider>
+  const compareColleges = useMemo(
+    () =>
+      compareIds
+        .map((id) => collegeReviews.find((c) => c.id === id))
+        .filter((c): c is CollegeReview => c !== undefined),
+    [compareIds]
   );
+
+  const value = useMemo(
+    () => ({ compareIds, compareColleges, add, remove, toggle, clear, isFull, includes, count }),
+    [compareIds, compareColleges, add, remove, toggle, clear, isFull, includes, count]
+  );
+
+  return <CompareContext.Provider value={value}>{children}</CompareContext.Provider>;
 }
 
 export function useCompare() {
