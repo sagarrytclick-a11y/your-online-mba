@@ -37,115 +37,55 @@ const footerColumns = [
     links: [
       { href: "/alumni", label: "Alumni Stories" },
       { href: "/community", label: "Q&A Community" },
-      { href: "/student/dashboard", label: "Application Tracker" },
-    ],
-  },
-  {
-    title: "Talk To Us",
-    links: [
-      { href: "/contact-us", label: "Contact Us" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { href: "/privacy-policy", label: "Privacy Policy" },
-      { href: "/terms-and-conditions", label: "Terms & Conditions" },
-      { href: "/disclaimer", label: "Disclaimer" },
     ],
   },
 ];
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#F8FAFC] border-t-4 border-[#C81E3D] pt-16 pb-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-start justify-items-center md:justify-items-stretch">
-          
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6 max-w-sm">
-            <div className="flex flex-col items-center">
-              <Link href="/">
+    <footer className="w-full border-t border-slate-200 bg-white text-slate-700">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-8 pb-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.35fr]">
+          <div className="space-y-5">
+            <div className="flex items-center gap-3">
+              <Link href="/" className="inline-flex items-center">
                 <Image
                   src="/logo.png"
                   alt="Your Online MBA"
-                  width={180}
-                  height={50}
-                  className="h-[50px] w-auto"
+                  width={70}
+                  height={70}
+                  className="rounded-xl border border-slate-200 bg-slate-50 p-2 shadow-sm"
                 />
               </Link>
+              <div>
+                <p className="text-[22px] font-black leading-none tracking-tight text-slate-900">
+                  {siteConfig.name}
+                </p>
+                <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">
+                  {siteConfig.tagline}
+                </p>
+              </div>
             </div>
 
-            <p className="text-slate-500 text-sm font-semibold leading-relaxed">
+            <p className="max-w-sm text-sm leading-7 text-slate-600">
               {siteConfig.description}
             </p>
 
-            <div className="flex items-center gap-3">
-              {siteConfig.socials.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="w-10 h-10 rounded-full bg-[#FFF1F2] hover:bg-[#C81E3D] hover:text-white flex items-center justify-center text-[#C81E3D] transition-all duration-300 shadow-sm"
-                >
-                  {socialIcons[social.icon]}
-                </a>
-              ))}
-            </div>
+            <Link
+              href="/book-counseling"
+              className="inline-flex items-center justify-center rounded-xl bg-[#C81E3D] px-5 py-3 text-base font-bold text-white shadow-[0_12px_25px_rgba(200,30,61,0.22)] transition hover:bg-[#b21934]"
+            >
+              Book a Free Counseling
+            </Link>
           </div>
 
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-5">
-            <h3 className="text-slate-800 font-extrabold text-lg md:text-xl tracking-tight">
-              Stay Updated
-            </h3>
-            
-            <p className="text-slate-500 text-sm font-semibold max-w-sm">
-              Get career tips and exclusive program offers.
-            </p>
-
-            <div className="space-y-3 pt-1 text-slate-600 text-sm font-bold">
-              <a href={`tel:${siteConfig.phone}`} className="flex items-center justify-center md:justify-start gap-3 hover:text-[#C81E3D] transition-colors group">
-                <div className="w-8 h-8 rounded-full bg-[#FFF1F2] flex items-center justify-center text-[#C81E3D] flex-shrink-0 group-hover:scale-105 transition-transform">
-                  <Phone size={14} className="stroke-[2.5]" />
-                </div>
-                <span>{siteConfig.phoneDisplay}</span>
-              </a>
-              
-              <a href={`mailto:${siteConfig.email}`} className="flex items-center justify-center md:justify-start gap-3 hover:text-[#C81E3D] transition-colors group">
-                <div className="w-8 h-8 rounded-full bg-[#FFF1F2] flex items-center justify-center text-[#C81E3D] flex-shrink-0 group-hover:scale-105 transition-transform">
-                  <Mail size={14} className="stroke-[2.5]" />
-                </div>
-                <span>{siteConfig.email}</span>
-              </a>
-              
-              <div className="flex items-start justify-center md:justify-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#FFF1F2] flex items-center justify-center text-[#C81E3D] flex-shrink-0 mt-0.5">
-                  <MapPin size={14} className="stroke-[2.5]" />
-                </div>
-                <span className="text-xs leading-relaxed max-w-xs">{siteConfig.address}</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="border-t border-slate-200/60 my-10" />
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-center lg:text-left">
           {footerColumns.map((column) => (
-            <div key={column.title} className="space-y-3">
-              <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#1E293B]">
-                {column.title}
-              </h4>
-              <ul className="space-y-2">
+            <div key={column.title} className="space-y-4">
+              <h3 className="text-lg font-extrabold text-slate-900">{column.title}</h3>
+              <ul className="space-y-2.5 text-sm text-slate-600">
                 {column.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-xs font-semibold text-slate-500 hover:text-[#C81E3D] transition-colors"
-                    >
+                    <Link href={link.href} className="transition hover:text-[#C81E3D]">
                       {link.label}
                     </Link>
                   </li>
@@ -153,34 +93,67 @@ const Footer = () => {
               </ul>
             </div>
           ))}
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-extrabold text-slate-900">Contact Info</h3>
+
+            <div className="space-y-3 text-sm text-slate-600">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF1F2] text-[#C81E3D]">
+                  <MapPin size={16} className="stroke-[2.5]" />
+                </span>
+                <span className="leading-6">{siteConfig.address}</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF1F2] text-[#C81E3D]">
+                  <Phone size={16} className="stroke-[2.5]" />
+                </span>
+                <a href={`tel:${siteConfig.phone}`} className="transition hover:text-[#C81E3D]">
+                  {siteConfig.phoneDisplay}
+                </a>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF1F2] text-[#C81E3D]">
+                  <Mail size={16} className="stroke-[2.5]" />
+                </span>
+                <a href={`mailto:${siteConfig.email}`} className="break-all transition hover:text-[#C81E3D]">
+                  {siteConfig.email}
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-2 flex items-center gap-3">
+              {siteConfig.socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700 transition hover:border-[#C81E3D] hover:bg-[#C81E3D] hover:text-white"
+                >
+                  {socialIcons[social.icon]}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <div className="border-t border-slate-200/60 my-10" />
+        <div className="mt-6 flex flex-col gap-5 border-t border-slate-200 pt-5 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+            <Link href="/privacy-policy" className="hover:text-[#C81E3D]">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-[#C81E3D]">Terms &amp; Conditions</Link>
+            <Link href="/disclaimer" className="hover:text-[#C81E3D]">Disclaimer</Link>
+          </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs md:text-sm font-bold text-slate-500 text-center">
-          <span>&copy; {siteConfig.year} {siteConfig.name} - All Rights Reserved.</span>
-          <span className="hidden sm:inline">&bull;</span>
-          <Link href="/privacy-policy" className="text-[#C81E3D] hover:underline underline-offset-4">
-            Privacy Policy
-          </Link>
-          <span className="hidden sm:inline">&bull;</span>
-          <Link href="/terms-and-conditions" className="text-[#C81E3D] hover:underline underline-offset-4">
-            Terms &amp; Conditions
-          </Link>
-          <span className="hidden sm:inline">&bull;</span>
-          <Link href="/disclaimer" className="text-[#C81E3D] hover:underline underline-offset-4">
-            Disclaimer
-          </Link>
+          <p className="text-sm text-slate-500">&copy; {siteConfig.year} {siteConfig.name}. All Rights Reserved.</p>
         </div>
 
-        <p className="text-center text-[10px] text-slate-400 font-bold max-w-4xl mx-auto mt-4 leading-relaxed">
-          {siteConfig.legal.disclaimer}
-        </p>
-
-        <p className="text-center text-[9px] text-slate-300 font-semibold max-w-4xl mx-auto mt-2 leading-relaxed">
-          Results may vary based on individual efforts and market conditions. All information is for reference purposes only.
-        </p>
-
+        <div className="mt-4 border-t border-slate-200 pt-5 text-center text-sm text-slate-500">
+          <p>{siteConfig.legal.disclaimer}</p>
+        </div>
       </div>
     </footer>
   );
