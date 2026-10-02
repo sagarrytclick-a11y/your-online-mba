@@ -16,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/scholarships`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/alumni`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
     { url: `${SITE_URL}/community`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
-    { url: `${SITE_URL}/book-counseling`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/reviews`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${SITE_URL}/specialisations`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${SITE_URL}/compare-programs`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

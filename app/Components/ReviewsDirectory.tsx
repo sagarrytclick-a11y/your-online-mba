@@ -103,28 +103,30 @@ const ReviewsDirectory: React.FC<ReviewsDirectoryProps> = ({ initialSearch }) =>
           </div>
 
           {/* Search Input Box */}
-          <div className="max-w-3xl mx-auto pt-4 relative">
-            <div className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
-              <Icons.Search size={20} />
+          <div className="max-w-3xl mx-auto pt-4">
+            <div className="relative">
+              <div className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
+                <Icons.Search size={20} />
+              </div>
+              <input
+                type="search"
+                value={search}
+                onChange={(e) => handleSearch(e.target.value)}
+                placeholder="Search by university, city, exam or accreditation"
+                aria-label="Search university reviews"
+                className="w-full h-14 pl-14 pr-6 border border-gray-200 bg-white rounded-full text-base font-medium text-slate-800 placeholder-slate-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all shadow-sm"
+              />
+              {search && (
+                <button
+                  type="button"
+                  onClick={() => handleSearch("")}
+                  aria-label="Clear search"
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#C81E3D] transition-colors"
+                >
+                  <Icons.X size={18} />
+                </button>
+              )}
             </div>
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => handleSearch(e.target.value)}
-              placeholder="Search by university, city, exam or accreditation"
-              aria-label="Search university reviews"
-              className="w-full h-14 pl-14 pr-6 border border-gray-200 bg-white rounded-full text-base font-medium text-slate-800 placeholder-slate-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all shadow-sm"
-            />
-            {search && (
-              <button
-                type="button"
-                onClick={() => handleSearch("")}
-                aria-label="Clear search"
-                className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#C81E3D] transition-colors"
-              >
-                <Icons.X size={18} />
-              </button>
-            )}
           </div>
 
           {search && (
@@ -161,12 +163,11 @@ const ReviewsDirectory: React.FC<ReviewsDirectoryProps> = ({ initialSearch }) =>
               >
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-b border-gray-100">
                   {/* Image panel */}
-                  <div className="md:col-span-7 relative h-48 sm:h-64 md:h-72 bg-slate-100">
+                  <div className="md:col-span-7 relative min-h-48 sm:min-h-64 md:min-h-72 bg-slate-100">
                     <img
                       src={col.image}
                       alt={col.name}
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 55vw"
+                      className="absolute inset-0 block h-full w-full object-cover"
                     />
                   </div>
 

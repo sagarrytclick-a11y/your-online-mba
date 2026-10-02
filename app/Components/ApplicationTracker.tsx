@@ -521,11 +521,11 @@ const ApplicationTracker: React.FC = () => {
               nothing is sent to us until you share it with a counsellor.
             </p>
             <Link
-              href="/book-counseling"
+              href="/contact-us"
               className="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#C81E3D] hover:underline"
             >
               <Icons.CalendarDays size={12} />
-              Book a review call
+              Contact a counsellor about my shortlist
             </Link>
           </div>
         </div>

@@ -15,7 +15,6 @@ const suggestions = [
   { href: "/compare-programs", label: "Compare programmes", icon: Icons.Scale },
   { href: "/roi-calculator", label: "Run the ROI maths", icon: Icons.Calculator },
   { href: "/scholarships", label: "Check scholarships", icon: Icons.IndianRupee },
-  { href: "/book-counseling", label: "Book a counselling call", icon: Icons.CalendarDays },
 ];
 
 export default function NotFound() {

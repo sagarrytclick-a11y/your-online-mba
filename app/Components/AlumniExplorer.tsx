@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import * as Icons from "lucide-react";
 import { alumniSpotlights, type AlumniSpotlight } from "../data/alumni";
 import { collegeReviews } from "../data/colleges";
@@ -151,13 +152,18 @@ const AlumniCard: React.FC<{
     <article className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
       <div className="p-6 space-y-4 flex-1">
         <div className="flex items-start gap-4">
-          <span className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C81E3D] to-[#E8577F] text-white flex items-center justify-center font-black text-lg flex-shrink-0">
-            {a.name
-              .split(" ")
-              .map((n) => n[0])
-              .slice(0, 2)
-              .join("")}
-          </span>
+          <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
+            <Image
+              src={a.image}
+              alt={a.name}
+              width={56}
+              height={56}
+              unoptimized
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
           <div className="min-w-0 flex-1">
             <h3 className="text-base font-extrabold text-[#1E293B] flex items-center gap-1.5">
               {a.name}

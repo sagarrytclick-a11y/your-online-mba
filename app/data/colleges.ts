@@ -263,7 +263,7 @@ export const collegeReviews: CollegeReview[] = [
   {
     id: "chandigarh-university",
     name: "Chandigarh University Online",
-    image: "https://collegebandhu.com/wp-content/uploads/2025/09/Chandigarh-University-scaled.webp",
+    image: "https://collegewollege.com/_next/image?url=https%3A%2F%2Fcdn.collegewollege.com%2Fstorage%2Fcolleges%2Fbranding%2F12Sphl2NyIb1TwbPVD72srNZegyIB4rAUrvmai6s.webp&w=3840&q=60",
     rating: 4.7,
     totalReviews: "8,720",
     ratingDistribution: {

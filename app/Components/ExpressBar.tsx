@@ -14,13 +14,6 @@ const ACTIONS = [
     href: null as string | null,
   },
   {
-    key: "book",
-    label: "Book a slot",
-    sublabel: "Pick your time",
-    icon: Icons.CalendarDays,
-    href: "/book-counseling",
-  },
-  {
     key: "brochure",
     label: "Download brochure",
     sublabel: "PDF, 20+ pages",
@@ -29,10 +22,10 @@ const ACTIONS = [
   },
   {
     key: "apply",
-    label: "Apply in 2 minutes",
-    sublabel: "No paperwork",
+    label: "Find my program",
+    sublabel: "Get matched in minutes",
     icon: Icons.Zap,
-    href: "/book-counseling",
+    href: "/find-my-program",
   },
 ];
 
