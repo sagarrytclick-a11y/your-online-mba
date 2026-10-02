@@ -43,9 +43,7 @@ const footerColumns = [
   {
     title: "Talk To Us",
     links: [
-      { href: "/book-counseling", label: "Book Counselling" },
       { href: "/contact-us", label: "Contact Us" },
-      { href: "/book-counseling#next-deadline", label: "Request a Callback" },
     ],
   },
   {

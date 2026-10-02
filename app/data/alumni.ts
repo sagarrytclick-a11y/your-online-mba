@@ -3,6 +3,7 @@ export interface AlumniSpotlight {
   name: string;
   role: string;
   company: string;
+  image: string;
   collegeId: string;
   collegeName: string;
   specialisationSlug: string;
@@ -27,6 +28,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Ananya Iyer",
     role: "Senior Product Manager",
     company: "Flipkart",
+    image: "https://i.pinimg.com/736x/82/21/b5/8221b53df22f2f65534e5f4d1a1d11c2.jpg",
     collegeId: "manipal-online",
     collegeName: "Manipal University Online",
     specialisationSlug: "it-management",
@@ -42,7 +44,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     quote:
       "I did not need another coding course. I needed to learn how to argue for a roadmap, price a feature and convince a finance team. The MBA gave me exactly that vocabulary.",
     videoLength: "2:14",
-    linkedIn: "https://www.linkedin.com/",
+    linkedIn: "https://i.pinimg.com/736x/82/21/b5/8221b53df22f2f65534e5f4d1a1d11c2.jpg",
     hasVideo: true,
     verified: true,
   },
@@ -51,6 +53,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Rohit Deshmukh",
     role: "FP&A Lead",
     company: "Amazon",
+    image: "https://i.pinimg.com/736x/6a/fd/3a/6afd3a2e08a54a7c9fa355f59a1ee9de.jpg",
     collegeId: "lpu-online",
     collegeName: "LPU Online",
     specialisationSlug: "finance-management",
@@ -75,6 +78,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Priya Nair",
     role: "Brand Manager",
     company: "Unilever",
+    image: "https://i.pinimg.com/736x/4f/d7/bc/4fd7bca8d5a045a46346fc3ece550cff.jpg",
     collegeId: "amity-online",
     collegeName: "Amity University Online",
     specialisationSlug: "marketing-and-sales",
@@ -99,6 +103,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Vikram Shetty",
     role: "Regional Operations Director",
     company: "Zomato",
+    image: "https://i.pinimg.com/1200x/1e/56/fe/1e56fea4bf56d16b2b116f047c3d90ed.jpg",
     collegeId: "chandigarh-university",
     collegeName: "Chandigarh University Online",
     specialisationSlug: "operations-management",
@@ -123,6 +128,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Sneha Kulkarni",
     role: "Healthcare Consultant",
     company: "Apollo Hospitals",
+    image: "https://i.pinimg.com/736x/31/d9/24/31d924ac17e532ffa414ec42bb13e8bb.jpg",
     collegeId: "nmims-online",
     collegeName: "NMIMS Global Access",
     specialisationSlug: "healthcare-management",
@@ -147,6 +153,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Karan Malhotra",
     role: "Business Analyst",
     company: "Deloitte",
+    image: "https://i.pinimg.com/736x/37/71/4f/37714fc967378d97d443f87a0c372d39.jpg",
     collegeId: "jain-university",
     collegeName: "Jain University Online",
     specialisationSlug: "business-analytics",
@@ -171,6 +178,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Meera Raghavan",
     role: "Machine Learning Engineer",
     company: "Fractal Analytics",
+    image: "https://i.pinimg.com/736x/72/87/39/728739dc716f5d184b5e60f80f1db9b5.jpg",
     collegeId: "iim-kozhikode",
     collegeName: "IIM Kozhikode (Executive)",
     specialisationSlug: "ai-and-machine-learning",
@@ -195,6 +203,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Sunil Patil",
     role: "HR Business Partner",
     company: "Infosys",
+    image: "https://i.pravatar.cc/150?img=13",
     collegeId: "symbiosis-scdl",
     collegeName: "Symbiosis SCDL",
     specialisationSlug: "hr-management",
@@ -219,6 +228,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Arjun Reddy",
     role: "Program Manager",
     company: "Larsen & Toubro",
+    image: "https://i.pinimg.com/736x/a5/fd/b5/a5fdb5717ab7c630fbaa8e0518fa75ac.jpg",
     collegeId: "imt-ghaziabad",
     collegeName: "IMT Ghaziabad (CDL)",
     specialisationSlug: "project-management",
@@ -243,6 +253,7 @@ export const alumniSpotlights: AlumniSpotlight[] = [
     name: "Ayesha Khan",
     role: "Regional Export Manager",
     company: "Tata Motors",
+    image: "https://i.pinimg.com/736x/f6/ca/4b/f6ca4bc56f7d5855c03ca97fcf963590.jpg",
     collegeId: "upes-online",
     collegeName: "UPES Online",
     specialisationSlug: "international-business-management",

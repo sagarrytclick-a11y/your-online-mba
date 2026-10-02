@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, Menu, X, Sparkles, Calculator, FolderOpen, GraduationCap, GraduationCapIcon, IndianRupee, MessagesSquare, CalendarDays, Scale } from 'lucide-react';
+import { ChevronDown, Menu, X, Sparkles, Calculator, FolderOpen, GraduationCap, GraduationCapIcon, IndianRupee, MessagesSquare, Scale } from 'lucide-react';
 import { programs } from '../data/programs';
 import { specialisations } from '../data/specialisations';
 import { collegeReviews } from '../data/colleges';
@@ -15,7 +15,6 @@ const toolLinks = [
   { href: '/scholarships', label: 'Scholarships', hint: 'Eligibility checker and EMI', icon: IndianRupee },
   { href: '/alumni', label: 'Alumni Stories', hint: 'Real career switches', icon: GraduationCap },
   { href: '/community', label: 'Q&A Community', hint: 'Answered by counsellors', icon: MessagesSquare },
-  { href: '/book-counseling', label: 'Book Counselling', hint: 'Free 20-minute call', icon: CalendarDays },
 ];
 
 const Header = () => {

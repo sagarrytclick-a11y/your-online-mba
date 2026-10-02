@@ -199,13 +199,6 @@ export default async function FindMyProgramPage({ searchParams }: PageProps) {
                 <Icons.Phone size={16} />
                 Talk to a counsellor
               </PopupTrigger>
-              <Link
-                href="/book-counseling"
-                className="inline-flex items-center gap-2 h-12 px-8 border-2 border-white/40 text-white font-extrabold rounded-full hover:bg-white/10 transition-all text-sm"
-              >
-                <Icons.CalendarDays size={16} />
-                Book a slot
-              </Link>
             </div>
           </div>
         </ScrollReveal>
