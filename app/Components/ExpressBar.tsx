@@ -33,14 +33,6 @@ const ExpressBar: React.FC = () => {
   const { open } = usePopupForm();
   const [expanded, setExpanded] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 620);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Dismiss automatically after a while so it never becomes a permanent obstruction.
   useEffect(() => {
@@ -56,9 +48,7 @@ const ExpressBar: React.FC = () => {
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className={`fixed bottom-5 right-4 sm:right-6 z-40 inline-flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-[#C81E3D] text-white font-extrabold text-sm shadow-2xl shadow-rose-300 transition-all hover:bg-[#B01A33] active:scale-95 sm:opacity-0 sm:pointer-events-none transition-opacity ${
-            visible ? "sm:opacity-100 sm:pointer-events-auto" : ""
-          }`}
+          className="fixed bottom-5 right-4 z-40 inline-flex items-center gap-2.5 rounded-full bg-[#C81E3D] px-5 py-3.5 text-sm font-extrabold text-white shadow-2xl shadow-rose-300 transition-all hover:bg-[#B01A33] active:scale-95 sm:hidden"
         >
           <Icons.Zap size={16} />
           <span className="hidden sm:inline">Get help in 1 click</span>

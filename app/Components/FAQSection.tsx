@@ -20,7 +20,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "Which are the leading Indian colleges providing online MBA courses?",
-    answer: "Top institutions include IIM Ahmedabad, IIM Kozhikode, NMIMS Global, and Amity Online, all offering UGC-entitled degrees."
+    answer: "Options include LPU Online, Amity University Online, Manipal University Jaipur, and NMIMS Global Access. Program formats and recognition vary, so verify UGC-DEB entitlement for the exact degree and admission session."
   },
   {
     question: "What qualifications do you need to join an online MBA program?",

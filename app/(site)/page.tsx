@@ -28,7 +28,7 @@ const organizationSchema = {
   email: siteConfig.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "S0-1, Geniefolks Building, Block A, Plot A-28, Sector 4",
+    streetAddress: "S0-2, Geniefolks Building (2nd Floor), Block A, Plot No. A-28, Sector 4",
     addressLocality: siteConfig.city,
     addressRegion: siteConfig.state,
     postalCode: "201301",
@@ -79,7 +79,7 @@ const faqSchema = {
       name: "Which are the leading Indian colleges providing online MBA courses?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Top institutions include IIM Ahmedabad, IIM Kozhikode, NMIMS Global, and Amity Online, all offering UGC-entitled degrees.",
+        text: "Options include LPU Online, Amity University Online, Manipal University Jaipur, and NMIMS Global Access. Program formats and recognition vary, so verify UGC-DEB entitlement for the exact degree and admission session.",
       },
     },
     {
@@ -106,6 +106,14 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Compare India's best Online MBA programs from LPU, Amity, NMIMS, Manipal, Chandigarh University & more. UGC-approved, EMI options, placement support. Get free counselling.",
   path: "/",
+  keywords: [
+    "online MBA in India",
+    "UGC-DEB approved online MBA",
+    "online MBA universities",
+    "online MBA fees",
+    "compare online MBA programs",
+    "online MBA admission 2026",
+  ],
 });
 
 const page = () => {

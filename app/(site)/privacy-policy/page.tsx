@@ -2,13 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { siteConfig } from '../../data/site';
+import { buildMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
-  description: `Privacy Policy for ${siteConfig.name}. Learn how we collect, use, and protect your personal information when you use our education advisory services.`,
-  alternates: { canonical: "https://youronlinemba.com/privacy-policy" },
-  robots: { index: true, follow: true },
-};
+  description: `Read the ${siteConfig.name} privacy policy to learn how we collect, use, and protect information provided through our education advisory services.`,
+  path: "/privacy-policy",
+});
 
 export default function PrivacyPolicy() {
   return (

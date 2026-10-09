@@ -2,12 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { siteConfig } from '../../data/site';
+import { buildMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Disclaimer",
-  description: `Disclaimer for ${siteConfig.name} - an independent education advisory platform. We are not a university and do not award degrees.`,
-  alternates: { canonical: "https://youronlinemba.com/disclaimer" },
-};
+  description: `${siteConfig.name} is an independent education advisory platform, not a university. Read important information about program details, admissions, fees, and outcome disclaimers.`,
+  path: "/disclaimer",
+});
 
 export default function Disclaimer() {
   return (

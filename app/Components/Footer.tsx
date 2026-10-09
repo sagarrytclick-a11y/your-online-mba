@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { FaLinkedin, FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { siteConfig } from '../data/site';
+import PopupTrigger from './PopupTrigger';
 
 const socialIcons: Record<string, React.ReactNode> = {
   FaLinkedin: <FaLinkedin size={18} />,
@@ -71,12 +72,11 @@ const Footer = () => {
               {siteConfig.description}
             </p>
 
-            <Link
-              href="/book-counseling"
+            <PopupTrigger
               className="inline-flex items-center justify-center rounded-xl bg-[#C81E3D] px-5 py-3 text-base font-bold text-white shadow-[0_12px_25px_rgba(200,30,61,0.22)] transition hover:bg-[#b21934]"
             >
               Book a Free Counseling
-            </Link>
+            </PopupTrigger>
           </div>
 
           {footerColumns.map((column) => (

@@ -2,12 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { siteConfig } from '../../data/site';
+import { buildMetadata } from '../../lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Terms and Conditions",
-  description: `Terms and Conditions for ${siteConfig.name}. Please read these terms carefully before using our education advisory platform and services.`,
-  alternates: { canonical: "https://youronlinemba.com/terms-and-conditions" },
-};
+  description: `Read the terms for using ${siteConfig.name}, an independent education advisory platform for online MBA programs and university information.`,
+  path: "/terms-and-conditions",
+});
 
 export default function TermsAndConditions() {
   return (
