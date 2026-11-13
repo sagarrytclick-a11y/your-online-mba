@@ -66,11 +66,11 @@ const CommunityBoard: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm space-y-4">
+      <div className="bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm space-y-4">
         <div className="relative">
           <Icons.Search
             size={15}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-[#7c8798] pointer-events-none"
           />
           <input
             type="search"
@@ -78,7 +78,7 @@ const CommunityBoard: React.FC = () => {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search questions on fees, exams, LMS, placements..."
             aria-label="Search community questions"
-            className="w-full h-12 pl-11 pr-4 rounded-xl border border-gray-200 text-sm font-semibold text-[#1E293B] placeholder:text-slate-400 focus:border-[#C81E3D] focus:ring-2 focus:ring-rose-100 outline-none transition-all"
+            className="w-full h-12 pl-11 pr-4 rounded-xl border border-white/10 text-sm font-semibold text-[#F1F5F9] placeholder:text-[#7c8798] focus:border-[#C81E3D] focus:ring-2 focus:ring-[#e0244a]/25 outline-none transition-all"
           />
         </div>
 
@@ -89,7 +89,7 @@ const CommunityBoard: React.FC = () => {
             className={`px-4 py-2 rounded-full text-[11px] font-extrabold transition-all ${
               topic === "all"
                 ? "bg-[#C81E3D] text-white"
-                : "bg-[#F8FAFC] border border-gray-100 text-slate-500 hover:border-rose-200 hover:text-[#C81E3D]"
+                : "bg-[#10131A] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/30 hover:text-[#C81E3D]"
             }`}
           >
             All topics ({communityQuestions.length})
@@ -105,7 +105,7 @@ const CommunityBoard: React.FC = () => {
                 className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-extrabold transition-all ${
                   topic === t
                     ? "bg-[#C81E3D] text-white"
-                    : "bg-[#F8FAFC] border border-gray-100 text-slate-500 hover:border-rose-200 hover:text-[#C81E3D]"
+                    : "bg-[#10131A] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/30 hover:text-[#C81E3D]"
                 }`}
               >
                 <Icon size={12} />
@@ -115,8 +115,8 @@ const CommunityBoard: React.FC = () => {
           })}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-gray-100">
-          <p className="text-xs font-bold text-slate-400">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/10">
+          <p className="text-xs font-bold text-[#7c8798]">
             Showing {results.length} question{results.length === 1 ? "" : "s"}
           </p>
           <div className="flex gap-1.5">
@@ -128,7 +128,7 @@ const CommunityBoard: React.FC = () => {
                 className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition-all ${
                   sort === o.id
                     ? "bg-slate-800 text-white"
-                    : "bg-[#F8FAFC] text-slate-500 hover:text-slate-800"
+                    : "bg-[#10131A] text-[#8b96a8] hover:text-[#f1f5f9]"
                 }`}
               >
                 {o.label}
@@ -139,10 +139,10 @@ const CommunityBoard: React.FC = () => {
       </div>
 
       {results.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center">
+        <div className="bg-[#14161d] rounded-2xl border border-white/10 p-12 text-center">
           <Icons.MessageCircleQuestion size={28} className="text-slate-300 mx-auto mb-3" />
-          <p className="text-sm font-extrabold text-[#1E293B]">No question matches that search</p>
-          <p className="text-xs text-slate-500 font-medium mt-1">
+          <p className="text-sm font-extrabold text-[#F1F5F9]">No question matches that search</p>
+          <p className="text-xs text-[#8b96a8] font-medium mt-1">
             Try a broader keyword, or ask the counsellor directly.
           </p>
         </div>
@@ -163,10 +163,10 @@ const CommunityBoard: React.FC = () => {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl border border-gray-100 p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-5">
+      <div className="bg-[#14161d] rounded-2xl border border-white/10 p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-5">
         <div>
-          <h3 className="text-base font-extrabold text-[#1E293B]">Cannot find your question here?</h3>
-          <p className="text-sm text-slate-500 font-medium mt-1">
+          <h3 className="text-base font-extrabold text-[#F1F5F9]">Cannot find your question here?</h3>
+          <p className="text-sm text-[#8b96a8] font-medium mt-1">
             Counsellors answer admissions and fee questions within one working day.
           </p>
         </div>
@@ -191,7 +191,7 @@ const QuestionCard: React.FC<{
   const Icon = topicIconMap[q.topic];
 
   return (
-    <article className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+    <article className="bg-[#14161d] rounded-2xl border border-white/10 shadow-sm overflow-hidden">
       <div className="flex gap-4 p-5 sm:p-6">
         <div className="flex-shrink-0 flex flex-col items-center gap-1 w-11">
           <button
@@ -202,37 +202,37 @@ const QuestionCard: React.FC<{
             className={`w-10 h-10 rounded-xl border flex items-center justify-center transition-all ${
               voted
                 ? "bg-[#C81E3D] border-[#C81E3D] text-white"
-                : "border-gray-200 text-slate-400 hover:border-[#C81E3D] hover:text-[#C81E3D]"
+                : "border-white/10 text-[#7c8798] hover:border-[#C81E3D] hover:text-[#C81E3D]"
             }`}
           >
             <Icons.ChevronUp size={16} />
           </button>
-          <span className="text-[10px] font-extrabold text-slate-400">
+          <span className="text-[10px] font-extrabold text-[#7c8798]">
             {q.upvotes + (voted ? 1 : 0)}
           </span>
         </div>
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#FFF1F2] border border-rose-100 text-[9px] font-black text-[#C81E3D]">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#2B141A] border border-[#e0244a]/20 text-[9px] font-black text-[#C81E3D]">
               <Icon size={10} />
               {topicLabels[q.topic]}
             </span>
-            <span className="text-[10px] font-bold text-slate-400">
+            <span className="text-[10px] font-bold text-[#7c8798]">
               Asked by {q.askedBy} · {q.askedAt}
             </span>
           </div>
 
-          <h3 className="text-sm sm:text-base font-extrabold text-[#1E293B] mt-2 leading-snug">
+          <h3 className="text-sm sm:text-base font-extrabold text-[#F1F5F9] mt-2 leading-snug">
             {q.question}
           </h3>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 mt-3">
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-400">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#7c8798]">
               <Icons.MessageSquare size={11} className="text-[#C81E3D]" />
               {q.answers.length} answer{q.answers.length === 1 ? "" : "s"}
             </span>
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-400">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#7c8798]">
               <Icons.Eye size={11} className="text-[#C81E3D]" />
               {q.views.toLocaleString("en-IN")} views
             </span>
@@ -242,7 +242,7 @@ const QuestionCard: React.FC<{
             {q.tags.map((t) => (
               <span
                 key={t}
-                className="px-2 py-0.5 rounded-full bg-[#F8FAFC] border border-gray-100 text-[9px] font-bold text-slate-500"
+                className="px-2 py-0.5 rounded-full bg-[#10131A] border border-white/10 text-[9px] font-bold text-[#8b96a8]"
               >
                 #{t}
               </span>
@@ -264,13 +264,13 @@ const QuestionCard: React.FC<{
       </div>
 
       {expanded && (
-        <div className="border-t border-gray-100 bg-[#FAFBFD] px-5 sm:px-6 py-5 space-y-4">
+        <div className="border-t border-white/10 bg-[#10131a] px-5 sm:px-6 py-5 space-y-4">
           {q.answers.map((a) => {
             const isHelpful = helpful.includes(a.id);
             return (
-              <div key={a.id} className="bg-white rounded-xl border border-gray-100 p-5 space-y-2.5">
+              <div key={a.id} className="bg-[#14161d] rounded-xl border border-white/10 p-5 space-y-2.5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[10px] font-black flex-shrink-0">
+                  <span className="w-8 h-8 rounded-full bg-[#1b1e27] text-[#a8b3c5] flex items-center justify-center text-[10px] font-black flex-shrink-0">
                     {a.author
                       .split(" ")
                       .map((n) => n[0])
@@ -278,22 +278,22 @@ const QuestionCard: React.FC<{
                       .join("")}
                   </span>
                   <div>
-                    <p className="text-xs font-extrabold text-[#1E293B] flex items-center gap-1.5">
+                    <p className="text-xs font-extrabold text-[#F1F5F9] flex items-center gap-1.5">
                       {a.author}
                       {a.verified && <Icons.BadgeCheck size={12} className="text-emerald-500" />}
                     </p>
-                    <p className="text-[9px] font-bold text-slate-400">{a.role} · {a.credentials}</p>
+                    <p className="text-[9px] font-bold text-[#7c8798]">{a.role} · {a.credentials}</p>
                   </div>
                 </div>
-                <p className="text-sm text-slate-600 font-medium leading-relaxed">{a.answer}</p>
+                <p className="text-sm text-[#a8b3c5] font-medium leading-relaxed">{a.answer}</p>
                 <button
                   type="button"
                   onClick={() => onHelpful(a.id)}
                   aria-pressed={isHelpful}
                   className={`inline-flex items-center gap-1.5 text-[10px] font-extrabold px-2.5 py-1 rounded-full border transition-all ${
                     isHelpful
-                      ? "bg-emerald-50 border-emerald-100 text-emerald-700"
-                      : "bg-white border-gray-100 text-slate-400 hover:text-[#C81E3D]"
+                      ? "bg-emerald-400/10 border-emerald-400/25 text-emerald-400"
+                      : "bg-[#14161d] border-white/10 text-[#7c8798] hover:text-[#C81E3D]"
                   }`}
                 >
                   <Icons.ThumbsUp size={11} />
@@ -304,7 +304,7 @@ const QuestionCard: React.FC<{
           })}
           {q.relatedFaqs.length > 0 && (
             <div className="pt-2">
-              <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+              <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
                 Related reads
               </p>
               <div className="flex flex-wrap gap-2">

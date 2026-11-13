@@ -19,7 +19,7 @@ const tools = [
     title: "Compare programmes",
     body: "Put up to three universities side by side on fee, accreditation, NIRF rank, placement and estimated ROI.",
     cta: "Open the matrix",
-    accent: "bg-white text-[#C81E3D] border-2 border-rose-100",
+    accent: "bg-[#14161d] text-[#C81E3D] border-2 border-[#e0244a]/20",
   },
   {
     href: "/roi-calculator",
@@ -27,7 +27,7 @@ const tools = [
     title: "Run the ROI maths",
     body: "See the projected package, monthly gain, break-even month and ten-year net benefit at your actual salary.",
     cta: "Calculate ROI",
-    accent: "bg-white text-[#C81E3D] border-2 border-rose-100",
+    accent: "bg-[#14161d] text-[#C81E3D] border-2 border-[#e0244a]/20",
   },
   {
     href: "/scholarships",
@@ -35,7 +35,7 @@ const tools = [
     title: "Check scholarships",
     body: "Merit, budget, defence and women-in-leadership schemes, plus zero-interest EMI against bank loans.",
     cta: "Check eligibility",
-    accent: "bg-white text-[#C81E3D] border-2 border-rose-100",
+    accent: "bg-[#14161d] text-[#C81E3D] border-2 border-[#e0244a]/20",
   },
   {
     href: "/alumni",
@@ -43,7 +43,7 @@ const tools = [
     title: "Read alumni stories",
     body: "Named graduates with the role they left, the role they took and what they earn now.",
     cta: "See the stories",
-    accent: "bg-white text-[#C81E3D] border-2 border-rose-100",
+    accent: "bg-[#14161d] text-[#C81E3D] border-2 border-[#e0244a]/20",
   },
   {
     href: "/community",
@@ -51,13 +51,13 @@ const tools = [
     title: "Ask the community",
     body: "Searchable questions on admissions, fees, exams and placements, answered by counsellors and alumni.",
     cta: "Browse answers",
-    accent: "bg-white text-[#C81E3D] border-2 border-rose-100",
+    accent: "bg-[#14161d] text-[#C81E3D] border-2 border-[#e0244a]/20",
   },
 ];
 
 const HomeTools = () => {
   return (
-    <section className="w-full bg-[#F8FAFC] py-10 md:py-14 px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full bg-white/[0.03] py-10 md:py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
         <ScrollReveal>
           <SectionHeading
@@ -70,14 +70,14 @@ const HomeTools = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map((tool, i) => (
             <ScrollReveal key={tool.href} delay={(i % 3) * 90} direction="up">
-              <div className="h-full bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex flex-col space-y-4 hover:shadow-md hover:border-[#C81E3D]/25 transition-all">
-                <span className="w-12 h-12 rounded-xl bg-[#FFF1F2] flex items-center justify-center">
+              <div className="h-full bg-[#14161d] rounded-2xl border border-white/10 shadow-sm p-7 flex flex-col space-y-4 hover:shadow-md hover:border-[#C81E3D]/25 transition-all">
+                <span className="w-12 h-12 rounded-xl bg-[#2B141A] flex items-center justify-center">
                   <tool.icon size={21} className="text-[#C81E3D]" />
                 </span>
-                <h3 className="text-lg font-extrabold text-[#1E293B] tracking-tight">
+                <h3 className="text-lg font-extrabold text-[#F1F5F9] tracking-tight">
                   {tool.title}
                 </h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed flex-grow">
+                <p className="text-sm text-[#8b96a8] font-medium leading-relaxed flex-grow">
                   {tool.body}
                 </p>
                 <Link

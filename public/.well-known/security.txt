@@ -1,0 +1,4 @@
+Contact: mailto:Abhishek@vidyavriddhi.com
+Expires: 2027-11-13T00:00:00.000Z
+Preferred-Languages: en-IN, en
+Canonical: https://youronlinemba.com/.well-known/security.txt

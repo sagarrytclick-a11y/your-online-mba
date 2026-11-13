@@ -12,17 +12,17 @@ const doubled = [...companies, ...companies, ...companies];
 
 const HiringSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-white py-10 md:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section className="relative w-full bg-white/[0.03] py-10 md:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-8 md:space-y-10 relative z-10">
 
         <div className="text-center space-y-3">
           <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">
             Top Employers
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">
             Companies That Hire Online MBA Graduates
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
+          <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">
             Our graduates are placed at the world&apos;s leading companies.
           </p>
         </div>
@@ -32,7 +32,7 @@ const HiringSection: React.FC = () => {
             {doubled.map((company, idx) => (
               <div
                 key={idx}
-                className="flex-shrink-0 w-[120px] sm:w-[140px] bg-[#F8FAFC] border border-gray-100 rounded-[16px] flex flex-col items-center justify-center h-24 px-3 transition-all duration-300 hover:border-[#C81E3D]/30 hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
+                className="flex-shrink-0 w-[120px] sm:w-[140px] bg-[#10131A] border border-white/10 rounded-[16px] flex flex-col items-center justify-center h-24 px-3 transition-all duration-300 hover:border-[#C81E3D]/30 hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
               >
                 <Image
                   src={logos[idx % companies.length]}

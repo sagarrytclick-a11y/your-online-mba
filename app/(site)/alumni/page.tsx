@@ -51,11 +51,11 @@ export default function AlumniPage() {
   ).size;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={peopleSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <nav
             aria-label="Breadcrumb"
@@ -64,15 +64,15 @@ export default function AlumniPage() {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">Alumni</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">Alumni</span>
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight leading-tight">
               Alumni who changed careers
             </h1>
-            <p className="text-slate-500 text-sm sm:text-base font-medium leading-relaxed">
+            <p className="text-[#8b96a8] text-sm sm:text-base font-medium leading-relaxed">
               Every story here states the prior role, the prior salary and the current one. No
               anonymous testimonials, no &ldquo;successful&rdquo; with no numbers attached.
             </p>
@@ -84,7 +84,7 @@ export default function AlumniPage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF1F2] border border-rose-100 text-[11px] font-extrabold text-[#C81E3D]"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#2B141A] border border-[#e0244a]/20 text-[11px] font-extrabold text-[#C81E3D]"
                 >
                   {item}
                 </span>
@@ -130,13 +130,13 @@ export default function AlumniPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm space-y-3"
+                className="bg-[#14161d] rounded-2xl border border-white/10 p-7 shadow-sm space-y-3"
               >
-                <span className="w-11 h-11 rounded-xl bg-[#FFF1F2] flex items-center justify-center">
+                <span className="w-11 h-11 rounded-xl bg-[#2B141A] flex items-center justify-center">
                   <item.icon size={19} className="text-[#C81E3D]" />
                 </span>
-                <h3 className="text-base font-extrabold text-[#1E293B]">{item.title}</h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed">{item.body}</p>
+                <h3 className="text-base font-extrabold text-[#F1F5F9]">{item.title}</h3>
+                <p className="text-sm text-[#8b96a8] font-medium leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -154,7 +154,7 @@ export default function AlumniPage() {
               one that sounds broadest on paper.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <PopupTrigger className="h-12 px-7 bg-white text-[#C81E3D] font-extrabold rounded-full text-sm shadow-lg transition-all active:scale-[0.98] inline-flex items-center gap-2">
+              <PopupTrigger className="h-12 px-7 bg-[#14161d] text-[#C81E3D] font-extrabold rounded-full text-sm shadow-lg transition-all active:scale-[0.98] inline-flex items-center gap-2">
                 <Icons.Phone size={16} />
                 Speak to a counsellor
               </PopupTrigger>

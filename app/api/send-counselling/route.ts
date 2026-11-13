@@ -45,7 +45,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, phone, email, specialization, city } = result.data;
+    const { name, phone, email, specialization, city, enquiryType, service } = result.data;
+    const isServiceLead = enquiryType === "service";
+    const interest = isServiceLead ? service : specialization;
 
     const emailLimit = rateLimit(`counselling:email:${email}`, [
       { limit: 10, windowMs: 60 * 60 * 1000 }, // 10 / hour
@@ -61,35 +63,68 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await connectDB();
-    const enquiry = await Enquiry.create({ name, phone, email, specialization, city });
-
-    const recipients = getMailRecipients();
-    if (recipients.to.length === 0) {
-      console.error("EMAIL_TO is missing or invalid in .env");
-    } else {
-      const lead = {
+    // DB is best-effort: never lose a lead because Atlas is unreachable.
+    let enquiry: { _id: unknown } | null = null;
+    try {
+      await connectDB();
+      enquiry = await Enquiry.create({
         name,
         phone,
         email,
         specialization,
         city,
-        enquiryId: String(enquiry._id),
+        enquiryType,
+        service,
+      });
+    } catch (dbErr) {
+      console.error("MongoDB unavailable — lead captured via email only:", dbErr);
+    }
+
+    const recipients = getMailRecipients();
+    if (recipients.to.length === 0) {
+      console.error("EMAIL_TO is missing or invalid in .env");
+      if (!enquiry) {
+        return NextResponse.json(
+          { error: "Could not submit right now. Please call us directly." },
+          { status: 502 }
+        );
+      }
+    } else {
+      const lead = {
+        name,
+        phone,
+        email,
+        specialization: interest,
+        city,
+        enquiryId: enquiry ? String(enquiry._id) : undefined,
+        enquiryType,
+        service,
       };
 
       try {
         await sendMail({
           replyTo: email,
-          subject: buildCounsellingEmailSubject(name, specialization),
+          subject: buildCounsellingEmailSubject(name, interest, isServiceLead),
           html: buildCounsellingEmailHtml(lead),
           text: buildCounsellingEmailText(lead),
         });
       } catch (mailErr) {
-        console.error("Nodemailer Error (Entry saved in DB but email failed):", mailErr);
+        console.error("Nodemailer Error (Email failed):", mailErr);
+        // If both DB and email failed, the lead is genuinely lost — fail loudly
+        if (!enquiry) {
+          return NextResponse.json(
+            { error: "Could not submit right now. Please call us directly." },
+            { status: 502 }
+          );
+        }
       }
     }
 
-    return NextResponse.json({ success: true, id: enquiry._id });
+    return NextResponse.json({
+      success: true,
+      id: enquiry ? String(enquiry._id) : null,
+      degraded: !enquiry,
+    });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Internal server error";
     return NextResponse.json({ error: message }, { status: 500 });

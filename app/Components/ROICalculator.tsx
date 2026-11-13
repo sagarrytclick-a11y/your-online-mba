@@ -60,7 +60,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
 
   if (isWidget) {
     return (
-      <div className={`bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden ${className}`}>
+      <div className={`bg-[#14161d] rounded-3xl border border-white/10 shadow-sm overflow-hidden ${className}`}>
         <div className="bg-gradient-to-r from-[#C81E3D] to-[#E8577F] px-6 sm:px-8 py-6">
           <p className="text-white/80 text-[11px] font-extrabold uppercase tracking-[0.15em]">
             ROI Estimator
@@ -77,7 +77,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
         <div className="p-6 sm:p-8 space-y-7">
           <div>
             <div className="flex items-end justify-between gap-3 mb-3">
-              <label htmlFor={`salary-slider-${collegeId}`} className="text-xs font-extrabold text-[#1E293B]">
+              <label htmlFor={`salary-slider-${collegeId}`} className="text-xs font-extrabold text-[#F1F5F9]">
                 Your current annual salary
               </label>
               <span className="text-base font-black text-[#C81E3D]">{formatLpa(effectiveSalary / 100000)}</span>
@@ -95,21 +95,21 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
               }}
               className="w-full accent-[#C81E3D]"
             />
-            <div className="flex justify-between text-[10px] font-bold text-slate-400 mt-1.5">
+            <div className="flex justify-between text-[10px] font-bold text-[#7c8798] mt-1.5">
               <span>{formatLpa(SALARY_STEPS[0] / 100000)}</span>
               <span>{formatLpa(SALARY_STEPS[SALARY_STEPS.length - 1] / 100000)}</span>
             </div>
           </div>
 
           <div>
-            <label htmlFor={`domain-select-${collegeId}`} className="block text-xs font-extrabold text-[#1E293B] mb-2.5">
+            <label htmlFor={`domain-select-${collegeId}`} className="block text-xs font-extrabold text-[#F1F5F9] mb-2.5">
               Target domain
             </label>
             <select
               id={`domain-select-${collegeId}`}
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
-              className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-white text-sm font-bold text-[#1E293B] focus:border-[#C81E3D] focus:ring-2 focus:ring-rose-100 outline-none transition-all cursor-pointer"
+              className="w-full h-12 px-4 rounded-xl border border-white/10 bg-[#14161d] text-sm font-bold text-[#F1F5F9] focus:border-[#C81E3D] focus:ring-2 focus:ring-[#e0244a]/25 outline-none transition-all cursor-pointer"
             >
               {salaryBenchmarks.map((b) => (
                 <option key={b.slug} value={b.slug}>
@@ -120,29 +120,29 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-[#FFF1F2] rounded-2xl p-4">
+            <div className="bg-[#2B141A] rounded-2xl p-4">
               <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#C81E3D]">
                 Projected package
               </p>
-              <p className="text-xl font-black text-[#1E293B] mt-1.5">
+              <p className="text-xl font-black text-[#F1F5F9] mt-1.5">
                 {formatLpa(result.projectedSalary / 100000)}
               </p>
-              <p className="text-[10px] font-bold text-slate-500 mt-1">
+              <p className="text-[10px] font-bold text-[#8b96a8] mt-1">
                 +{result.benchmark.mbaUpliftPercent}% typical uplift
               </p>
             </div>
-            <div className="bg-emerald-50 rounded-2xl p-4">
-              <p className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700">
+            <div className="bg-emerald-400/10 rounded-2xl p-4">
+              <p className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400">
                 Break-even
               </p>
-              <p className="text-xl font-black text-[#1E293B] mt-1.5">
+              <p className="text-xl font-black text-[#F1F5F9] mt-1.5">
                 {formatBreakeven(result.timeToBreakevenMonths)}
               </p>
-              <p className="text-[10px] font-bold text-slate-500 mt-1">from month of joining</p>
+              <p className="text-[10px] font-bold text-[#8b96a8] mt-1">from month of joining</p>
             </div>
           </div>
 
-          <p className="text-[10px] text-slate-400 font-semibold leading-relaxed">
+          <p className="text-[10px] text-[#7c8798] font-semibold leading-relaxed">
             Projections use published placement bands and a 9% annual raise assumption. They are an
             estimate, not a guarantee of salary.
           </p>
@@ -162,14 +162,14 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
   return (
     <div className={`space-y-8 ${className}`}>
       <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 items-start">
-        <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-7 shadow-sm lg:sticky lg:top-28 space-y-6">
-          <h3 className="text-sm font-extrabold text-[#1E293B] flex items-center gap-2">
+        <div className="bg-[#14161d] rounded-3xl border border-white/10 p-6 sm:p-7 shadow-sm lg:sticky lg:top-28 space-y-6">
+          <h3 className="text-sm font-extrabold text-[#F1F5F9] flex items-center gap-2">
             <Icons.SlidersHorizontal size={16} className="text-[#C81E3D]" />
             Your inputs
           </h3>
 
           <div>
-            <label htmlFor="roi-college" className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <label htmlFor="roi-college" className="block text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               University
             </label>
             <select
@@ -177,7 +177,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
               value={collegeId}
               onChange={(e) => setCollegeId(e.target.value)}
               disabled={Boolean(lockedCollegeId)}
-              className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-white text-sm font-bold text-[#1E293B] focus:border-[#C81E3D] focus:ring-2 focus:ring-rose-100 outline-none transition-all cursor-pointer disabled:bg-slate-50 disabled:text-slate-400"
+              className="w-full h-12 px-4 rounded-xl border border-white/10 bg-[#14161d] text-sm font-bold text-[#F1F5F9] focus:border-[#C81E3D] focus:ring-2 focus:ring-[#e0244a]/25 outline-none transition-all cursor-pointer disabled:bg-[#10131a] disabled:text-[#7c8798]"
             >
               {collegeReviews.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -188,11 +188,11 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
           </div>
 
           <div>
-            <label htmlFor="roi-salary" className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <label htmlFor="roi-salary" className="block text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               Current annual salary
             </label>
             <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-slate-400 pointer-events-none">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-black text-[#7c8798] pointer-events-none">
                 ₹
               </span>
               <input
@@ -202,7 +202,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                 step={50000}
                 value={customSalary || salary}
                 onChange={(e) => setCustomSalary(e.target.value)}
-                className="w-full h-12 pl-8 pr-4 rounded-xl border border-gray-200 text-sm font-extrabold text-[#1E293B] focus:border-[#C81E3D] focus:ring-2 focus:ring-rose-100 outline-none transition-all"
+                className="w-full h-12 pl-8 pr-4 rounded-xl border border-white/10 text-sm font-extrabold text-[#F1F5F9] focus:border-[#C81E3D] focus:ring-2 focus:ring-[#e0244a]/25 outline-none transition-all"
               />
             </div>
             <input
@@ -221,14 +221,14 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
           </div>
 
           <div>
-            <label htmlFor="roi-domain" className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <label htmlFor="roi-domain" className="block text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               Target domain
             </label>
             <select
               id="roi-domain"
               value={domain}
               onChange={(e) => setDomain(e.target.value)}
-              className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-white text-sm font-bold text-[#1E293B] focus:border-[#C81E3D] focus:ring-2 focus:ring-rose-100 outline-none transition-all cursor-pointer"
+              className="w-full h-12 px-4 rounded-xl border border-white/10 bg-[#14161d] text-sm font-bold text-[#F1F5F9] focus:border-[#C81E3D] focus:ring-2 focus:ring-[#e0244a]/25 outline-none transition-all cursor-pointer"
             >
               {salaryBenchmarks.map((b) => (
                 <option key={b.slug} value={b.slug}>
@@ -240,7 +240,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label htmlFor="roi-aid" className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+              <label htmlFor="roi-aid" className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798]">
                 Scholarship / aid
               </label>
               <span className="text-xs font-black text-[#C81E3D]">{aidPercent}%</span>
@@ -255,15 +255,15 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
               onChange={(e) => setAidPercent(Number(e.target.value))}
               className="w-full accent-[#C81E3D]"
             />
-            <p className="text-[10px] text-slate-400 font-semibold mt-1.5">
+            <p className="text-[10px] text-[#7c8798] font-semibold mt-1.5">
               {aidPercent > 0
                 ? `Fee reduced by ${formatInr(result.aidAmount)} to ${formatInr(result.netFee)}`
                 : "Check your eligibility on the scholarships page"}
             </p>
           </div>
 
-          <div className="pt-5 border-t border-gray-100 space-y-2.5">
-            <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+          <div className="pt-5 border-t border-white/10 space-y-2.5">
+            <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798]">
               Programme cost
             </p>
             {[
@@ -277,8 +277,8 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
               { label: "Opportunity cost", value: formatInr(result.opportunityCost) },
             ].map((row) => (
               <div key={row.label} className="flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold text-slate-500">{row.label}</span>
-                <span className="text-xs font-black text-[#1E293B]">{row.value}</span>
+                <span className="text-xs font-semibold text-[#8b96a8]">{row.label}</span>
+                <span className="text-xs font-black text-[#F1F5F9]">{row.value}</span>
               </div>
             ))}
           </div>
@@ -292,14 +292,14 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                 value: formatLpa(result.projectedSalary / 100000),
                 sub: `+${result.benchmark.mbaUpliftPercent}% uplift`,
                 icon: Icons.TrendingUp,
-                tone: "bg-[#FFF1F2] text-[#C81E3D]",
+                tone: "bg-[#2B141A] text-[#C81E3D]",
               },
               {
                 label: "Monthly gain",
                 value: formatInr(result.monthlyGain),
                 sub: "after joining",
                 icon: Icons.Wallet,
-                tone: "bg-emerald-50 text-emerald-700",
+                tone: "bg-emerald-400/10 text-emerald-400",
               },
               {
                 label: "Break-even",
@@ -313,32 +313,32 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                 value: formatInr(result.fiveYearNetGain),
                 sub: `${result.roiPercentAtCompletion}% ROI at exit`,
                 icon: Icons.PiggyBank,
-                tone: "bg-amber-50 text-amber-700",
+                tone: "bg-amber-400/10 text-amber-400",
               },
             ].map((stat) => (
-              <div key={stat.label} className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
+              <div key={stat.label} className="bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm">
                 <span className={`w-9 h-9 rounded-xl flex items-center justify-center ${stat.tone}`}>
                   <stat.icon size={17} />
                 </span>
-                <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mt-3">
+                <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mt-3">
                   {stat.label}
                 </p>
-                <p className="text-lg font-black text-[#1E293B] mt-1 leading-tight">{stat.value}</p>
-                <p className="text-[10px] font-bold text-slate-400 mt-1">{stat.sub}</p>
+                <p className="text-lg font-black text-[#F1F5F9] mt-1 leading-tight">{stat.value}</p>
+                <p className="text-[10px] font-bold text-[#7c8798] mt-1">{stat.sub}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm">
+          <div className="bg-[#14161d] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-              <h3 className="text-sm font-extrabold text-[#1E293B]">Cumulative net benefit by year</h3>
-              <div className="flex items-center gap-4 text-[10px] font-bold text-slate-500">
+              <h3 className="text-sm font-extrabold text-[#F1F5F9]">Cumulative net benefit by year</h3>
+              <div className="flex items-center gap-4 text-[10px] font-bold text-[#8b96a8]">
                 <span className="inline-flex items-center gap-1.5">
                   <span className="w-3 h-3 rounded-sm bg-[#C81E3D]" />
                   Post-MBA net
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-sm bg-slate-200" />
+                  <span className="w-3 h-3 rounded-sm bg-[#22252f]" />
                   Outlay (fee + opportunity)
                 </span>
               </div>
@@ -350,28 +350,28 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                 const isNegative = y.netBenefit < 0;
                 return (
                   <div key={y.year} className="flex-1 flex flex-col items-center gap-2 min-w-0">
-                    <span className="text-[9px] font-black text-[#1E293B] whitespace-nowrap">
+                    <span className="text-[9px] font-black text-[#F1F5F9] whitespace-nowrap">
                       {Math.abs(Math.round(y.netBenefit / 1000))}K
                     </span>
                     <div className="w-full h-full flex items-end">
                       <div
                         className={`w-full rounded-t-lg transition-all duration-500 ${
-                          isNegative ? "bg-slate-200" : "bg-gradient-to-t from-[#C81E3D] to-[#E8577F]"
+                          isNegative ? "bg-[#22252f]" : "bg-gradient-to-t from-[#C81E3D] to-[#E8577F]"
                         }`}
                         style={{ height: `${Math.max(3, barHeight)}%` }}
                         title={`Year ${y.year}: net ${formatInr(y.netBenefit)}`}
                       />
                     </div>
-                    <span className="text-[9px] font-extrabold text-slate-400">Y{y.year}</span>
+                    <span className="text-[9px] font-extrabold text-[#7c8798]">Y{y.year}</span>
                   </div>
                 );
               })}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-gray-100 overflow-x-auto">
+            <div className="mt-6 pt-5 border-t border-white/10 overflow-x-auto custom-scroll">
               <table className="w-full min-w-[540px] text-left">
                 <thead>
-                  <tr className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                  <tr className="text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798]">
                     <th className="pb-3">Year</th>
                     <th className="pb-3 text-right">Post-MBA</th>
                     <th className="pb-3 text-right">Without MBA</th>
@@ -382,13 +382,13 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                 </thead>
                 <tbody>
                   {result.years.map((y) => (
-                    <tr key={y.year} className="border-t border-gray-100 text-xs font-bold">
-                      <td className="py-2.5 text-[#1E293B]">Year {y.year}</td>
-                      <td className="py-2.5 text-right text-[#1E293B]">{formatLpa(y.postMbaSalary / 100000)}</td>
-                      <td className="py-2.5 text-right text-slate-400">{formatLpa(y.baselineSalary / 100000)}</td>
-                      <td className="py-2.5 text-right text-slate-500">{formatInr(y.cumulativeGain)}</td>
+                    <tr key={y.year} className="border-t border-white/10 text-xs font-bold">
+                      <td className="py-2.5 text-[#F1F5F9]">Year {y.year}</td>
+                      <td className="py-2.5 text-right text-[#F1F5F9]">{formatLpa(y.postMbaSalary / 100000)}</td>
+                      <td className="py-2.5 text-right text-[#7c8798]">{formatLpa(y.baselineSalary / 100000)}</td>
+                      <td className="py-2.5 text-right text-[#8b96a8]">{formatInr(y.cumulativeGain)}</td>
                       <td
-                        className={`py-2.5 text-right ${y.netBenefit < 0 ? "text-amber-600" : "text-emerald-600"}`}
+                        className={`py-2.5 text-right ${y.netBenefit < 0 ? "text-amber-400" : "text-emerald-400"}`}
                       >
                         {y.netBenefit < 0 ? "" : "+"}
                         {formatInr(y.netBenefit)}
@@ -401,18 +401,18 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
             </div>
           </div>
 
-          <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm">
-            <h3 className="text-sm font-extrabold text-[#1E293B] mb-5">What this implies</h3>
+          <div className="bg-[#14161d] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-sm">
+            <h3 className="text-sm font-extrabold text-[#F1F5F9] mb-5">What this implies</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2.5">
+                <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2.5">
                   Likely roles in {result.benchmark.title}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {result.benchmark.topRoles.map((role) => (
                     <span
                       key={role}
-                      className="px-2.5 py-1 rounded-full bg-slate-50 border border-gray-100 text-[11px] font-bold text-slate-600"
+                      className="px-2.5 py-1 rounded-full bg-[#10131a] border border-white/10 text-[11px] font-bold text-[#a8b3c5]"
                     >
                       {role}
                     </span>
@@ -420,7 +420,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                 </div>
               </div>
               <div>
-                <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2.5">
+                <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2.5">
                   Salary bands
                 </p>
                 {[
@@ -429,13 +429,13 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                   { label: "Senior", value: result.benchmark.seniorLpa },
                 ].map((band) => (
                   <div key={band.label} className="flex items-center justify-between py-1.5">
-                    <span className="text-xs font-semibold text-slate-500">{band.label}</span>
-                    <span className="text-xs font-black text-[#1E293B]">{formatLpa(band.value)}</span>
+                    <span className="text-xs font-semibold text-[#8b96a8]">{band.label}</span>
+                    <span className="text-xs font-black text-[#F1F5F9]">{formatLpa(band.value)}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="mt-6 p-4 bg-amber-50 border border-amber-100 rounded-xl">
+            <div className="mt-6 p-4 bg-amber-400/10 border border-amber-400/20 rounded-xl">
               <p className="text-[11px] font-bold text-amber-800 leading-relaxed">
                 <Icons.Info size={12} className="inline mr-1.5 -mt-0.5" />
                 These figures are modelled from published placement bands, not individual outcomes. A
@@ -453,7 +453,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
               Share your real profile and we will run the same projection against your specific
               industry and city, then flag anything that looks off.
             </p>
-            <PopupTrigger className="inline-flex items-center gap-2 h-12 px-8 bg-white text-[#C81E3D] font-extrabold rounded-full shadow-lg hover:bg-gray-100 transition-all text-sm">
+            <PopupTrigger className="inline-flex items-center gap-2 h-12 px-8 bg-[#14161d] text-[#C81E3D] font-extrabold rounded-full shadow-lg hover:bg-[#1b1e27] transition-all text-sm">
               <Icons.Phone size={16} />
               Talk to an expert
             </PopupTrigger>

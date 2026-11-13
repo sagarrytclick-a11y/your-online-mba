@@ -1,28 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b0d12;
+  --foreground: #e8eaf0;
+  --surface: #14161d;
+  --surface-2: #1b1e27;
+  --surface-3: #22252f;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --muted: #8b96a8;
+  --muted-2: #6b7688;
+  --text: #f1f5f9;
+  --text-2: #a8b3c5;
+  --brand: #e0244a;
+  --brand-strong: #ff3d63;
+  --brand-deep: #c81e3d;
+  --brand-deep-hover: #b01a33;
+  --brand-tint: #2b141a;
+  --brand-tint-2: #3a1b22;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit);
-  --font-mono: var(--font-outfit);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --font-sans: 'Outfit', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Outfit', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Ambient page background: subtle radial glows over deep charcoal */
+.app-shell {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(200, 30, 61, 0.16), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(200, 30, 61, 0.08), transparent 55%),
+    var(--background);
 }
 
 /* Hide scrollbar for horizontal scroll containers */
@@ -45,4 +64,193 @@ body {
 
 .animate-infinite-scroll:hover {
   animation-play-state: paused;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+/* AI chat FAB: pulsing halo */
+@keyframes fab-ping {
+  0% { box-shadow: 0 0 0 0 rgba(224, 36, 74, 0.45); }
+  70%, 100% { box-shadow: 0 0 0 20px rgba(224, 36, 74, 0); }
+}
+.animate-fab-ping {
+  animation: fab-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* AI chat FAB: gentle bob */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-bob {
+  animation: bob 3.5s ease-in-out infinite;
+}
+
+/* Typing indicator dots in chat */
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+.typing-dot {
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Chat messages pop-in */
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-msg-in {
+  animation: msg-in 0.28s ease-out both;
+}
+
+/* Modal overlay fade */
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-overlay-in {
+  animation: overlay-in 0.25s ease-out both;
+}
+
+/* Modal panel pop */
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(28px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-modal-in {
+  animation: modal-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Infinite marquee for the top announcement bar */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
+/* Swinging enquiry tag — pendulum motion around the top mounting point */
+@keyframes swing-tag {
+  0% { transform: rotate(9deg); }
+  100% { transform: rotate(-9deg); }
+}
+.swing-tag {
+  transform-origin: top center;
+  animation: swing-tag 2.4s ease-in-out infinite alternate;
+}
+.swing-tag:hover {
+  animation-play-state: paused;
+}
+
+/* Dot grid backdrop for section canvases */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Square tile grid — faint blueprint lines, e.g. behind section backdrops */
+.square-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Faint diagonal pinstripes */
+.pinstripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 2px,
+    transparent 2px,
+    transparent 10px
+  );
+}
+
+/* Card shine sweep on hover */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::after {
+  content: "";
+  position: absolute;
+  top: -70%;
+  left: -90%;
+  height: 240%;
+  width: 55%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+  transform: translateX(-120%) rotate(14deg);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.card-shine:hover::after {
+  transform: translateX(420%) rotate(14deg);
+}
+
+/* Gradient border card wrapper */
+.gradient-ring {
+  background: linear-gradient(160deg, rgba(224, 36, 74, 0.55), rgba(255, 255, 255, 0.06) 40%, transparent 75%);
+}
+
+/* ===== Custom scrollbars (site-wide thin dark scheme) ===== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a1b22 transparent;
+}
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #3a1b22;
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #e0244a;
+}
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Crimson-thumb variant for branded horizontal scrollers */
+.custom-scroll {
+  scrollbar-color: #e0244a rgba(255, 255, 255, 0.04);
+}
+.custom-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #C81E3D, #ff5a3c);
+  border-radius: 999px;
+  border: 2px solid rgba(11, 13, 18, 0.9);
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #e0244a, #ff8a3d);
 }

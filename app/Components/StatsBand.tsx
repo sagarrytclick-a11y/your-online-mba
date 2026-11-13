@@ -31,19 +31,19 @@ const StatsBand = () => {
   ];
 
   return (
-    <section className="w-full bg-white border-y border-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full bg-white/[0.03] border-y border-white/5 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center space-y-2">
-                <span className="w-11 h-11 rounded-xl bg-[#FFF1F2] flex items-center justify-center mx-auto">
+                <span className="w-11 h-11 rounded-xl bg-[#2B141A] flex items-center justify-center mx-auto">
                   <stat.icon size={18} className="text-[#C81E3D]" />
                 </span>
-                <p className="text-xl sm:text-2xl font-black text-[#1E293B] tracking-tight">
+                <p className="text-xl sm:text-2xl font-black text-[#F1F5F9] tracking-tight">
                   {stat.value}
                 </p>
-                <p className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                <p className="text-[10px] sm:text-[11px] font-bold text-[#8b96a8] uppercase tracking-wider">
                   {stat.label}
                 </p>
               </div>

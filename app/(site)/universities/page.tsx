@@ -57,11 +57,11 @@ export default function UniversitiesPage() {
   const feeValues = collegeReviews.map((c) => getUniversityDetailsOrDefaults(c.id).totalFee);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={itemListSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <nav
             aria-label="Breadcrumb"
@@ -70,15 +70,15 @@ export default function UniversitiesPage() {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">Universities</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">Universities</span>
           </nav>
 
           <div className="text-center space-y-4 max-w-4xl mx-auto">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight">
               Top Universities for Online MBA
             </h1>
-            <p className="text-slate-500 text-sm sm:text-base font-medium max-w-2xl mx-auto">
+            <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-2xl mx-auto">
               {collegeReviews.length} UGC-approved institutions, filtered by the things that actually
               decide the outcome: total fee, accreditation, exam mode, live class load and placement rate.
             </p>
@@ -90,7 +90,7 @@ export default function UniversitiesPage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF1F2] border border-rose-100 text-[11px] font-extrabold text-[#C81E3D]"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#2B141A] border border-[#e0244a]/20 text-[11px] font-extrabold text-[#C81E3D]"
                 >
                   <Check size={11} />
                   {item}

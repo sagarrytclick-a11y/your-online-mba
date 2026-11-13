@@ -18,7 +18,7 @@ const CompareButton: React.FC<CompareButtonProps> = ({ collegeId, variant = "car
         onClick={() => toggle(collegeId)}
         className={`h-12 px-7 border-2 font-extrabold rounded-full text-sm transition-all inline-flex items-center gap-2 active:scale-[0.98] ${
           added
-            ? "bg-white text-[#C81E3D] border-white hover:bg-gray-100"
+            ? "bg-[#14161d] text-[#C81E3D] border-white hover:bg-[#1b1e27]"
             : "border-white/70 text-white hover:bg-white/10"
         }`}
       >
@@ -42,7 +42,7 @@ const CompareButton: React.FC<CompareButtonProps> = ({ collegeId, variant = "car
       className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-all ${
         added
           ? "bg-[#C81E3D] text-white hover:bg-[#B01A33]"
-          : "bg-white/90 text-slate-500 hover:bg-white hover:text-[#C81E3D]"
+          : "bg-white/90 text-[#8b96a8] hover:bg-[#14161d] hover:text-[#C81E3D]"
       } ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
     >
       <Icons.BarChart3 size={14} />

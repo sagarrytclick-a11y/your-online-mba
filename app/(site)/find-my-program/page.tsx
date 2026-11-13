@@ -57,10 +57,10 @@ export default async function FindMyProgramPage({ searchParams }: PageProps) {
   const inBudgetCount = matches.filter((m) => m.inBudget).length;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <nav
             aria-label="Breadcrumb"
@@ -69,15 +69,15 @@ export default async function FindMyProgramPage({ searchParams }: PageProps) {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">Find My Program</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">Find My Program</span>
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight leading-tight">
               {isResult ? "Your matched online MBA programmes" : "Find my online MBA programme"}
             </h1>
-            <p className="text-slate-500 text-sm sm:text-base font-medium leading-relaxed">
+            <p className="text-[#8b96a8] text-sm sm:text-base font-medium leading-relaxed">
               {isResult
                 ? `${matches.length} universities scored against your answers${
                     inBudgetCount > 0
@@ -128,7 +128,7 @@ export default async function FindMyProgramPage({ searchParams }: PageProps) {
                     <Link
                       key={c.label}
                       href={href}
-                      className="inline-flex items-center gap-2 h-9 px-4 rounded-full bg-[#FFF1F2] border border-rose-100 text-[11px] font-extrabold text-[#C81E3D] hover:bg-rose-50 transition-colors"
+                      className="inline-flex items-center gap-2 h-9 px-4 rounded-full bg-[#2B141A] border border-[#e0244a]/20 text-[11px] font-extrabold text-[#C81E3D] hover:bg-[#2b141a] transition-colors"
                     >
                       <c.icon size={13} />
                       {c.label}
@@ -171,13 +171,13 @@ export default async function FindMyProgramPage({ searchParams }: PageProps) {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm space-y-3"
+                className="bg-[#14161d] rounded-2xl border border-white/10 p-7 shadow-sm space-y-3"
               >
-                <span className="w-11 h-11 rounded-xl bg-[#FFF1F2] flex items-center justify-center">
+                <span className="w-11 h-11 rounded-xl bg-[#2B141A] flex items-center justify-center">
                   <item.icon size={19} className="text-[#C81E3D]" />
                 </span>
-                <h3 className="text-base font-extrabold text-[#1E293B]">{item.title}</h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed">{item.body}</p>
+                <h3 className="text-base font-extrabold text-[#F1F5F9]">{item.title}</h3>
+                <p className="text-sm text-[#8b96a8] font-medium leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -195,7 +195,7 @@ export default async function FindMyProgramPage({ searchParams }: PageProps) {
               one to pick. It takes ten minutes and costs nothing.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <PopupTrigger className="inline-flex items-center gap-2 h-12 px-8 bg-white text-[#C81E3D] font-extrabold rounded-full shadow-lg hover:bg-gray-100 transition-all text-sm">
+              <PopupTrigger className="inline-flex items-center gap-2 h-12 px-8 bg-[#14161d] text-[#C81E3D] font-extrabold rounded-full shadow-lg hover:bg-[#1b1e27] transition-all text-sm">
                 <Icons.Phone size={16} />
                 Talk to a counsellor
               </PopupTrigger>

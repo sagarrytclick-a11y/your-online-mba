@@ -1,6 +1,8 @@
 import React from 'react';
-import { Briefcase, Clock, GraduationCap, Globe, Handshake, Banknote, Download } from 'lucide-react';
+import { Briefcase, Clock, GraduationCap, Globe, Handshake, Banknote, ArrowRight, Download, Sparkles } from 'lucide-react';
 import WhatsAppButton from './WhatsAppButton';
+import ScrollReveal from './ScrollReveal';
+import SectionHeading from './SectionHeading';
 import PopupTrigger from './PopupTrigger';
 
 const WhyChooseUs = () => {
@@ -10,125 +12,142 @@ const WhyChooseUs = () => {
       title: "Career Acceleration",
       text: "Average salary hike of 45% within 12 months of graduation across all specialisations.",
       icon: Briefcase,
-      highlighted: false,
+      tag: "+45% ROI",
     },
     {
       id: 2,
       title: "Flexible Learning",
       text: "Weekend and evening batches designed for working professionals. Study on your own schedule.",
       icon: Clock,
-      highlighted: true,
+      tag: "Weekend batches",
+      featured: true,
     },
     {
       id: 3,
       title: "UGC-Recognised Degree",
       text: "Same recognition as a regular MBA degree. Valid for govt jobs, promotions, and abroad.",
       icon: GraduationCap,
-      highlighted: false,
+      tag: "Govt jobs ✓",
     },
     {
       id: 4,
       title: "Industry-Led Curriculum",
       text: "Updated every semester with inputs from 200+ industry partners and hiring companies.",
       icon: Globe,
-      highlighted: false,
+      tag: "200+ partners",
     },
     {
       id: 5,
       title: "Placement Support",
       text: "Dedicated placement cell, resume building, mock interviews, and direct job referrals.",
       icon: Handshake,
-      highlighted: false,
+      tag: "500+ partners",
     },
     {
       id: 6,
       title: "Cost Effective",
       text: "₹80K to ₹2.5L for a complete MBA — 70% cheaper than offline programs with equal ROI.",
       icon: Banknote,
-      highlighted: false,
+      tag: "70% cheaper",
     },
   ];
 
   return (
-    <section className="relative w-full bg-white py-10 md:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
-      
-      {/* Container */}
-      <div className="max-w-7xl mx-auto space-y-8 md:space-y-10 relative z-10">
-        
-        {/* SECTION HEADER */}
-        <div className="text-center space-y-3">
-          <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">
-            Why Choose Us
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">
-            What Makes an Online MBA Worth It?
-          </h2>
-          <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
-            Real benefits backed by real outcomes — not just promises.
-          </p>
-        </div>
+    <section className="relative w-full py-14 md:py-20 px-4 sm:px-6 md:px-8 overflow-hidden">
+      {/* Square-tile backdrop */}
+      <div aria-hidden className="square-grid absolute inset-0 opacity-70 pointer-events-none" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-40 top-1/3 h-96 w-96 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(224,36,74,0.10), transparent 65%)" }}
+      />
+
+      <div className="relative max-w-7xl mx-auto space-y-10 md:space-y-12">
+
+        <SectionHeading
+          eyebrow="Why Choose Us"
+          title="What Makes an Online MBA Worth It?"
+          description="Real benefits backed by real outcomes — not just promises."
+        />
 
         {/* FEATURES GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {features.map((item) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {features.map((item, idx) => {
             const IconComponent = item.icon;
-            return (
-              <div
-                key={item.id}
-                className={`flex flex-col items-center text-center p-8 rounded-[24px] transition-all duration-300 ${
-                  item.highlighted
-                    ? "bg-white border border-[#C81E3D] shadow-lg shadow-red-700/5 relative -translate-y-1 md:-translate-y-2 scale-[1.01]"
-                    : "bg-[#F8FAFC] border border-transparent hover:border-[#C81E3D] hover:bg-[#F1F5F9]/70"
-                }`}
-              >
-                {/* Icon Container */}
-                <div className="w-12 h-12 rounded-full bg-[#FFF1F2] flex items-center justify-center flex-shrink-0 mb-6">
-                  <IconComponent className="text-[#C81E3D] w-5 h-5" />
+            const card = (
+              <div className="flex h-full flex-col">
+                {/* Most Popular ribbon — sits above the card */}
+                {item.featured ? (
+                  <span className="relative z-10 mx-auto -mb-3 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#C81E3D] to-[#ff5a3c] px-5 py-1.5 text-[9px] font-black uppercase tracking-[0.2em] text-white shadow-[0_8px_20px_rgba(224,36,74,0.55)]">
+                    <Sparkles size={10} />
+                    Most Popular
+                  </span>
+                ) : (
+                  <span aria-hidden className="-mb-3 h-[26px]" />
+                )}
+                <div
+                  key={item.id}
+                  className={`card-shine group relative flex h-full flex-col rounded-[22px] p-6 sm:p-7 pt-7 transition-all duration-300 ${
+                    item.featured
+                      ? "bg-[#16141b] border border-[#e0244a]/50 shadow-[0_25px_60px_rgba(224,36,74,0.15)] -translate-y-1"
+                      : "bg-[#10131a]/90 border border-white/5 hover:-translate-y-2 hover:border-[#e0244a]/40 hover:shadow-[0_25px_60px_rgba(224,36,74,0.12)]"
+                  }`}
+                >
+                {/* Tag chip */}
+                <span className="absolute top-5 right-5 rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[9px] font-black uppercase tracking-wider text-[#a8b3c5]">
+                  {item.tag}
+                </span>
+                {/* Icon chip */}
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff4d6d] via-[#e0244a] to-[#ff8a3d] text-white shadow-[0_8px_20px_rgba(224,36,74,0.4)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <IconComponent size={21} strokeWidth={2} />
                 </div>
 
-                {/* Title */}
-                <h3 className="text-slate-800 font-extrabold text-lg mb-3">
+                <h3 className="mt-5 text-[#f5f7fa] font-extrabold text-lg tracking-tight">
                   {item.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">
+                <p className="mt-2 text-[#8b96a8] text-sm leading-relaxed font-medium">
                   {item.text}
                 </p>
+                </div>
               </div>
+            );
+
+            return (
+              <ScrollReveal key={item.id} delay={idx * 80} direction="up" className="h-full">
+                {card}
+              </ScrollReveal>
             );
           })}
         </div>
 
         {/* CTA BUTTON */}
-        <div className="flex justify-center pt-4">
-          <PopupTrigger className="h-14 px-8 md:px-10 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-full shadow-lg shadow-red-700/15 active:scale-[0.98] transition-all text-sm sm:text-base tracking-wide">
+        <div className="flex justify-center pt-2">
+          <PopupTrigger className="group inline-flex h-14 items-center gap-2 px-8 md:px-10 rounded-full bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold text-sm sm:text-base tracking-wide shadow-[0_14px_38px_rgba(224,36,74,0.45)] hover:brightness-110 transition-all active:scale-[0.98]">
             Discover if Online MBA is Right for You
+            <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
           </PopupTrigger>
         </div>
 
-      </div>
+      {/* Floating WhatsApp + PDF stack — snug bottom-left */}
+      <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 flex flex-col items-center gap-2.5">
+        <WhatsAppButton wrapperClassName="flex flex-col items-center group" />
 
-      {/* Floating WhatsApp button */}
-      <WhatsAppButton />
-
-      {/* FLOATING PDF BADGE (Fixed Bottom-Left) */}
-      <div className="fixed bottom-6 left-6 z-50">
         <div className="relative group cursor-pointer flex flex-col items-center">
           {/* Ripple rings */}
-          <span className="absolute inset-0 rounded-full border-2 border-[#E11D48]/30 scale-110 animate-ping opacity-75"></span>
-          
-          <PopupTrigger className="flex flex-col items-center justify-center w-16 h-16 bg-white border border-rose-100 rounded-full shadow-xl hover:shadow-2xl transition-all group-hover:scale-105 active:scale-95 relative z-10">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E11D48]/10 to-[#C81E3D]/10 flex items-center justify-center mb-0.5">
-              <Download size={18} className="text-[#C81E3D] group-hover:translate-y-0.5 transition-transform" />
+          <span className="absolute inset-0 rounded-full border-2 border-[#e0244a]/40 scale-110 animate-ping opacity-60"></span>
+
+          <PopupTrigger className="flex flex-col items-center justify-center w-16 h-16 bg-[#14161d] border border-[#e0244a]/30 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_10px_30px_rgba(224,36,74,0.3)] transition-all group-hover:scale-110 active:scale-95 relative z-10">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#e0244a] to-[#ff8a3d] mb-0.5">
+              <Download size={15} className="text-white group-hover:translate-y-0.5 transition-transform" />
             </div>
-            <span className="text-[9px] font-black text-[#C81E3D] uppercase tracking-wider -mt-1 z-20">
+            <span className="text-[9px] font-black text-[#ff5c7a] uppercase tracking-wider -mt-1 z-20">
               PDF
             </span>
           </PopupTrigger>
         </div>
       </div>
 
+      </div>
     </section>
   );
 };

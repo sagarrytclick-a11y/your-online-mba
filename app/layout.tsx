@@ -1,20 +1,12 @@
-import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import { SITE_URL, defaultDescription } from "@/app/lib/seo";
 import { siteConfig } from "@/app/data/site";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Online MBA - Top UGC-Approved Universities & Programs 2026",
+    default: "Online MBA India 2026 & EdTech Growth Services | Your Online MBA",
     template: `%s | ${siteConfig.name}`,
   },
   description: defaultDescription,
@@ -31,33 +23,39 @@ export const metadata: Metadata = {
     "online MBA fees",
     "top MBA universities India",
     "online MBA counselling",
+    "online MBA admission assistance",
+    "edtech consulting company India",
+    "education performance marketing agency",
+    "online MBA lead generation",
+    "edtech website development",
+    "online degree counselling",
   ],
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name, url: SITE_URL }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
-    shortcut: "/logo.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+    shortcut: "/favicon.png",
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Online MBA - Top UGC-Approved Universities & Programs 2026",
+    title: "Online MBA India 2026 & EdTech Growth Services | Your Online MBA",
     description:
-      "Compare India's top Online MBA universities. UGC-approved programs with flexible EMI. Get free expert counselling today.",
+      "Compare UGC-approved online MBA universities with free counselling — plus consulting, performance marketing, lead generation & web development for EdTech brands.",
     url: SITE_URL,
     siteName: siteConfig.name,
     locale: "en_IN",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: siteConfig.name }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online MBA - Top UGC-Approved Universities & Programs 2026",
+    title: "Online MBA India 2026 & EdTech Growth Services",
     description:
-      "Compare India's top Online MBA universities. UGC-approved programs with flexible EMI.",
-    images: ["/og-image.png"],
+      "Compare UGC-approved online MBA universities with free counselling — plus EdTech growth services.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -72,7 +70,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
-    languages: { "en-IN": SITE_URL },
+    languages: { "en-IN": SITE_URL, "x-default": SITE_URL },
   },
   category: "education",
   other: {
@@ -81,15 +79,25 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0b0d12",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${outfit.variable} h-full antialiased`}>
+    <html lang="en-IN" className="h-full antialiased">
       <head>
-        <meta name="theme-color" content="#C81E3D" />
         <meta name="format-detection" content="telephone=yes" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        />
       </head>
-      <body className="min-h-full flex flex-col overflow-x-hidden">{children}</body>
+      <body className="min-h-full flex flex-col overflow-x-hidden app-shell">{children}</body>
     </html>
   );
 }

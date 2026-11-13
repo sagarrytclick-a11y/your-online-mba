@@ -8,16 +8,16 @@ const UniversitiesSection = () => {
   const doubled = [...universities, ...universities, ...universities];
 
   return (
-    <section className="relative w-full bg-white py-10 md:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
+    <section className="relative w-full bg-white/[0.03] py-10 md:py-14 px-4 sm:px-6 md:px-8 overflow-hidden">
 
       <div className="max-w-7xl mx-auto space-y-6 md:space-y-8 relative z-10">
 
         {/* Header */}
         <div className="text-center space-y-3">
-          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">
             Online MBA from Top Universities
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
+          <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">
             All universities are NAAC-accredited and UGC-approved.
           </p>
         </div>
@@ -29,7 +29,7 @@ const UniversitiesSection = () => {
               <Link
                 href="/universities"
                 key={idx}
-                className="flex-shrink-0 w-[180px] sm:w-[200px] bg-white border border-gray-100 rounded-[20px] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group/card block"
+                className="flex-shrink-0 w-[180px] sm:w-[200px] bg-[#14161d] border border-white/10 rounded-[20px] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group/card block"
               >
                 <div className="w-full h-20 flex items-center justify-center mb-5 relative">
                   <Image
@@ -40,14 +40,14 @@ const UniversitiesSection = () => {
                     className="object-contain max-h-16 w-auto"
                   />
                 </div>
-                <h4 className="text-slate-800 font-bold text-xs sm:text-sm text-center mb-3 leading-tight line-clamp-2 min-h-[2.5rem]">
+                <h4 className="text-[#f1f5f9] font-bold text-xs sm:text-sm text-center mb-3 leading-tight line-clamp-2 min-h-[2.5rem]">
                   {uni.name}
                 </h4>
                 <p className="text-center mb-1">
-                  <span className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">EMI </span>
+                  <span className="text-[#8b96a8] text-[10px] font-bold uppercase tracking-wider">EMI </span>
                   <span className="text-[#C81E3D] font-extrabold text-sm">{uni.emi}</span>
                 </p>
-                <p className="text-center text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                <p className="text-center text-[10px] text-[#7c8798] font-bold uppercase tracking-wider">
                   {uni.accreditation}
                 </p>
               </Link>

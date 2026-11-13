@@ -49,11 +49,11 @@ export default function ScholarshipsPage() {
   const totalSeats = scholarships.reduce((sum, s) => sum + s.seats, 0);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={itemListSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <nav
             aria-label="Breadcrumb"
@@ -62,15 +62,15 @@ export default function ScholarshipsPage() {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">Scholarships</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">Scholarships</span>
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight leading-tight">
               Scholarships &amp; financial aid
             </h1>
-            <p className="text-slate-500 text-sm sm:text-base font-medium leading-relaxed">
+            <p className="text-[#8b96a8] text-sm sm:text-base font-medium leading-relaxed">
               {scholarships.length} schemes covering merit, budget, defence and women-in-leadership
               categories, plus a live eligibility checker. Set your percentage and income and see what
               you actually qualify for.
@@ -83,7 +83,7 @@ export default function ScholarshipsPage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF1F2] border border-rose-100 text-[11px] font-extrabold text-[#C81E3D]"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#2B141A] border border-[#e0244a]/20 text-[11px] font-extrabold text-[#C81E3D]"
                 >
                   {item}
                 </span>
@@ -134,11 +134,11 @@ export default function ScholarshipsPage() {
             ].map((item) => (
               <div
                 key={item.n}
-                className="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm space-y-3"
+                className="bg-[#14161d] rounded-2xl border border-white/10 p-7 shadow-sm space-y-3"
               >
                 <span className="text-2xl font-black text-[#C81E3D]/20">{item.n}</span>
-                <h3 className="text-base font-extrabold text-[#1E293B]">{item.title}</h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed">{item.body}</p>
+                <h3 className="text-base font-extrabold text-[#F1F5F9]">{item.title}</h3>
+                <p className="text-sm text-[#8b96a8] font-medium leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -147,11 +147,11 @@ export default function ScholarshipsPage() {
 
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <ScrollReveal>
-          <div className="bg-white rounded-3xl border border-gray-100 p-8 sm:p-10 shadow-sm space-y-5">
-            <h2 className="text-xl sm:text-2xl font-black text-[#1E293B] tracking-tight">
+          <div className="bg-[#14161d] rounded-3xl border border-white/10 p-8 sm:p-10 shadow-sm space-y-5">
+            <h2 className="text-xl sm:text-2xl font-black text-[#F1F5F9] tracking-tight">
               Scholarship documents, in one place
             </h2>
-            <p className="text-sm text-slate-500 font-medium">
+            <p className="text-sm text-[#8b96a8] font-medium">
               Keep these scanned and ready. Most applications need at least four of them, and a missing
               income proof is the single most common reason a merit claim gets rejected.
             </p>
@@ -168,7 +168,7 @@ export default function ScholarshipsPage() {
               ].map((doc) => (
                 <li
                   key={doc}
-                  className="flex items-start gap-2.5 text-sm text-slate-600 font-semibold"
+                  className="flex items-start gap-2.5 text-sm text-[#a8b3c5] font-semibold"
                 >
                   <Icons.CheckCircle2 size={15} className="text-emerald-500 flex-shrink-0 mt-0.5" />
                   {doc}

@@ -29,8 +29,8 @@ const Tabs: React.FC<TabsProps> = ({
         role="tablist"
         className={
           variant === "pill"
-            ? "flex flex-wrap gap-2 p-1.5 bg-slate-100 rounded-2xl w-fit max-w-full"
-            : "flex flex-wrap gap-6 border-b border-gray-100"
+            ? "flex flex-wrap gap-2 p-1.5 bg-[#1b1e27] rounded-2xl w-fit max-w-full"
+            : "flex flex-wrap gap-6 border-b border-white/10"
         }
       >
         {tabs.map((tab) => {
@@ -46,13 +46,13 @@ const Tabs: React.FC<TabsProps> = ({
                 variant === "pill"
                   ? `inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all ${
                       isActive
-                        ? "bg-white text-[#C81E3D] shadow-sm"
-                        : "text-slate-500 hover:text-[#1E293B]"
+                        ? "bg-[#14161d] text-[#C81E3D] shadow-sm"
+                        : "text-[#8b96a8] hover:text-[#F1F5F9]"
                     }`
                   : `relative pb-3 text-xs sm:text-sm font-extrabold transition-colors ${
                       isActive
                         ? "text-[#C81E3D] after:absolute after:left-0 after:right-0 after:-bottom-px after:h-0.5 after:bg-[#C81E3D] after:rounded-full"
-                        : "text-slate-400 hover:text-[#1E293B]"
+                        : "text-[#7c8798] hover:text-[#F1F5F9]"
                     }`
               }
             >
@@ -62,11 +62,11 @@ const Tabs: React.FC<TabsProps> = ({
                   className={`px-1.5 py-0.5 rounded-full text-[10px] font-black ${
                     variant === "pill"
                       ? isActive
-                        ? "bg-[#FFF1F2] text-[#C81E3D]"
-                        : "bg-slate-200 text-slate-500"
+                        ? "bg-[#2B141A] text-[#C81E3D]"
+                        : "bg-[#22252f] text-[#8b96a8]"
                       : isActive
-                        ? "bg-[#FFF1F2] text-[#C81E3D]"
-                        : "bg-slate-100 text-slate-400"
+                        ? "bg-[#2B141A] text-[#C81E3D]"
+                        : "bg-[#1b1e27] text-[#7c8798]"
                   }`}
                 >
                   {tab.count}

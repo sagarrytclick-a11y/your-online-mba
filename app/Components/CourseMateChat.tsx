@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { X, Send, Loader2, Bot, User, Sparkles } from "lucide-react";
+import { X, Send, Loader2, User } from "lucide-react";
+import ChatBotMark from "./ChatBotMark";
 
 type Message = {
   role: "user" | "assistant";
@@ -9,7 +10,7 @@ type Message = {
 
 const INITIAL_MESSAGE: Message = {
   role: "assistant",
-  content: "Hi! I'm CourseMate AI. Ask me anything about Online MBA programs, specializations, admissions, or career outcomes — I'm here to help!",
+  content: "Hi! I'm your AI MBA Advisor. Ask me anything about Online MBA programs, specializations, admissions, or career outcomes — I'm here to help!",
 };
 
 const WELCOME_SUGGESTIONS = [
@@ -77,25 +78,35 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        aria-hidden={!isOpen}
+        className={`fixed inset-0 z-[60] bg-black/55 backdrop-blur-sm transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
         onClick={onClose}
       />
 
-      {/* Slide-over panel */}
-      <div
-        className={`fixed top-0 right-0 z-[70] h-full w-full max-w-md bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+      {/* Desktop: right-docked, vertically centered · Mobile: full-screen */}
+      <div className="pointer-events-none fixed inset-0 z-[70] flex items-center justify-end p-0 sm:p-4 sm:pr-5">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="AI MBA Advisor chat"
+          className={`pointer-events-auto flex h-full w-full flex-col overflow-hidden border border-white/10 bg-[#14161d]/90 backdrop-blur-xl shadow-2xl transition-all duration-300 ease-out sm:h-[520px] sm:max-h-[80vh] sm:w-[360px] sm:rounded-2xl ${
+            isOpen
+              ? "translate-x-0 scale-100 opacity-100"
+              : "translate-x-10 scale-95 opacity-0 origin-right"
+          }`}
+        >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 bg-gradient-to-r from-[#C81E3D] to-[#B01A33] text-white">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-              <Sparkles size={20} className="text-white" />
+            <div className="relative w-11 h-11 bg-white/15 border border-white/25 rounded-2xl flex items-center justify-center backdrop-blur overflow-hidden">
+              <ChatBotMark size={34} />
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-[#e0244a] bg-green-400" />
             </div>
             <div>
-              <h2 className="font-extrabold text-base">CourseMate AI</h2>
-              <p className="text-xs text-white/80 font-medium">Online MBA Assistant</p>
+              <h2 className="font-extrabold text-base tracking-tight">AI MBA Advisor</h2>
+              <p className="text-[11px] text-white/85 font-medium">Online now · ~30s replies · Hindi &amp; English</p>
             </div>
           </div>
           <button
@@ -107,21 +118,21 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
         </div>
 
         {/* Messages */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-6 space-y-5 bg-[#FAFAFA]">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-6 space-y-5 bg-[#0B0D12]">
           {messages.map((msg, i) => (
-            <div key={i} className={`flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
+            <div key={i} className={`animate-msg-in flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  msg.role === "assistant" ? "bg-[#C81E3D]/10 text-[#C81E3D]" : "bg-[#1E293B] text-white"
+                className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden ${
+                  msg.role === "assistant" ? "bg-[#0b0d12] border border-[#e0244a]/30" : "bg-[#22252f] text-[#f1f5f9] border border-white/10"
                 }`}
               >
-                {msg.role === "assistant" ? <Bot size={16} /> : <User size={16} />}
+                {msg.role === "assistant" ? <ChatBotMark size={24} /> : <User size={16} />}
               </div>
               <div
                 className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed font-medium ${
                   msg.role === "assistant"
-                    ? "bg-white border border-gray-100 text-[#1E293B]"
-                    : "bg-[#C81E3D] text-white"
+                    ? "bg-[#14161d] border border-white/10 text-[#f1f5f9] rounded-tl-md"
+                    : "bg-gradient-to-br from-[#C81E3D] to-[#e0244a] text-white rounded-tr-md shadow-[0_6px_18px_rgba(224,36,74,0.3)]"
                 }`}
               >
                 {msg.content}
@@ -136,7 +147,7 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
                 <button
                   key={i}
                   onClick={() => sendMessage(s)}
-                  className="px-4 py-2 rounded-full border border-gray-200 bg-white text-xs font-bold text-[#475569] hover:border-[#C81E3D]/30 hover:text-[#C81E3D] transition-all"
+                  className="px-4 py-2 rounded-full border border-white/10 bg-[#14161d] text-xs font-bold text-[#A8B3C5] hover:border-[#C81E3D]/30 hover:text-[#C81E3D] transition-all"
                 >
                   {s}
                 </button>
@@ -146,18 +157,20 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
 
           {loading && (
             <div className="flex gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#C81E3D]/10 flex items-center justify-center flex-shrink-0">
-                <Bot size={16} className="text-[#C81E3D]" />
+              <div className="w-8 h-8 rounded-full bg-[#0b0d12] border border-[#e0244a]/30 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                <ChatBotMark size={24} />
               </div>
-              <div className="bg-white border border-gray-100 rounded-2xl px-4 py-3">
-                <Loader2 size={16} className="animate-spin text-[#C81E3D]" />
+              <div className="bg-[#14161d] border border-white/10 rounded-2xl rounded-tl-md px-5 py-4 flex items-center gap-1.5">
+                <span className="typing-dot w-2 h-2 rounded-full bg-[#e0244a]" />
+                <span className="typing-dot w-2 h-2 rounded-full bg-[#e0244a]" />
+                <span className="typing-dot w-2 h-2 rounded-full bg-[#e0244a]" />
               </div>
             </div>
           )}
         </div>
 
         {/* Input area */}
-        <div className="border-t border-gray-100 px-6 py-4 bg-white">
+        <div className="border-t border-white/10 px-6 py-4 bg-[#14161d]">
           <div className="flex items-center gap-3">
             <input
               type="text"
@@ -166,7 +179,7 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
               onKeyDown={handleKeyDown}
               placeholder="Ask about Online MBA..."
               disabled={loading}
-              className="flex-1 h-12 px-4 border border-gray-200 rounded-xl text-sm text-[#1E293B] outline-none focus:border-[#C81E3D] transition-all font-medium placeholder:text-gray-400 disabled:opacity-50"
+              className="flex-1 h-12 px-4 border border-white/10 rounded-xl text-sm text-[#F1F5F9] outline-none focus:border-[#C81E3D] transition-all font-medium placeholder:text-[#7c8798] disabled:opacity-50"
             />
             <button
               onClick={() => sendMessage(input)}
@@ -176,11 +189,12 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
               {loading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
             </button>
           </div>
-          <p className="text-[10px] text-gray-400 font-medium text-center mt-2">
+          <p className="text-[10px] text-[#7c8798] font-medium text-center mt-2">
             Responses are AI-generated. Verify with Your Online MBA counsellors for accuracy.
           </p>
         </div>
       </div>
+    </div>
     </>
   );
 };

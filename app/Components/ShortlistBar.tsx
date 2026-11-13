@@ -18,32 +18,32 @@ const ShortlistBar: React.FC = () => {
     .filter((c): c is (typeof collegeReviews)[number] => c !== undefined);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t-2 border-[#C81E3D] shadow-[0_-8px_30px_rgba(15,23,42,0.12)]">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#14161d] border-t-2 border-[#C81E3D] shadow-[0_-8px_30px_rgba(15,23,42,0.12)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-4">
         <div className="flex items-center gap-3 flex-shrink-0">
-          <span className="w-9 h-9 rounded-xl bg-[#FFF1F2] flex items-center justify-center">
+          <span className="w-9 h-9 rounded-xl bg-[#2B141A] flex items-center justify-center">
             <Scale size={16} className="text-[#C81E3D]" />
           </span>
           <div className="hidden sm:block">
-            <p className="text-xs font-extrabold text-[#1E293B] leading-tight">
+            <p className="text-xs font-extrabold text-[#F1F5F9] leading-tight">
               {count} programme{count === 1 ? "" : "s"} shortlisted
             </p>
-            <p className="text-[10px] text-slate-400 font-bold">Compare up to 3</p>
+            <p className="text-[10px] text-[#7c8798] font-bold">Compare up to 3</p>
           </div>
         </div>
 
-        <div className="flex-1 flex items-center gap-2 overflow-x-auto">
+        <div className="flex-1 flex items-center gap-2 overflow-x-auto custom-scroll">
           {selected.map((college) => (
             <span
               key={college.id}
-              className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-slate-50 border border-gray-100 text-[11px] font-extrabold text-slate-600 flex-shrink-0"
+              className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-[#10131a] border border-white/10 text-[11px] font-extrabold text-[#a8b3c5] flex-shrink-0"
             >
               {college.name}
               <button
                 type="button"
                 onClick={() => remove(college.id)}
                 aria-label={`Remove ${college.name} from shortlist`}
-                className="text-slate-400 hover:text-[#C81E3D] transition-colors"
+                className="text-[#7c8798] hover:text-[#C81E3D] transition-colors"
               >
                 <X size={11} />
               </button>
@@ -56,7 +56,7 @@ const ShortlistBar: React.FC = () => {
             type="button"
             onClick={clear}
             aria-label="Clear shortlist"
-            className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-slate-400 hover:text-[#C81E3D] hover:border-[#C81E3D] transition-all"
+            className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-[#7c8798] hover:text-[#C81E3D] hover:border-[#C81E3D] transition-all"
           >
             <Trash2 size={13} />
           </button>

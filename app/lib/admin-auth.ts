@@ -5,7 +5,7 @@ import { timingSafeEqual } from "crypto";
 import { rateLimit, getClientIp } from "@/app/lib/rate-limit";
 
 export const ADMIN_COOKIE = "admin_token";
-export const ADMIN_TOKEN_TTL_SEC = 60 * 60 * 8; // 8 hours
+export const ADMIN_TOKEN_TTL_SEC = 60 * 60 * 2; // 2 hours absolute lifetime
 
 export type AdminJwtPayload = JWTPayload & {
   role: "admin";
@@ -42,7 +42,7 @@ export async function signAdminToken(username: string): Promise<string> {
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })
     .setSubject(username)
     .setIssuedAt()
-    .setExpirationTime("8h")
+    .setExpirationTime("2h")
     .sign(getJwtSecret());
 }
 

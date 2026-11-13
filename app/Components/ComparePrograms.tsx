@@ -25,28 +25,28 @@ const ComparePrograms: React.FC = () => {
   if (selected.length === 0) {
     return (
       <div className="max-w-3xl mx-auto px-4 mt-16 space-y-6">
-        <div className="bg-white rounded-3xl border border-gray-100 p-10 sm:p-14 text-center shadow-sm space-y-5">
-          <span className="w-16 h-16 mx-auto rounded-2xl bg-[#FFF1F2] flex items-center justify-center">
-            <Icons.Scale size={30} className="text-[#C81E3D]" />
+        <div className="bg-[#14161d] rounded-3xl border border-white/10 p-10 sm:p-14 text-center shadow-sm space-y-5">
+          <span className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-[#ff4d6d] via-[#e0244a] to-[#ff8a3d] flex items-center justify-center shadow-[0_12px_30px_rgba(224,36,74,0.4)]">
+            <Icons.Scale size={30} className="text-white" />
           </span>
-          <h2 className="text-2xl font-black text-[#1E293B] tracking-tight">
+          <h2 className="text-2xl font-black text-[#F1F5F9] tracking-tight">
             Nothing to compare yet
           </h2>
-          <p className="text-sm text-slate-500 font-medium leading-relaxed max-w-md mx-auto">
+          <p className="text-sm text-[#8b96a8] font-medium leading-relaxed max-w-md mx-auto">
             Add up to three programmes and this page lines them up side by side across fees,
             accreditation, exam mode, NIRF ranking, placement rate and projected return.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
               href="/find-my-program"
-              className="inline-flex items-center gap-2 h-12 px-7 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-full text-sm shadow-lg transition-all"
+              className="inline-flex items-center gap-2 h-12 px-7 bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold rounded-full text-sm shadow-[0_10px_28px_rgba(224,36,74,0.4)] transition-all hover:brightness-110"
             >
               <Icons.Radar size={16} />
               Find my programme
             </Link>
             <Link
               href="/universities"
-              className="inline-flex items-center gap-2 h-12 px-7 border-2 border-gray-200 text-slate-600 font-extrabold rounded-full text-sm hover:border-[#C81E3D] hover:text-[#C81E3D] transition-all"
+              className="inline-flex items-center gap-2 h-12 px-7 border-2 border-white/10 text-[#a8b3c5] font-extrabold rounded-full text-sm hover:border-[#C81E3D] hover:text-[#C81E3D] transition-all"
             >
               <Icons.Search size={16} />
               Browse all universities
@@ -55,7 +55,7 @@ const ComparePrograms: React.FC = () => {
         </div>
 
         <div className="pt-4">
-          <p className="text-center text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-4">
+          <p className="text-center text-xs font-extrabold uppercase tracking-wider text-[#7c8798] mb-4">
             Or let the finder shortlist for you
           </p>
           <ProgramFinder compact />
@@ -113,7 +113,7 @@ const ComparePrograms: React.FC = () => {
             {selected[i].details.approvals.map((a) => (
               <span
                 key={a}
-                className="px-1.5 py-0.5 rounded bg-emerald-50 border border-emerald-100 text-[9px] font-extrabold text-emerald-700"
+                className="px-1.5 py-0.5 rounded bg-emerald-400/10 border border-emerald-400/25 text-[9px] font-extrabold text-emerald-400"
               >
                 {a}
               </span>
@@ -212,15 +212,15 @@ const ComparePrograms: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <p className="text-sm text-slate-500 font-medium">
-          <span className="font-extrabold text-[#1E293B]">{selected.length}</span> of 3 programmes
+        <p className="text-sm text-[#8b96a8] font-medium">
+          <span className="font-extrabold text-[#F1F5F9]">{selected.length}</span> of 3 programmes
           selected. Best value in each row is highlighted in rose.
         </p>
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={clear}
-            className="inline-flex items-center gap-2 h-10 px-5 border border-gray-200 rounded-full text-sm font-bold text-slate-500 hover:text-[#C81E3D] hover:border-[#C81E3D] transition-all"
+            className="inline-flex items-center gap-2 h-10 px-5 border border-white/10 rounded-full text-sm font-bold text-[#8b96a8] hover:text-[#C81E3D] hover:border-[#C81E3D] transition-all"
           >
             <Icons.Trash2 size={14} />
             Clear all
@@ -228,7 +228,7 @@ const ComparePrograms: React.FC = () => {
           {selected.length < 3 && (
             <Link
               href="/find-my-program"
-              className="inline-flex items-center gap-2 h-10 px-5 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-full text-sm shadow-md transition-all"
+              className="inline-flex items-center gap-2 h-10 px-5 bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold rounded-full text-sm shadow-[0_8px_20px_rgba(224,36,74,0.35)] transition-all hover:brightness-110"
             >
               <Icons.Plus size={14} />
               Add more
@@ -238,24 +238,24 @@ const ComparePrograms: React.FC = () => {
       </div>
 
       <ScrollReveal>
-        <div className="overflow-x-auto pb-4">
+        <div className="overflow-x-auto custom-scroll pb-4">
           <table className="w-full min-w-[720px] border-separate border-spacing-0">
             <thead>
               <tr>
-                <th className="sticky left-0 bg-[#FAFBFD] z-10 min-w-[170px] p-4 border border-gray-200 rounded-tl-2xl text-left text-[11px] font-black uppercase tracking-wider text-slate-400">
+                <th className="sticky left-0 bg-[#10131a] z-10 min-w-[170px] p-4 border border-white/10 rounded-tl-2xl text-left text-[11px] font-black uppercase tracking-wider text-[#7c8798]">
                   Criteria
                 </th>
                 {selected.map(({ college, details }, i) => (
                   <th
                     key={college.id}
-                    className={`min-w-[220px] p-4 border border-gray-200 text-center bg-white ${
+                    className={`min-w-[220px] p-4 border border-white/10 text-center bg-[#14161d] ${
                       i === selected.length - 1 ? "last:rounded-tr-2xl" : ""
                     }`}
                   >
                     <div className="flex flex-col items-center gap-3">
                       <div className="relative">
-                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-slate-100 ring-2 ring-gray-100">
-                          <img src={college.image} alt={college.name} className="w-full h-full object-cover" />
+                        <div className="w-16 h-16 rounded-xl overflow-hidden bg-[#1b1e27] ring-2 ring-white/10">
+                          <img loading="lazy" decoding="async" src={college.image} alt={college.name} className="w-full h-full object-cover" />
                         </div>
                         <button
                           type="button"
@@ -268,11 +268,11 @@ const ComparePrograms: React.FC = () => {
                       </div>
                       <Link
                         href={`/universities/${college.id}`}
-                        className="font-extrabold text-sm text-[#1E293B] hover:text-[#C81E3D] transition-colors leading-tight"
+                        className="font-extrabold text-sm text-[#F1F5F9] hover:text-[#C81E3D] transition-colors leading-tight"
                       >
                         {college.name}
                       </Link>
-                      <span className="text-[10px] font-bold text-slate-400">
+                      <span className="text-[10px] font-bold text-[#7c8798]">
                         ₹{(details.totalFee / 100000).toFixed(2)} L · {details.naacGrade}
                       </span>
                       <Link
@@ -290,7 +290,7 @@ const ComparePrograms: React.FC = () => {
               {rows.map((row, rowIndex) => (
                 <tr key={row.label}>
                   <td
-                    className={`sticky left-0 bg-[#FAFBFD] z-10 p-4 border border-gray-200 text-[11px] font-black uppercase tracking-wider text-slate-400 ${
+                    className={`sticky left-0 bg-[#10131a] z-10 p-4 border border-white/10 text-[11px] font-black uppercase tracking-wider text-[#7c8798] ${
                       rowIndex === rows.length - 1 ? "rounded-bl-2xl" : ""
                     }`}
                   >
@@ -301,18 +301,18 @@ const ComparePrograms: React.FC = () => {
                     return (
                       <td
                         key={college.id}
-                        className="p-4 border border-gray-200 text-center bg-white align-middle"
+                        className="p-4 border border-white/10 text-center bg-[#14161d] align-middle"
                       >
                         <span
-                          className={`text-xs font-extrabold inline-block ${
-                            isBest ? "text-[#C81E3D]" : "text-slate-600"
+                          className={`text-xs font-extrabold inline-block rounded-lg px-2 py-1 -mx-2 -my-1 ${
+                            isBest ? "text-[#ff5c7a] bg-[#e0244a]/10" : "text-[#a8b3c5]"
                           }`}
                         >
                           {render}
                         </span>
                         {isBest && (
-                          <span className="block mt-1">
-                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#FFF1F2] text-[9px] font-black text-[#C81E3D]">
+                          <span className="block mt-1.5">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gradient-to-r from-[#C81E3D] to-[#ff5a3c] text-[9px] font-black text-white shadow-[0_4px_12px_rgba(224,36,74,0.4)]">
                               <Icons.Sparkles size={9} />
                               BEST
                             </span>
@@ -324,19 +324,19 @@ const ComparePrograms: React.FC = () => {
                 </tr>
               ))}
               <tr>
-                <td className="sticky left-0 bg-[#FAFBFD] z-10 p-4 border border-gray-200 text-[11px] font-black uppercase tracking-wider text-slate-400">
+                <td className="sticky left-0 bg-[#10131a] z-10 p-4 border border-white/10 text-[11px] font-black uppercase tracking-wider text-[#7c8798]">
                   Action
                 </td>
                 {selected.map(({ college }, i) => (
                   <td
                     key={college.id}
-                    className={`p-4 border border-gray-200 text-center bg-white ${
+                    className={`p-4 border border-white/10 text-center bg-[#14161d] ${
                       i === selected.length - 1 ? "last:rounded-br-2xl" : ""
                     }`}
                   >
                     <Link
                       href={`/universities/${college.id}`}
-                      className="inline-flex items-center gap-1.5 h-10 px-5 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-full text-xs shadow-md transition-all"
+                      className="inline-flex items-center gap-1.5 h-10 px-5 bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold rounded-full text-xs shadow-[0_8px_20px_rgba(224,36,74,0.35)] transition-all hover:brightness-110"
                     >
                       Apply now
                       <Icons.ArrowRight size={13} />
@@ -351,15 +351,15 @@ const ComparePrograms: React.FC = () => {
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
         {selected.map(({ college, details }) => (
-          <div key={college.id} className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-            <p className="text-sm font-extrabold text-[#1E293B]">{college.name}</p>
-            <p className="text-xs text-slate-500 font-medium mt-2 leading-relaxed line-clamp-3">
+          <div key={college.id} className="bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm">
+            <p className="text-sm font-extrabold text-[#F1F5F9]">{college.name}</p>
+            <p className="text-xs text-[#8b96a8] font-medium mt-2 leading-relaxed line-clamp-3">
               {college.description}
             </p>
             <div className="mt-4">
               <ShortlistButton collegeId={college.id} variant="full" className="w-full" />
             </div>
-            <p className="text-[10px] text-slate-400 font-bold mt-3 text-center">
+            <p className="text-[10px] text-[#7c8798] font-bold mt-3 text-center">
               {details.examPrepSupport}
             </p>
           </div>

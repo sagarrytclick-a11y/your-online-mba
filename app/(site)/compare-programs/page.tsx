@@ -25,10 +25,10 @@ const breadcrumbSchema = breadcrumbJsonLd([
 
 export default function CompareProgramsPage() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-8">
           <nav
             aria-label="Breadcrumb"
@@ -37,16 +37,16 @@ export default function CompareProgramsPage() {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">Compare Programs</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">Compare Programs</span>
           </nav>
 
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
-              <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight leading-tight">
                 Compare online MBA programmes
               </h1>
-              <p className="text-slate-500 text-sm sm:text-base font-medium leading-relaxed">
+              <p className="text-[#8b96a8] text-sm sm:text-base font-medium leading-relaxed">
                 Line up to three programmes across nineteen criteria, from total fee and EMI through
                 to NIRF rank, average package and salary uplift. The strongest value in every row is
                 marked, so the trade-off is visible rather than implied.
@@ -54,7 +54,7 @@ export default function CompareProgramsPage() {
             </div>
             <Link
               href="/compare"
-              className="inline-flex items-center gap-2 self-start h-11 px-5 border-2 border-gray-200 rounded-full text-slate-600 text-sm font-extrabold hover:border-[#C81E3D] hover:text-[#C81E3D] transition-all"
+              className="inline-flex items-center gap-2 self-start h-11 px-5 border-2 border-white/10 rounded-full text-[#a8b3c5] text-sm font-extrabold hover:border-[#C81E3D] hover:text-[#C81E3D] transition-all"
             >
               <BarChart3 size={15} />
               College-level review comparison

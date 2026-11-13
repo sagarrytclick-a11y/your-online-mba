@@ -108,7 +108,7 @@ export default async function UniversityPage({ params }: PageProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-[#14161d] flex flex-col">
 
       <JsonLd
         data={breadcrumbJsonLd([
@@ -146,26 +146,48 @@ export default async function UniversityPage({ params }: PageProps) {
         }}
       />
 
-      {/* 1. RED HERO BANNER */}
-      <section className="w-full bg-[#C81E3D] text-white py-12 md:py-16 px-4 sm:px-6 md:px-8 relative overflow-hidden">
-        <div className="absolute top-0 right-0 translate-x-24 -translate-y-24 w-96 h-96 bg-white/5 rounded-full pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 -translate-x-12 translate-y-12 w-64 h-64 bg-black/5 rounded-full pointer-events-none"></div>
+      {/* 1. AMBIENT DARK HERO */}
+      <section className="w-full bg-[#080a10] text-[#f5f7fa] py-12 md:py-16 px-4 sm:px-6 md:px-8 relative overflow-hidden border-b border-white/5">
+        {/* Ambient backdrop */}
+        <div aria-hidden className="absolute inset-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(900px 500px at 85% -10%, rgba(224,36,74,0.28), transparent 60%), radial-gradient(650px 450px at -12% 45%, rgba(76,29,149,0.3), transparent 58%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px)",
+              backgroundSize: "26px 26px",
+            }}
+          />
+          {/* Diagonal constellation flourish, left */}
+          <svg className="absolute -left-8 top-8 h-64 w-64 text-[#e0244a]/25" viewBox="0 0 200 200" fill="none" aria-hidden>
+            <path d="M20 150 L70 100 L110 130 L160 60 L195 80" stroke="currentColor" strokeWidth="1" strokeDasharray="4 6" />
+            <circle cx="20" cy="150" r="3" fill="currentColor" />
+            <circle cx="70" cy="100" r="2.5" fill="currentColor" />
+            <circle cx="160" cy="60" r="3" fill="currentColor" />
+          </svg>
+        </div>
         <div className="max-w-7xl mx-auto space-y-6 md:space-y-8 relative z-10">
-          <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold opacity-90">
-            <Link href="/" className="hover:underline flex items-center gap-1">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#8b96a8]">
+            <Link href="/" className="hover:text-[#e0244a] flex items-center gap-1 transition-colors">
               <Icons.Home size={13} />
               <span>Home</span>
             </Link>
             <span>/</span>
-            <Link href="/universities" className="hover:underline">Universities</Link>
+            <Link href="/universities" className="hover:text-[#e0244a] transition-colors">Universities</Link>
             <span>/</span>
-            <span className="opacity-75">{col.name}</span>
+            <span className="text-[#c4cbd8]">{col.name}</span>
           </div>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <ScrollReveal direction="left">
-              <div className="w-28 h-28 md:w-32 md:h-32 relative rounded-2xl overflow-hidden bg-white shadow-lg flex-shrink-0 ring-4 ring-white/20">
-                <img src={col.image} alt={col.name} className="w-full h-full object-cover" />
+              <div className="w-28 h-28 md:w-32 md:h-32 relative rounded-2xl overflow-hidden bg-[#10131a] flex-shrink-0 ring-2 ring-[#e0244a]/50 shadow-[0_15px_45px_rgba(224,36,74,0.35)]">
+                <img loading="lazy" decoding="async" src={col.image} alt={col.name} className="w-full h-full object-cover" />
               </div>
             </ScrollReveal>
             <div className="text-center md:text-left space-y-5 flex-1">
@@ -174,15 +196,15 @@ export default async function UniversityPage({ params }: PageProps) {
               </ScrollReveal>
               <ScrollReveal delay={200}>
                 <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-xs font-extrabold border border-white/20">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#e0244a]/10 text-[#ff8aa0] text-xs font-extrabold border border-[#e0244a]/30">
                     <Icons.MapPin size={13} />
                     {col.location}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-xs font-extrabold border border-white/20">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#e0244a]/10 text-[#ff8aa0] text-xs font-extrabold border border-[#e0244a]/30">
                     <Icons.GraduationCap size={13} />
                     {col.coursesCount}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 text-white text-xs font-extrabold border border-white/20">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#e0244a]/10 text-[#ff8aa0] text-xs font-extrabold border border-[#e0244a]/30">
                     <Icons.Calendar size={13} />
                     {col.estd}
                   </span>
@@ -202,16 +224,16 @@ export default async function UniversityPage({ params }: PageProps) {
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={400}>
-                <p className="text-rose-50 text-sm sm:text-base font-medium max-w-2xl leading-relaxed">{col.description}</p>
+                <p className="text-[#a8b3c5] text-sm sm:text-base font-medium max-w-2xl leading-relaxed">{col.description}</p>
               </ScrollReveal>
               <ScrollReveal delay={500}>
                 <div className="flex flex-wrap justify-center md:justify-start gap-3 pt-1">
-                  <PopupTrigger className="h-12 px-7 bg-white text-[#C81E3D] hover:bg-gray-100 font-extrabold rounded-full text-sm shadow-lg transition-all active:scale-[0.98] inline-flex items-center gap-2">
+                  <PopupTrigger className="h-12 px-7 bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white hover:brightness-110 font-extrabold rounded-full text-sm shadow-[0_12px_35px_rgba(224,36,74,0.45)] transition-all active:scale-[0.98] inline-flex items-center gap-2">
                     <Icons.Phone size={16} />
                     Get Free Counselling
                   </PopupTrigger>
                   <CompareButton collegeId={col.id} variant="hero" />
-                  <a href="#reviews" className="h-12 px-7 border-2 border-white/70 text-white hover:bg-white/10 font-extrabold rounded-full text-sm transition-all inline-flex items-center gap-2">
+                  <a href="#reviews" className="h-12 px-7 border border-white/15 text-[#f1f5f9] hover:border-[#e0244a]/50 hover:text-white font-extrabold rounded-full text-sm transition-all inline-flex items-center gap-2">
                     <Icons.Star size={16} />
                     See Reviews
                   </a>
@@ -223,14 +245,14 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 2. KEY HIGHLIGHTS */}
-      <section className="w-full bg-[#FAFBFD] py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#10131a] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-10 md:space-y-14">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Why Choose {col.name}</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">Key Highlights</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Key Highlights</h2>
             </ScrollReveal>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -238,12 +260,12 @@ export default async function UniversityPage({ params }: PageProps) {
               const IconComponent = item.icon;
               return (
                 <ScrollReveal key={i} delay={i * 60} direction="up">
-                  <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 space-y-3 group h-full">
-                    <div className="w-10 h-10 rounded-xl bg-[#FFF1F2] flex items-center justify-center text-[#C81E3D] group-hover:scale-110 transition-transform">
+                  <div className="bg-[#14161d] border border-white/10 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 space-y-3 group h-full">
+                    <div className="w-10 h-10 rounded-xl bg-[#2B141A] flex items-center justify-center text-[#C81E3D] group-hover:scale-110 transition-transform">
                       <IconComponent size={20} />
                     </div>
-                    <h3 className="font-extrabold text-[#1E293B] text-sm">{item.label}</h3>
-                    <p className="text-slate-500 text-xs font-medium">{item.desc}</p>
+                    <h3 className="font-extrabold text-[#F1F5F9] text-sm">{item.label}</h3>
+                    <p className="text-[#8b96a8] text-xs font-medium">{item.desc}</p>
                   </div>
                 </ScrollReveal>
               );
@@ -253,17 +275,17 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 3. ABOUT & RATING BREAKDOWN */}
-      <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#14161d] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 space-y-5">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">About</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">{col.name}</h2>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F1F5F9] tracking-tight leading-tight">{col.name}</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">{col.description}</p>
+              <p className="text-[#a8b3c5] text-sm sm:text-base leading-relaxed font-medium">{col.description}</p>
             </ScrollReveal>
             <ScrollReveal delay={300}>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
@@ -273,9 +295,9 @@ export default async function UniversityPage({ params }: PageProps) {
                   { number: col.estd.replace("Estd ", ""), label: "Established" },
                   { number: col.fees, label: "Program Fee" },
                 ].map((stat, i) => (
-                  <div key={i} className="bg-[#FAFBFD] rounded-xl p-4 text-center border border-gray-100">
+                  <div key={i} className="bg-[#10131a] rounded-xl p-4 text-center border border-white/10">
                     <span className="block text-xl font-black text-[#C81E3D]">{stat.number}</span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{stat.label}</span>
+                    <span className="text-[10px] font-bold text-[#8b96a8] uppercase tracking-wider">{stat.label}</span>
                   </div>
                 ))}
               </div>
@@ -283,24 +305,24 @@ export default async function UniversityPage({ params }: PageProps) {
           </div>
           <div className="lg:col-span-5" id="reviews">
             <ScrollReveal direction="right">
-              <div className="bg-[#FFF1F2]/65 border-2 border-[#C81E3D]/30 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-lg sticky top-24">
+              <div className="bg-[#2B141A]/65 border-2 border-[#C81E3D]/30 rounded-[32px] p-6 sm:p-8 space-y-6 shadow-lg sticky top-24">
                 <div className="text-center space-y-2">
-                  <span className="text-4xl sm:text-5xl font-black text-blue-600 block tracking-tight">{col.rating}</span>
+                  <span className="text-4xl sm:text-5xl font-black text-blue-400 block tracking-tight">{col.rating}</span>
                   <div className="flex items-center justify-center gap-0.5 text-yellow-400">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Icons.Star key={i} size={18} className={i < Math.floor(col.rating) ? "fill-yellow-400" : "text-gray-300"} />
                     ))}
-                    <span className="text-slate-400 font-bold text-xs ml-2 uppercase tracking-wider">{col.totalReviews} Reviews</span>
+                    <span className="text-[#7c8798] font-bold text-xs ml-2 uppercase tracking-wider">{col.totalReviews} Reviews</span>
                   </div>
                 </div>
                 <div className="space-y-2 max-w-xs mx-auto w-full">
                   {ratingBars.map((row, i) => (
-                    <div key={i} className="flex items-center gap-3 text-xs font-bold text-slate-700">
+                    <div key={i} className="flex items-center gap-3 text-xs font-bold text-[#c4cbd8]">
                       <span className="w-6 text-right whitespace-nowrap">{row.label}</span>
-                      <div className="h-2.5 flex-grow bg-slate-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-blue-500 rounded-full transition-all duration-500" style={{ width: `${row.val}%` }} />
+                      <div className="h-2.5 flex-grow bg-[#1b1e27] rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-400/100 rounded-full transition-all duration-500" style={{ width: `${row.val}%` }} />
                       </div>
-                      <span className="w-8 text-right text-slate-400">{row.val}%</span>
+                      <span className="w-8 text-right text-[#7c8798]">{row.val}%</span>
                     </div>
                   ))}
                 </div>
@@ -309,19 +331,19 @@ export default async function UniversityPage({ params }: PageProps) {
                     What students rate highest
                   </p>
                   {microRatingRows.map((row) => (
-                    <div key={row.label} className="flex items-center gap-3 text-xs font-bold text-slate-700">
+                    <div key={row.label} className="flex items-center gap-3 text-xs font-bold text-[#c4cbd8]">
                       <span className="w-32 text-left">{row.label}</span>
-                      <div className="h-2 flex-grow bg-white rounded-full overflow-hidden">
+                      <div className="h-2 flex-grow bg-[#14161d] rounded-full overflow-hidden">
                         <div
                           className="h-full bg-[#C81E3D] rounded-full"
                           style={{ width: `${(row.value / 5) * 100}%` }}
                         />
                       </div>
-                      <span className="w-8 text-right text-slate-500">{row.value.toFixed(1)}</span>
+                      <span className="w-8 text-right text-[#8b96a8]">{row.value.toFixed(1)}</span>
                     </div>
                   ))}
                 </div>
-                <PopupTrigger className="w-full h-12 bg-blue-500 hover:bg-blue-600 text-white font-extrabold rounded-xl shadow-md transition-all active:scale-[0.98] text-sm tracking-wide">
+                <PopupTrigger className="w-full h-12 bg-blue-400/100 hover:bg-blue-600 text-white font-extrabold rounded-xl shadow-md transition-all active:scale-[0.98] text-sm tracking-wide">
                   View Detailed Reviews
                 </PopupTrigger>
               </div>
@@ -331,17 +353,17 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 3b. ROI SNAPSHOT */}
-      <section className="w-full bg-[#FAFBFD] py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#10131a] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Return on Investment</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">What This Programme Returns</h2>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F1F5F9] tracking-tight leading-tight">What This Programme Returns</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-slate-500 text-sm sm:text-base font-medium max-w-2xl mx-auto">
+              <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-2xl mx-auto">
                 Average package ₹{details.avgPackageLpa}L on a total fee of ₹{(details.totalFee / 100000).toFixed(2)}L.
                 Adjust your current salary to see the break-even point for your own profile.
               </p>
@@ -366,28 +388,28 @@ export default async function UniversityPage({ params }: PageProps) {
 
       {/* 3c. SCHOLARSHIPS */}
       {relatedScholarships.length > 0 && (
-        <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+        <section className="w-full bg-[#14161d] py-16 md:py-20 px-4 sm:px-6 md:px-8">
           <div className="max-w-7xl mx-auto space-y-8">
             <div className="text-center space-y-3">
               <ScrollReveal>
                 <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Fee Aid</p>
               </ScrollReveal>
               <ScrollReveal delay={100}>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">Scholarships Worth Applying For</h2>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Scholarships Worth Applying For</h2>
               </ScrollReveal>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedScholarships.map((s, i) => (
                 <ScrollReveal key={s.id} delay={i * 100} direction="up">
-                  <div className="h-full bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-3 flex flex-col">
+                  <div className="h-full bg-[#14161d] border border-white/10 rounded-2xl p-6 shadow-sm space-y-3 flex flex-col">
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-sm font-extrabold text-[#1E293B]">{s.name}</h3>
-                      <span className="flex-shrink-0 px-2 py-0.5 rounded-full bg-emerald-50 border border-emerald-100 text-[9px] font-black text-emerald-700">
+                      <h3 className="text-sm font-extrabold text-[#F1F5F9]">{s.name}</h3>
+                      <span className="flex-shrink-0 px-2 py-0.5 rounded-full bg-emerald-400/10 border border-emerald-400/25 text-[9px] font-black text-emerald-400">
                         {s.waiverPercent ? `${s.waiverPercent}% OFF` : 'FLAT'}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed flex-grow">{s.eligibility}</p>
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400">
+                    <p className="text-xs text-[#8b96a8] font-medium leading-relaxed flex-grow">{s.eligibility}</p>
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#7c8798]">
                       <Icons.CalendarDays size={11} className="text-[#C81E3D]" />
                       {s.deadline}
                     </div>
@@ -409,17 +431,17 @@ export default async function UniversityPage({ params }: PageProps) {
       )}
 
       {/* 4. PROGRAMS OFFERED */}
-      <section className="w-full bg-[#FAFBFD] py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#10131a] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-10 md:space-y-14">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Programs</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">Programs Offered</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Programs Offered</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
+              <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">
                 Choose from a wide range of MBA specialisations tailored for your career goals.
               </p>
             </ScrollReveal>
@@ -435,11 +457,11 @@ export default async function UniversityPage({ params }: PageProps) {
               const IconComp = icons[i % icons.length];
               return (
                 <ScrollReveal key={i} delay={i * 50} direction="up">
-                  <div className="flex items-center gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group cursor-default">
-                    <div className="w-10 h-10 rounded-lg bg-[#FFF1F2] flex items-center justify-center text-[#C81E3D] group-hover:scale-110 transition-transform flex-shrink-0">
+                  <div className="flex items-center gap-4 bg-[#14161d] border border-white/10 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group cursor-default">
+                    <div className="w-10 h-10 rounded-lg bg-[#2B141A] flex items-center justify-center text-[#C81E3D] group-hover:scale-110 transition-transform flex-shrink-0">
                       <IconComp size={18} />
                     </div>
-                    <span className="font-extrabold text-slate-800 text-sm group-hover:text-[#C81E3D] transition-colors">{program}</span>
+                    <span className="font-extrabold text-[#f1f5f9] text-sm group-hover:text-[#C81E3D] transition-colors">{program}</span>
                   </div>
                 </ScrollReveal>
               );
@@ -449,20 +471,20 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 5. FEE & EMI STRUCTURE */}
-      <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#14161d] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-10 md:space-y-14">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Investment</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">Fee & EMI Structure</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Fee & EMI Structure</h2>
             </ScrollReveal>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <ScrollReveal direction="left" className="lg:col-span-2">
-              <div className="bg-[#FAFBFD] border border-gray-100 rounded-3xl p-8 space-y-6">
-                <h3 className="font-extrabold text-xl text-[#1E293B]">Fee Breakdown</h3>
+              <div className="bg-[#10131a] border border-white/10 rounded-3xl p-8 space-y-6">
+                <h3 className="font-extrabold text-xl text-[#F1F5F9]">Fee Breakdown</h3>
                 <div className="space-y-4">
                   {[
                     { label: "Tuition Fee (Total)", amount: col.fees, note: "For entire 2-year program" },
@@ -470,39 +492,39 @@ export default async function UniversityPage({ params }: PageProps) {
                     { label: "Exam Fee", amount: "₹2,000", note: "Per semester" },
                     { label: "Study Material", amount: "Free", note: "Digital LMS access included" },
                   ].map((row, i) => (
-                    <div key={i} className="flex items-center justify-between py-3 border-b border-gray-200 last:border-0">
+                    <div key={i} className="flex items-center justify-between py-3 border-b border-white/10 last:border-0">
                       <div>
-                        <span className="font-bold text-slate-800 text-sm">{row.label}</span>
-                        <p className="text-[10px] text-slate-400 font-semibold">{row.note}</p>
+                        <span className="font-bold text-[#f1f5f9] text-sm">{row.label}</span>
+                        <p className="text-[10px] text-[#7c8798] font-semibold">{row.note}</p>
                       </div>
-                      <span className={`font-black text-lg ${row.amount === "Free" ? "text-emerald-600" : "text-[#1E293B]"}`}>{row.amount}</span>
+                      <span className={`font-black text-lg ${row.amount === "Free" ? "text-emerald-400" : "text-[#F1F5F9]"}`}>{row.amount}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </ScrollReveal>
             <ScrollReveal direction="right" className="lg:col-span-1">
-              <div className="bg-[#FFF1F2]/65 border-2 border-[#C81E3D]/30 rounded-[32px] p-6 sm:p-8 space-y-6 text-center shadow-lg sticky top-24">
+              <div className="bg-[#2B141A]/65 border-2 border-[#C81E3D]/30 rounded-[32px] p-6 sm:p-8 space-y-6 text-center shadow-lg sticky top-24">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Program Fee</span>
+                  <span className="text-[10px] font-bold text-[#8b96a8] uppercase tracking-wider">Program Fee</span>
                   <span className="block text-3xl sm:text-4xl font-black text-[#C81E3D] tracking-tight">{col.fees}</span>
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Total 2-Year Program</p>
+                  <p className="text-xs text-[#8b96a8] font-bold uppercase tracking-wider">Total 2-Year Program</p>
                 </div>
                 <div className="inline-flex items-center justify-center px-4 py-1.5 bg-[#C81E3D] text-white text-xs font-black rounded-full uppercase tracking-wider">
                   0% Interest EMI Available
                 </div>
-                <div className="border-t border-rose-200/50 pt-5 space-y-2">
+                <div className="border-t border-[#e0244a]/30/50 pt-5 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="font-bold text-slate-600">Program Fee</span>
-                    <span className="font-extrabold text-slate-800">{col.fees}</span>
+                    <span className="font-bold text-[#a8b3c5]">Program Fee</span>
+                    <span className="font-extrabold text-[#f1f5f9]">{col.fees}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="font-bold text-slate-600">Duration</span>
-                    <span className="font-extrabold text-slate-800">2 Years</span>
+                    <span className="font-bold text-[#a8b3c5]">Duration</span>
+                    <span className="font-extrabold text-[#f1f5f9]">2 Years</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="font-bold text-slate-600">EMI Tenure</span>
-                    <span className="font-extrabold text-slate-800">Up to 24 Months</span>
+                    <span className="font-bold text-[#a8b3c5]">EMI Tenure</span>
+                    <span className="font-extrabold text-[#f1f5f9]">Up to 24 Months</span>
                   </div>
                 </div>
                 <PopupTrigger className="w-full h-12 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-[12px] shadow-md transition-all active:scale-[0.98] text-sm tracking-wide uppercase">
@@ -515,17 +537,17 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 6. ADMISSION PROCESS */}
-      <section className="w-full bg-[#FAFBFD] py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#10131a] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-10 md:space-y-14">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Process</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">Admission Process</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Admission Process</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">Get started in 4 simple steps.</p>
+              <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">Get started in 4 simple steps.</p>
             </ScrollReveal>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -533,15 +555,15 @@ export default async function UniversityPage({ params }: PageProps) {
               const IconComp = step.icon;
               return (
                 <ScrollReveal key={i} delay={i * 100} direction="up">
-                  <div className="relative bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group text-center">
+                  <div className="relative bg-[#14161d] border border-white/10 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group text-center">
                     <span className="absolute -top-3 -left-3 w-8 h-8 bg-[#C81E3D] text-white text-xs font-black rounded-full flex items-center justify-center shadow-md">
                       {step.step}
                     </span>
-                    <div className="w-12 h-12 rounded-xl bg-[#FFF1F2] flex items-center justify-center text-[#C81E3D] mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-xl bg-[#2B141A] flex items-center justify-center text-[#C81E3D] mx-auto mb-4 group-hover:scale-110 transition-transform">
                       <IconComp size={22} />
                     </div>
-                    <h4 className="font-extrabold text-slate-800 text-sm mb-2">{step.title}</h4>
-                    <p className="text-slate-500 text-xs font-medium leading-relaxed">{step.desc}</p>
+                    <h4 className="font-extrabold text-[#f1f5f9] text-sm mb-2">{step.title}</h4>
+                    <p className="text-[#8b96a8] text-xs font-medium leading-relaxed">{step.desc}</p>
                   </div>
                 </ScrollReveal>
               );
@@ -551,23 +573,23 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 7. CURRICULUM */}
-      <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#14161d] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-10 md:space-y-14">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Curriculum</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">Curriculum Subjects</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Curriculum Subjects</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">Industry-aligned curriculum designed for modern business challenges.</p>
+              <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">Industry-aligned curriculum designed for modern business challenges.</p>
             </ScrollReveal>
           </div>
           <ScrollReveal>
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
               {curriculumSubjects.map((subject, i) => (
-                <div key={i} className="px-5 py-3 bg-white border border-slate-200 hover:border-[#C81E3D] hover:bg-[#FFF1F2] text-slate-800 font-bold text-xs sm:text-sm rounded-[10px] shadow-sm hover:shadow transition-all cursor-default hover:-translate-y-0.5">
+                <div key={i} className="px-5 py-3 bg-[#14161d] border border-white/10 hover:border-[#C81E3D] hover:bg-[#2B141A] text-[#f1f5f9] font-bold text-xs sm:text-sm rounded-[10px] shadow-sm hover:shadow transition-all cursor-default hover:-translate-y-0.5">
                   {subject}
                 </div>
               ))}
@@ -644,17 +666,17 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 8b. ALUMNI SPOTLIGHT */}
-      <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#14161d] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-7xl mx-auto space-y-10">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">Alumni</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">Where Learners Ended Up</h2>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Where Learners Ended Up</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
+              <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">
                 Career switches and salary outcomes, stated by the graduates themselves.
               </p>
             </ScrollReveal>
@@ -664,40 +686,40 @@ export default async function UniversityPage({ params }: PageProps) {
               const uplift = Math.round(((a.currentLpa - a.priorLpa) / a.priorLpa) * 100);
               return (
                 <ScrollReveal key={a.id} delay={i * 100} direction="up">
-                  <div className="h-full bg-[#FAFBFD] border border-gray-100 rounded-2xl p-6 sm:p-7 space-y-4">
+                  <div className="h-full bg-[#10131a] border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4">
                     <div className="flex items-start gap-4">
                       <span className="w-12 h-12 rounded-full bg-[#C81E3D]/10 text-[#C81E3D] flex items-center justify-center font-black text-base flex-shrink-0">
                         {a.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
                       </span>
                       <div className="min-w-0">
-                        <h3 className="text-sm font-extrabold text-[#1E293B] flex items-center gap-1.5">
+                        <h3 className="text-sm font-extrabold text-[#F1F5F9] flex items-center gap-1.5">
                           {a.name}
                           {a.verified && <Icons.BadgeCheck size={14} className="text-emerald-500" />}
                         </h3>
-                        <p className="text-[11px] text-slate-500 font-bold">
+                        <p className="text-[11px] text-[#8b96a8] font-bold">
                           {a.role} at {a.company}
                         </p>
-                        <p className="text-[10px] text-slate-400 font-semibold mt-0.5">
+                        <p className="text-[10px] text-[#7c8798] font-semibold mt-0.5">
                           {a.collegeName} · Class of {a.graduationYear}
                         </p>
                       </div>
                     </div>
-                    <p className="text-sm text-slate-600 font-medium leading-relaxed">{a.story}</p>
-                    <div className="grid grid-cols-3 gap-3 pt-3 border-t border-gray-100">
+                    <p className="text-sm text-[#a8b3c5] font-medium leading-relaxed">{a.story}</p>
+                    <div className="grid grid-cols-3 gap-3 pt-3 border-t border-white/10">
                       <div>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Before</p>
-                        <p className="text-sm font-black text-slate-500">₹{a.priorLpa}L</p>
+                        <p className="text-[10px] font-bold text-[#7c8798] uppercase tracking-wider">Before</p>
+                        <p className="text-sm font-black text-[#8b96a8]">₹{a.priorLpa}L</p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Now</p>
-                        <p className="text-sm font-black text-[#1E293B]">₹{a.currentLpa}L</p>
+                        <p className="text-[10px] font-bold text-[#7c8798] uppercase tracking-wider">Now</p>
+                        <p className="text-sm font-black text-[#F1F5F9]">₹{a.currentLpa}L</p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Uplift</p>
-                        <p className="text-sm font-black text-emerald-600">+{uplift}%</p>
+                        <p className="text-[10px] font-bold text-[#7c8798] uppercase tracking-wider">Uplift</p>
+                        <p className="text-sm font-black text-emerald-400">+{uplift}%</p>
                       </div>
                     </div>
-                    <p className="text-xs text-slate-500 font-semibold italic border-l-2 border-[#C81E3D]/30 pl-3">
+                    <p className="text-xs text-[#8b96a8] font-semibold italic border-l-2 border-[#C81E3D]/30 pl-3">
                       {a.quote}
                     </p>
                   </div>
@@ -718,26 +740,26 @@ export default async function UniversityPage({ params }: PageProps) {
       </section>
 
       {/* 9. FAQ */}
-      <section className="w-full bg-white py-16 md:py-20 px-4 sm:px-6 md:px-8">
+      <section className="w-full bg-[#14161d] py-16 md:py-20 px-4 sm:px-6 md:px-8">
         <div className="max-w-3xl mx-auto space-y-10 md:space-y-14">
           <div className="text-center space-y-3">
             <ScrollReveal>
               <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">FAQ</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1E293B] tracking-tight leading-tight">Frequently Asked Questions</h2>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F1F5F9] tracking-tight leading-tight">Frequently Asked Questions</h2>
             </ScrollReveal>
           </div>
           <div className="space-y-4">
             {faqData.map((item, i) => (
               <ScrollReveal key={i} delay={i * 80}>
-                <details className="group bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden open:border-[#C81E3D]/30">
-                  <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-extrabold text-slate-800 text-sm sm:text-base hover:text-[#C81E3D] transition-colors">
+                <details className="group bg-[#14161d] border border-white/10 rounded-2xl shadow-sm hover:shadow-md transition-all overflow-hidden open:border-[#C81E3D]/30">
+                  <summary className="flex items-center justify-between p-5 cursor-pointer list-none font-extrabold text-[#f1f5f9] text-sm sm:text-base hover:text-[#C81E3D] transition-colors">
                     <span>{item.q}</span>
-                    <Icons.ChevronDown size={18} className="text-slate-400 group-open:rotate-180 group-open:text-[#C81E3D] transition-all flex-shrink-0" />
+                    <Icons.ChevronDown size={18} className="text-[#7c8798] group-open:rotate-180 group-open:text-[#C81E3D] transition-all flex-shrink-0" />
                   </summary>
                   <div className="px-5 pb-5">
-                    <p className="text-slate-500 text-sm font-medium leading-relaxed">{item.a}</p>
+                    <p className="text-[#8b96a8] text-sm font-medium leading-relaxed">{item.a}</p>
                   </div>
                 </details>
               </ScrollReveal>
@@ -757,7 +779,7 @@ export default async function UniversityPage({ params }: PageProps) {
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <div className="flex flex-wrap justify-center gap-4 pt-2">
-              <PopupTrigger className="h-14 px-8 bg-white text-[#C81E3D] hover:bg-gray-100 font-extrabold rounded-full shadow-lg transition-all active:scale-[0.98] text-sm tracking-wide inline-flex items-center gap-2">
+              <PopupTrigger className="h-14 px-8 bg-[#14161d] text-[#C81E3D] hover:bg-[#1b1e27] font-extrabold rounded-full shadow-lg transition-all active:scale-[0.98] text-sm tracking-wide inline-flex items-center gap-2">
                 <Icons.Phone size={18} />
                 Get Free Counselling
               </PopupTrigger>
@@ -775,7 +797,7 @@ export default async function UniversityPage({ params }: PageProps) {
       <div className="fixed bottom-6 left-6 z-50">
         <div className="relative group cursor-pointer flex flex-col items-center">
           <span className="absolute inset-0 rounded-full border-2 border-[#E11D48]/30 scale-110 animate-ping opacity-75"></span>
-          <PopupTrigger className="flex flex-col items-center justify-center w-16 h-16 bg-white border border-rose-100 rounded-full shadow-xl hover:shadow-2xl transition-all group-hover:scale-105 active:scale-95 relative z-10">
+          <PopupTrigger className="flex flex-col items-center justify-center w-16 h-16 bg-[#14161d] border border-[#e0244a]/20 rounded-full shadow-xl hover:shadow-2xl transition-all group-hover:scale-105 active:scale-95 relative z-10">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E11D48]/10 to-[#C81E3D]/10 flex items-center justify-center mb-0.5">
               <Icons.Download size={18} className="text-[#C81E3D] group-hover:translate-y-0.5 transition-transform" />
             </div>

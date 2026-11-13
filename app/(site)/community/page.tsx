@@ -44,11 +44,11 @@ export default function CommunityPage() {
   const totalViews = communityQuestions.reduce((sum, q) => sum + q.views, 0);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={qaSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <nav
             aria-label="Breadcrumb"
@@ -57,15 +57,15 @@ export default function CommunityPage() {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">Community</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">Community</span>
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight leading-tight">
               Ask. Get an answer. Move on.
             </h1>
-            <p className="text-slate-500 text-sm sm:text-base font-medium leading-relaxed">
+            <p className="text-[#8b96a8] text-sm sm:text-base font-medium leading-relaxed">
               {communityQuestions.length} questions covering {Object.keys(topicLabels).length} topics,
               answered by people who do this for a living. Filter by topic, mark what helped, and stop
               reading brochures that answer nothing.
@@ -78,7 +78,7 @@ export default function CommunityPage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF1F2] border border-rose-100 text-[11px] font-extrabold text-[#C81E3D]"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#2B141A] border border-[#e0244a]/20 text-[11px] font-extrabold text-[#C81E3D]"
                 >
                   {item}
                 </span>
@@ -124,13 +124,13 @@ export default function CommunityPage() {
             ].map((rule) => (
               <div
                 key={rule.title}
-                className="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm space-y-3"
+                className="bg-[#14161d] rounded-2xl border border-white/10 p-7 shadow-sm space-y-3"
               >
-                <span className="w-11 h-11 rounded-xl bg-[#FFF1F2] flex items-center justify-center">
+                <span className="w-11 h-11 rounded-xl bg-[#2B141A] flex items-center justify-center">
                   <rule.icon size={19} className="text-[#C81E3D]" />
                 </span>
-                <h3 className="text-base font-extrabold text-[#1E293B]">{rule.title}</h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed">{rule.body}</p>
+                <h3 className="text-base font-extrabold text-[#F1F5F9]">{rule.title}</h3>
+                <p className="text-sm text-[#8b96a8] font-medium leading-relaxed">{rule.body}</p>
               </div>
             ))}
           </div>

@@ -40,10 +40,10 @@ const RatingStars: React.FC<RatingStarsProps> = ({
         })}
       </div>
       {showValue && (
-        <span className="text-xs font-extrabold text-[#1E293B]">{value.toFixed(1)}</span>
+        <span className="text-xs font-extrabold text-[#F1F5F9]">{value.toFixed(1)}</span>
       )}
       {reviewCount && (
-        <span className="text-[11px] font-semibold text-slate-400">({reviewCount})</span>
+        <span className="text-[11px] font-semibold text-[#7c8798]">({reviewCount})</span>
       )}
       <span className="sr-only">
         Rated {value.toFixed(1)} out of 5{reviewCount ? ` from ${reviewCount} reviews` : ""}

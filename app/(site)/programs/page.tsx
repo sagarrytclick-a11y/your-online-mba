@@ -51,11 +51,11 @@ export default function ProgramsPage() {
     .sort((a, b) => a.details.totalFee - b.details.totalFee)[0];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={itemListSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <nav
             aria-label="Breadcrumb"
@@ -64,15 +64,15 @@ export default function ProgramsPage() {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">Programs</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">Programs</span>
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight leading-tight">
               Every programme we track
             </h1>
-            <p className="text-slate-500 text-sm sm:text-base font-medium leading-relaxed">
+            <p className="text-[#8b96a8] text-sm sm:text-base font-medium leading-relaxed">
               {programs.length} online postgraduate and MBA programmes, each with its duration, level
               and format. Open one to see the universities that offer it and what the fee actually works
               out to.
@@ -87,7 +87,7 @@ export default function ProgramsPage() {
               </Link>
               <Link
                 href="/compare-programs"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-rose-100 text-[11px] font-extrabold text-[#C81E3D] hover:border-[#C81E3D] transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#14161d] border border-[#e0244a]/20 text-[11px] font-extrabold text-[#C81E3D] hover:border-[#C81E3D] transition-colors"
               >
                 <Icons.Scale size={12} />
                 Compare programmes
@@ -101,41 +101,41 @@ export default function ProgramsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {programs.map((p, i) => (
             <ScrollReveal key={p.slug} delay={(i % 6) * 70} direction="up">
-              <article className="h-full bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col space-y-4 hover:border-[#C81E3D]/30 hover:shadow-md transition-all">
+              <article className="h-full bg-[#14161d] rounded-2xl border border-white/10 shadow-sm p-6 flex flex-col space-y-4 hover:border-[#C81E3D]/30 hover:shadow-md transition-all">
                 <div className="flex items-start justify-between gap-3">
-                  <span className="w-11 h-11 rounded-xl bg-[#FFF1F2] flex items-center justify-center flex-shrink-0">
+                  <span className="w-11 h-11 rounded-xl bg-[#2B141A] flex items-center justify-center flex-shrink-0">
                     <Icons.GraduationCap size={19} className="text-[#C81E3D]" />
                   </span>
-                  <span className="text-[9px] font-black text-slate-400 bg-[#F8FAFC] border border-gray-100 rounded-full px-2.5 py-1">
+                  <span className="text-[9px] font-black text-[#7c8798] bg-[#10131A] border border-white/10 rounded-full px-2.5 py-1">
                     {p.subPrograms.length} variants
                   </span>
                 </div>
 
                 <div>
-                  <h2 className="text-base font-extrabold text-[#1E293B] leading-snug">
+                  <h2 className="text-base font-extrabold text-[#F1F5F9] leading-snug">
                     <Link href={`/programs/${p.slug}`} className="hover:text-[#C81E3D] transition-colors">
                       {p.title}
                     </Link>
                   </h2>
-                  <p className="text-[11px] text-slate-400 font-bold mt-1">{p.level}</p>
+                  <p className="text-[11px] text-[#7c8798] font-bold mt-1">{p.level}</p>
                 </div>
 
-                <p className="text-sm text-slate-500 font-medium leading-relaxed line-clamp-3 flex-grow">
+                <p className="text-sm text-[#8b96a8] font-medium leading-relaxed line-clamp-3 flex-grow">
                   {p.description}
                 </p>
 
                 <div className="grid grid-cols-2 gap-3 pt-1">
-                  <div className="bg-[#FAFBFD] rounded-xl p-3">
-                    <p className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
+                  <div className="bg-[#10131a] rounded-xl p-3">
+                    <p className="text-[9px] font-extrabold uppercase tracking-wider text-[#7c8798]">
                       Duration
                     </p>
-                    <p className="text-xs font-extrabold text-[#1E293B] mt-0.5">{p.duration}</p>
+                    <p className="text-xs font-extrabold text-[#F1F5F9] mt-0.5">{p.duration}</p>
                   </div>
-                  <div className="bg-[#FAFBFD] rounded-xl p-3">
-                    <p className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">
+                  <div className="bg-[#10131a] rounded-xl p-3">
+                    <p className="text-[9px] font-extrabold uppercase tracking-wider text-[#7c8798]">
                       Format
                     </p>
-                    <p className="text-xs font-extrabold text-[#1E293B] mt-0.5 line-clamp-2">
+                    <p className="text-xs font-extrabold text-[#F1F5F9] mt-0.5 line-clamp-2">
                       {p.format}
                     </p>
                   </div>
@@ -145,14 +145,14 @@ export default function ProgramsPage() {
                   {p.subPrograms.slice(0, 3).map((sub) => (
                     <li
                       key={sub.title}
-                      className="text-[11px] font-semibold text-slate-500 flex items-start gap-1.5"
+                      className="text-[11px] font-semibold text-[#8b96a8] flex items-start gap-1.5"
                     >
                       <Icons.Dot size={12} className="text-[#C81E3D] flex-shrink-0 mt-1" />
                       <span className="line-clamp-1">{sub.title}</span>
                     </li>
                   ))}
                   {p.subPrograms.length > 3 && (
-                    <li className="text-[11px] font-bold text-slate-400 pl-4">
+                    <li className="text-[11px] font-bold text-[#7c8798] pl-4">
                       +{p.subPrograms.length - 3} more
                     </li>
                   )}
@@ -178,15 +178,15 @@ export default function ProgramsPage() {
             title="Fee is not the only thing to compare"
             description="Two programmes with identical fees can have completely different accreditation, placement support and return on investment. Start from the number, then check the rest."
           />
-          <div className="mt-8 bg-white rounded-3xl border border-gray-100 p-7 sm:p-8 shadow-sm space-y-5">
+          <div className="mt-8 bg-[#14161d] rounded-3xl border border-white/10 p-7 sm:p-8 shadow-sm space-y-5">
             {cheapest && (
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-gray-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
                 <div>
-                  <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                  <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798]">
                     Lowest total fee we track
                   </p>
-                  <p className="text-lg font-black text-[#1E293B] mt-1">{cheapest.college.name}</p>
-                  <p className="text-xs text-slate-500 font-semibold mt-0.5">
+                  <p className="text-lg font-black text-[#F1F5F9] mt-1">{cheapest.college.name}</p>
+                  <p className="text-xs text-[#8b96a8] font-semibold mt-0.5">
                     ₹{(cheapest.details.totalFee / 100000).toFixed(2)}L total ·{" "}
                     {cheapest.details.approvals.join(", ")}
                   </p>
@@ -220,11 +220,11 @@ export default function ProgramsPage() {
                 },
               ].map((tip) => (
                 <li key={tip.title} className="space-y-2">
-                  <span className="w-10 h-10 rounded-xl bg-[#FFF1F2] flex items-center justify-center">
+                  <span className="w-10 h-10 rounded-xl bg-[#2B141A] flex items-center justify-center">
                     <tip.icon size={17} className="text-[#C81E3D]" />
                   </span>
-                  <p className="text-sm font-extrabold text-[#1E293B]">{tip.title}</p>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">{tip.body}</p>
+                  <p className="text-sm font-extrabold text-[#F1F5F9]">{tip.title}</p>
+                  <p className="text-xs text-[#8b96a8] font-medium leading-relaxed">{tip.body}</p>
                 </li>
               ))}
             </ul>
@@ -236,7 +236,7 @@ export default function ProgramsPage() {
               </PopupTrigger>
               <Link
                 href="/universities"
-                className="h-12 px-7 border-2 border-slate-200 text-slate-500 font-extrabold rounded-full text-sm transition-all hover:border-slate-300 inline-flex items-center gap-2"
+                className="h-12 px-7 border-2 border-white/10 text-[#8b96a8] font-extrabold rounded-full text-sm transition-all hover:border-white/15 inline-flex items-center gap-2"
               >
                 <Icons.Building2 size={16} />
                 Browse universities

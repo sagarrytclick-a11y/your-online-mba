@@ -47,8 +47,8 @@ const Accordion: React.FC<AccordionProps> = ({
                   ? "bg-white/10 border-white/20"
                   : "bg-white/5 border-white/10 hover:bg-white/10"
                 : isOpen
-                  ? "bg-[#FFF1F2] border-rose-100"
-                  : "bg-white border-gray-100 hover:border-rose-200"
+                  ? "bg-[#2B141A] border-[#e0244a]/20"
+                  : "bg-[#14161d] border-white/10 hover:border-[#e0244a]/30"
             }`}
           >
             <h3>
@@ -60,7 +60,7 @@ const Accordion: React.FC<AccordionProps> = ({
               >
                 <span
                   className={`text-sm sm:text-base font-extrabold leading-snug ${
-                    isDark ? "text-white" : "text-[#1E293B]"
+                    isDark ? "text-white" : "text-[#F1F5F9]"
                   }`}
                 >
                   {item.question}
@@ -71,7 +71,7 @@ const Accordion: React.FC<AccordionProps> = ({
                       ? "bg-[#C81E3D] text-white"
                       : isDark
                         ? "bg-white/10 text-rose-100"
-                        : "bg-slate-100 text-slate-500"
+                        : "bg-[#1b1e27] text-[#8b96a8]"
                   }`}
                 >
                   <Icons.ChevronDown
@@ -85,7 +85,7 @@ const Accordion: React.FC<AccordionProps> = ({
               <div className="px-5 sm:px-6 pb-5">
                 <p
                   className={`text-sm font-medium leading-relaxed ${
-                    isDark ? "text-rose-100/85" : "text-slate-500"
+                    isDark ? "text-rose-100/85" : "text-[#8b96a8]"
                   }`}
                 >
                   {item.answer}

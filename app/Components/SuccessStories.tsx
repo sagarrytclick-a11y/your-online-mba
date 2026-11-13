@@ -81,15 +81,15 @@ const SuccessStories = () => {
   const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section className="relative w-full bg-white py-10 md:py-14 overflow-hidden">
+    <section className="relative w-full bg-white/[0.03] py-10 md:py-14 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 mb-8 md:mb-10 text-center space-y-3">
         <p className="text-[#C81E3D] text-[11px] sm:text-xs font-bold tracking-widest uppercase">
           Success Stories
         </p>
-        <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">
           Where Careers Take the Next Leap
         </h2>
-        <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
+        <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">
           Real stories from real graduates, no fabrication.
         </p>
       </div>
@@ -99,33 +99,33 @@ const SuccessStories = () => {
           {duplicatedTestimonials.map((item, idx) => (
             <div
               key={idx}
-              className="w-[350px] md:w-[400px] bg-[#F8FAFC] border border-gray-100 rounded-[20px] p-8 flex flex-col justify-between hover:border-[#C81E3D]/30 hover:shadow-md transition-all duration-300"
+              className="w-[350px] md:w-[400px] bg-[#10131A] border border-white/10 rounded-[20px] p-8 flex flex-col justify-between hover:border-[#C81E3D]/30 hover:shadow-md transition-all duration-300"
             >
               <div>
                 <div className="flex text-yellow-500 mb-4 text-lg tracking-[3px]">
                   {"★".repeat(5)}
                 </div>
-                <p className="text-[#475569] italic leading-relaxed text-sm">
+                <p className="text-[#A8B3C5] italic leading-relaxed text-sm">
                   &ldquo;{item.text}&rdquo;
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 mt-8 border-t border-gray-100 pt-6">
+              <div className="flex items-center gap-4 mt-8 border-t border-white/10 pt-6">
                 <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-[#1E293B] font-bold text-sm">{item.name}</h3>
-                  <p className="text-[#94A3B8] text-xs font-medium">{item.role}</p>
+                  <h3 className="text-[#F1F5F9] font-bold text-sm">{item.name}</h3>
+                  <p className="text-[#7C8798] text-xs font-medium">{item.role}</p>
                 </div>
               </div>
 
               <div className="mt-6">
                 <div className="flex justify-between text-xs font-bold mb-2">
-                  <span className="text-[#94A3B8]">{item.beforeLPA}</span>
+                  <span className="text-[#7C8798]">{item.beforeLPA}</span>
                   <span className="text-[#C81E3D]">{item.afterLPA}</span>
                 </div>
-                <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                <div className="h-1.5 w-full bg-[#1b1e27] rounded-full overflow-hidden">
                   <div className="h-full bg-gradient-to-r from-[#C81E3D] to-[#C81E3D]/60 rounded-full" />
                 </div>
                 <p className="text-[#C81E3D] text-[10px] mt-2 font-bold tracking-wider">
