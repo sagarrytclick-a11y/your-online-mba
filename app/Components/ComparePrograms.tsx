@@ -238,6 +238,9 @@ const ComparePrograms: React.FC = () => {
       </div>
 
       <ScrollReveal>
+        <p className="swipe-hint mb-2 items-center gap-1.5 text-[11px] font-bold text-[#7c8798]">
+          <span className="text-[#e0244a]">↔</span> Swipe sideways to compare every programme
+        </p>
         <div className="overflow-x-auto custom-scroll pb-4">
           <table className="w-full min-w-[720px] border-separate border-spacing-0">
             <thead>

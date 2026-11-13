@@ -129,14 +129,14 @@ const WhyChooseUs = () => {
         </div>
 
       {/* Floating WhatsApp + PDF stack — snug bottom-left */}
-      <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 flex flex-col items-center gap-2.5">
+      <div className="side-fab fixed bottom-4 left-3 sm:bottom-6 sm:left-6 z-50 flex flex-col items-center gap-2">
         <WhatsAppButton wrapperClassName="flex flex-col items-center group" />
 
         <div className="relative group cursor-pointer flex flex-col items-center">
           {/* Ripple rings */}
           <span className="absolute inset-0 rounded-full border-2 border-[#e0244a]/40 scale-110 animate-ping opacity-60"></span>
 
-          <PopupTrigger className="flex flex-col items-center justify-center w-16 h-16 bg-[#14161d] border border-[#e0244a]/30 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_10px_30px_rgba(224,36,74,0.3)] transition-all group-hover:scale-110 active:scale-95 relative z-10">
+          <PopupTrigger className="flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-[#14161d] border border-[#e0244a]/30 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_10px_30px_rgba(224,36,74,0.3)] transition-all group-hover:scale-110 active:scale-95 relative z-10">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#e0244a] to-[#ff8a3d] mb-0.5">
               <Download size={15} className="text-white group-hover:translate-y-0.5 transition-transform" />
             </div>

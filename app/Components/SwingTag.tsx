@@ -12,7 +12,7 @@ export default function SwingTag() {
 
   return (
     <button
-      onClick={open}
+      onClick={() => open()}
       aria-label="Get a quote — open enquiry form"
       className="group absolute right-2 sm:right-6 lg:right-[4%] top-0 z-20 hidden sm:flex flex-col items-center outline-none"
     >

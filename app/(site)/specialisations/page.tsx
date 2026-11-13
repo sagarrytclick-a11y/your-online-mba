@@ -48,20 +48,20 @@ export default function SpecialisationsPage() {
                 href={`/specialisations/${spec.slug}`}
                 className="group bg-[#14161d] p-6 rounded-2xl shadow-sm border border-white/10 flex items-center justify-between hover:shadow-md transition-all duration-200"
               >
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-xl ${theme.bg} ${theme.text} flex items-center justify-center`}>
+                <div className="flex min-w-0 items-center gap-4">
+                  <div className={`w-12 h-12 rounded-xl ${theme.bg} ${theme.text} flex items-center justify-center flex-shrink-0`}>
                     <Icon size={24} />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h2 className="text-[#F1F5F9] font-bold text-base group-hover:text-[#C81E3D] transition-colors truncate">
                       {spec.title}
                     </h2>
-                    <p className="text-[#8b96a8] text-xs font-semibold mt-0.5">
+                    <p className="text-[#8b96a8] text-xs font-semibold mt-0.5 truncate">
                       Avg Salary: {spec.salaryRange}
                     </p>
                   </div>
                 </div>
-                <Icons.ChevronRight size={20} className="text-[#7c8798] group-hover:text-[#C81E3D] transition-colors" />
+                <Icons.ChevronRight size={20} className="text-[#7c8798] group-hover:text-[#C81E3D] transition-colors flex-shrink-0" />
               </Link>
             );
           })}

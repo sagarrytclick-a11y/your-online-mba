@@ -65,21 +65,21 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="w-9 h-9 flex items-center justify-center rounded-xl border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <Icons.ChevronLeft size={16} />
         </button>
 
         {getPageNumbers().map((page, idx) =>
           page === 'ellipsis' ? (
-            <span key={`e-${idx}`} className="w-9 h-9 flex items-center justify-center text-[#7c8798] text-sm font-bold">
+            <span key={`e-${idx}`} className="w-10 h-10 flex items-center justify-center text-[#7c8798] text-sm font-bold">
               ...
             </span>
           ) : (
             <button
               key={page}
               onClick={() => onPageChange(page)}
-              className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-extrabold transition-all ${
+              className={`w-10 h-10 flex items-center justify-center rounded-xl text-sm font-extrabold transition-all ${
                 page === currentPage
                   ? 'bg-[#C81E3D] text-white shadow-md shadow-red-700/15'
                   : 'border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D]'
@@ -93,7 +93,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="w-9 h-9 flex items-center justify-center rounded-xl border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <Icons.ChevronRight size={16} />
         </button>

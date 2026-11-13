@@ -25,6 +25,13 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const el = ref.current;
     if (!el) return;
 
+    // Browsers without IntersectionObserver: reveal on the next tick so nothing
+    // can ever get stuck invisible. Reduced-motion users are handled in CSS.
+    if (typeof IntersectionObserver === "undefined") {
+      const id = window.setTimeout(() => setIsVisible(true), 0);
+      return () => window.clearTimeout(id);
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,34 +41,22 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           setIsVisible(false);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      // A tiny threshold keeps very tall cards (common on phones) revealable.
+      { threshold: 0.01, rootMargin: '0px 0px -24px 0px' }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
   }, [once]);
 
-  const getTransform = () => {
-    if (!isVisible) {
-      switch (direction) {
-        case 'up': return 'translateY(30px)';
-        case 'down': return 'translateY(-30px)';
-        case 'left': return 'translateX(30px)';
-        case 'right': return 'translateX(-30px)';
-        case 'none': return 'translateY(0)';
-      }
-    }
-    return 'translateY(0) translateX(0)';
-  };
-
+  // Classes (not inline transforms) so phones can swap horizontal slides for a
+  // vertical rise — side slides were pushing cards past the viewport edge.
   return (
     <div
       ref={ref}
-      className={className}
+      className={`reveal ${isVisible ? 'reveal-in' : `reveal-out-${direction}`} ${className}`}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transform: getTransform(),
-        transition: `opacity ${duration}ms cubic-bezier(0.22, 1, 0.36, 1), transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+        transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
       }}
     >

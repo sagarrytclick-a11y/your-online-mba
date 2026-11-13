@@ -161,7 +161,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
 
   return (
     <div className={`space-y-8 ${className}`}>
-      <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] gap-6 items-start">
         <div className="bg-[#14161d] rounded-3xl border border-white/10 p-6 sm:p-7 shadow-sm lg:sticky lg:top-28 space-y-6">
           <h3 className="text-sm font-extrabold text-[#F1F5F9] flex items-center gap-2">
             <Icons.SlidersHorizontal size={16} className="text-[#C81E3D]" />
@@ -284,8 +284,8 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="min-w-0 space-y-6">
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
             {[
               {
                 label: "Projected package",

@@ -46,10 +46,10 @@ export default function AiChatLauncher() {
       </button>
 
       {/* Bottom-right FAB — snug to the corner */}
-      <div className="fixed bottom-3 right-3 sm:right-4 z-40 flex flex-col items-end gap-2">
-        {/* Tooltip pill (hidden once opened) */}
+      <div className="ai-fab fixed right-3 sm:right-4 z-40 flex flex-col items-end gap-2">
+        {/* Tooltip pill (desktop only — on phones it covers page content) */}
         {!open && !seen && (
-          <div className="pointer-events-none flex items-center gap-2 rounded-2xl rounded-br-md border border-white/10 bg-[#14161d]/95 backdrop-blur px-3.5 py-2 shadow-xl">
+          <div className="pointer-events-none hidden sm:flex items-center gap-2 rounded-2xl rounded-br-md border border-white/10 bg-[#14161d]/95 backdrop-blur px-3.5 py-2 shadow-xl">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse-dot" />
             <p className="text-[11px] font-bold text-[#f1f5f9]">
               Ask AI Advisor · <span className="text-[#e0244a]">30s reply</span>
@@ -62,7 +62,7 @@ export default function AiChatLauncher() {
           onClick={toggle}
           aria-label={open ? "Close AI MBA Advisor chat" : "Open AI MBA Advisor chat"}
           aria-expanded={open}
-          className={`relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#ff4d6d] via-[#e0244a] to-[#C81E3D] text-white shadow-[0_15px_40px_rgba(224,36,74,0.45)] ring-1 ring-white/20 transition-transform duration-300 hover:scale-110 active:scale-95 ${
+          className={`relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#ff4d6d] via-[#e0244a] to-[#C81E3D] text-white shadow-[0_15px_40px_rgba(224,36,74,0.45)] ring-1 ring-white/20 transition-transform duration-300 hover:scale-110 active:scale-95 ${
             open ? "" : "animate-fab-ping"
           }`}
         >

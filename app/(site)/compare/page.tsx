@@ -109,6 +109,9 @@ export default function ComparePage() {
       ) : (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
           <ScrollReveal>
+            <p className="swipe-hint mb-2 items-center gap-1.5 text-[11px] font-bold text-[#7c8798]">
+              <span className="text-[#e0244a]">↔</span> Swipe sideways to compare every university
+            </p>
             <div className="overflow-x-auto custom-scroll pb-4">
               <table className="w-full min-w-[600px] border-separate border-spacing-0">
                 <thead>

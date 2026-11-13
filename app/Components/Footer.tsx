@@ -58,9 +58,9 @@ const footerColumns = [
 const Footer = () => {
   return (
     <footer className="w-full border-t border-white/10 bg-[#14161d] text-[#c4cbd8]">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid gap-8 pb-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr_1.35fr]">
-          <div className="space-y-5">
+      <div className="mx-auto max-w-7xl px-4 py-10 pb-24 sm:pb-10 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 pb-10 sm:gap-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr_1.35fr]">
+          <div className="col-span-2 space-y-5 lg:col-span-1">
             <Link href="/" className="inline-flex items-center" aria-label="Your Online MBA — Home">
               <span className="rounded-2xl bg-white p-1 shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-transform duration-300 hover:scale-[1.03]">
                 <Image
@@ -99,7 +99,7 @@ const Footer = () => {
             </div>
           ))}
 
-          <div className="space-y-4">
+          <div className="col-span-2 space-y-4 sm:col-span-1">
             <h3 className="text-lg font-extrabold text-[#f1f5f9]">Contact Info</h3>
 
             <div className="space-y-3 text-sm text-[#a8b3c5]">

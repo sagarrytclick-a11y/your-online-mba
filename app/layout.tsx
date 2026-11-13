@@ -1,7 +1,17 @@
 import type { Metadata, Viewport } from "next";
+import { Outfit } from "next/font/google";
 import { SITE_URL, defaultDescription } from "@/app/lib/seo";
 import { siteConfig } from "@/app/data/site";
 import "./globals.css";
+
+// Self-hosted at build time — removes the render-blocking third-party font CSS
+// request and the FOUT it caused.
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-outfit",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -87,15 +97,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className="h-full antialiased">
+    <html lang="en-IN" className={`${outfit.variable} h-full antialiased`}>
       <head>
         <meta name="format-detection" content="telephone=yes" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
-        />
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden app-shell">{children}</body>
     </html>

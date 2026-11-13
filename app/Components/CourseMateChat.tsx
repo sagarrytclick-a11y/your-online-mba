@@ -86,15 +86,21 @@ const CourseMateChat = ({ isOpen, onClose }: Props) => {
       />
 
       {/* Desktop: right-docked, vertically centered · Mobile: full-screen */}
-      <div className="pointer-events-none fixed inset-0 z-[70] flex items-center justify-end p-0 sm:p-4 sm:pr-5">
+      <div
+        aria-hidden={!isOpen}
+        className={`pointer-events-none fixed inset-0 z-[70] flex items-center justify-end p-0 sm:p-4 sm:pr-5 ${
+          isOpen ? "" : "invisible"
+        }`}
+      >
         <div
           role="dialog"
           aria-modal="true"
           aria-label="AI MBA Advisor chat"
-          className={`pointer-events-auto flex h-full w-full flex-col overflow-hidden border border-white/10 bg-[#14161d]/90 backdrop-blur-xl shadow-2xl transition-all duration-300 ease-out sm:h-[520px] sm:max-h-[80vh] sm:w-[360px] sm:rounded-2xl ${
+          aria-hidden={!isOpen}
+          className={`flex h-full w-full flex-col overflow-hidden border border-white/10 bg-[#14161d]/90 backdrop-blur-xl shadow-2xl transition-all duration-300 ease-out sm:h-[520px] sm:max-h-[80vh] sm:w-[360px] sm:rounded-2xl ${
             isOpen
-              ? "translate-x-0 scale-100 opacity-100"
-              : "translate-x-10 scale-95 opacity-0 origin-right"
+              ? "pointer-events-auto visible translate-x-0 scale-100 opacity-100"
+              : "pointer-events-none invisible translate-x-10 scale-95 opacity-0 origin-right"
           }`}
         >
         {/* Header */}

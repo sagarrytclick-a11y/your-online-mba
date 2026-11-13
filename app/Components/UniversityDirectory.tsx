@@ -252,7 +252,7 @@ const UniversityDirectory: React.FC = () => {
                     setFeeBucket(bucket.id);
                     setPage(1);
                   }}
-                  className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold transition-all ${
+                  className={`px-3.5 py-2.5 rounded-full text-[11px] font-extrabold transition-all ${
                     feeBucket === bucket.id
                       ? "bg-[#C81E3D] text-white"
                       : "bg-[#10131a] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/30 hover:text-[#C81E3D]"
@@ -321,7 +321,7 @@ const UniversityDirectory: React.FC = () => {
                     setMinRating(r);
                     setPage(1);
                   }}
-                  className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold transition-all ${
+                  className={`px-3.5 py-2.5 rounded-full text-[11px] font-extrabold transition-all ${
                     minRating === r
                       ? "bg-[#C81E3D] text-white"
                       : "bg-[#10131a] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/30 hover:text-[#C81E3D]"
@@ -395,6 +395,8 @@ const UniversityDirectory: React.FC = () => {
                       <img
                         src={college.image}
                         alt={college.name}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

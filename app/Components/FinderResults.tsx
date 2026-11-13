@@ -131,6 +131,8 @@ const FinderResults: React.FC<FinderResultsProps> = ({ matches, criteria }) => {
                       <img
                         src={match.college.image}
                         alt={match.college.name}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                     </div>

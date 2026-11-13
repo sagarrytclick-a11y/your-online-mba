@@ -3,7 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { siteConfig } from '../data/site';
 
 const WhatsAppButton = ({
-  wrapperClassName = "fixed bottom-24 left-4 sm:left-6 z-50 flex flex-col items-center group",
+  wrapperClassName = "whatsapp-fab fixed left-4 sm:left-6 z-50 flex flex-col items-center group",
 }: {
   wrapperClassName?: string;
 }) => {
@@ -16,7 +16,7 @@ const WhatsAppButton = ({
       aria-label="Chat on WhatsApp"
       className={wrapperClassName}
     >
-      <div className="w-16 h-16 bg-[#25D366] rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center transition-all group-hover:scale-105 active:scale-95 hover:bg-[#20BD5A]">
+      <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center transition-all group-hover:scale-105 active:scale-95 hover:bg-[#20BD5A]">
         <FaWhatsapp size={30} className="text-white" />
       </div>
     </a>

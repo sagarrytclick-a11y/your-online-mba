@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import * as Icons from "lucide-react";
 import { useCompare } from "../context/CompareContext";
@@ -7,11 +7,21 @@ import { useCompare } from "../context/CompareContext";
 const CompareBar: React.FC = () => {
   const { count, compareColleges, clear } = useCompare();
 
-  if (count === 0) return null;
+  const visible = count > 0;
+
+  useEffect(() => {
+    if (!visible) return;
+    document.body.dataset.compare = "1";
+    return () => {
+      delete document.body.dataset.compare;
+    };
+  }, [visible]);
+
+  if (!visible) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-lg px-4">
-      <div className="bg-[#14161d] border border-white/10 rounded-2xl shadow-2xl p-4 flex items-center justify-between gap-4">
+    <div className="compare-bar fixed left-1/2 -translate-x-1/2 z-50 w-full max-w-lg px-3 sm:px-4">
+      <div className="bg-[#14161d] border border-white/10 rounded-2xl shadow-2xl p-3 sm:p-4 flex items-center justify-between gap-3 sm:gap-4">
         <div className="flex items-center gap-2 min-w-0">
           <div className="flex -space-x-2">
             {compareColleges.slice(0, 4).map((col) => (
@@ -27,19 +37,19 @@ const CompareBar: React.FC = () => {
             {count} {count === 1 ? "University" : "Universities"} selected
           </span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <button
             onClick={clear}
-            className="text-xs font-bold text-[#7c8798] hover:text-[#C81E3D] transition-colors px-3 py-1.5"
+            className="text-xs font-bold text-[#7c8798] hover:text-[#C81E3D] transition-colors px-2.5 sm:px-3 py-2.5"
           >
             Clear
           </button>
           <Link
             href="/compare"
-            className="inline-flex items-center gap-1.5 h-9 px-4 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-full text-xs shadow-lg transition-all active:scale-[0.98]"
+            className="inline-flex items-center gap-1.5 h-10 px-4 bg-[#C81E3D] hover:bg-[#B01A33] text-white font-extrabold rounded-full text-xs shadow-lg transition-all active:scale-[0.98]"
           >
             <Icons.BarChart3 size={14} />
-            Compare Now
+            Compare
           </Link>
         </div>
       </div>

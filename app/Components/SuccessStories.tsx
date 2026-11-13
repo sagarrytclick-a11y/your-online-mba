@@ -99,7 +99,7 @@ const SuccessStories = () => {
           {duplicatedTestimonials.map((item, idx) => (
             <div
               key={idx}
-              className="w-[350px] md:w-[400px] bg-[#10131A] border border-white/10 rounded-[20px] p-8 flex flex-col justify-between hover:border-[#C81E3D]/30 hover:shadow-md transition-all duration-300"
+              className="w-[280px] sm:w-[350px] md:w-[400px] bg-[#10131A] border border-white/10 rounded-[20px] p-6 sm:p-8 flex flex-col justify-between hover:border-[#C81E3D]/30 hover:shadow-md transition-all duration-300"
             >
               <div>
                 <div className="flex text-yellow-500 mb-4 text-lg tracking-[3px]">
@@ -150,6 +150,14 @@ const SuccessStories = () => {
         }
         .animate-scroll {
           animation: scroll 30s linear infinite;
+        }
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-scroll {
+            animation: none;
+          }
         }
       `}</style>
     </section>

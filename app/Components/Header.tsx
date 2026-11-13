@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown, Menu, X, Sparkles } from 'lucide-react';
@@ -22,6 +22,30 @@ const Header = () => {
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => setHoveredMenu(null), 150);
   };
+
+  // Mobile menu: lock the page behind it, close on Escape, and close when
+  // rotating/resizing to the desktop layout.
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const onChange = () => mq.matches && setIsOpen(false);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
 
   return (
     <header className="w-full bg-[#14161d] border-b border-white/10 sticky top-0 z-50">
@@ -156,10 +180,11 @@ const Header = () => {
               onMouseEnter={() => handleMouseEnter("universities")}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center space-x-1 text-[#F1F5F9] text-sm font-bold hover:text-[#C81E3D] transition-colors">
+              <div className="flex items-center space-x-1 text-[#F1F5F9] text-sm font-bold">
                 <Link href="/universities" className="hover:text-[#C81E3D] transition-colors">Universities</Link>
-                <ChevronDown size={18} className="text-[#7c8798] transition-transform duration-200" />
-              </button>
+                <ChevronDown size={18} className="text-[#7c8798] transition-transform duration-200" aria-hidden="true" />
+              </div>
+
               {hoveredMenu === "universities" && (
                 <div className="absolute top-full left-0 mt-3 w-[320px] bg-[#14161d] rounded-2xl shadow-xl border border-white/10 p-4 z-50 max-h-[70vh] overflow-y-auto">
                   <div className="grid grid-cols-1 gap-1">
@@ -211,9 +236,12 @@ const Header = () => {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-[#f1f5f9] p-2 hover:bg-[#1b1e27] rounded-lg transition-colors"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              className="text-[#f1f5f9] p-2.5 -mr-1 hover:bg-[#1b1e27] rounded-lg transition-colors"
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
           </div>
@@ -222,12 +250,13 @@ const Header = () => {
 
       {/* MOBILE MENU */}
       {isOpen && (
-        <nav className="lg:hidden bg-[#14161d] border-t border-white/10 absolute w-full left-0 shadow-xl px-6 py-8 space-y-4 max-h-[80vh] overflow-y-auto" aria-label="Mobile navigation">
+        <nav id="mobile-menu" className="lg:hidden bg-[#14161d] border-t border-white/10 absolute top-full w-full left-0 shadow-xl px-4 sm:px-6 py-6 space-y-4 max-h-[calc(100dvh-5.5rem)] overflow-y-auto overscroll-contain" aria-label="Mobile navigation">
           {/* Programs Accordion */}
           <div>
             <button
               onClick={() => setMobileDropdown(mobileDropdown === "programs" ? null : "programs")}
-              className="flex items-center justify-between w-full text-[#C81E3D] text-[11px] font-bold tracking-widest uppercase mb-1"
+              aria-expanded={mobileDropdown === "programs"}
+              className="flex items-center justify-between w-full min-h-11 text-[#C81E3D] text-[11px] font-bold tracking-widest uppercase"
             >
               <span>Programs</span>
               <ChevronDown size={16} className={`text-[#C81E3D] transition-transform duration-200 ${mobileDropdown === "programs" ? "rotate-180" : ""}`} />
@@ -237,7 +266,7 @@ const Header = () => {
                 <Link
                   href="/programs"
                   onClick={() => setIsOpen(false)}
-                  className="block text-sm font-extrabold text-[#C81E3D] py-2 px-2 rounded-lg hover:bg-[#2B141A] transition-all border-b border-white/10 mb-1"
+                  className="block text-sm font-extrabold text-[#C81E3D] py-3 px-2 rounded-lg hover:bg-[#2B141A] transition-all border-b border-white/10 mb-1"
                 >
                   All Programmes
                 </Link>
@@ -246,7 +275,7 @@ const Header = () => {
                     key={program.id}
                     href={`/programs/${program.slug}`}
                     onClick={() => setIsOpen(false)}
-                    className="block text-sm font-bold text-[#f1f5f9] hover:text-[#C81E3D] py-2 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
+                    className="block text-sm font-bold text-[#f1f5f9] hover:text-[#C81E3D] py-3 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
                   >
                     {program.title}
                   </Link>
@@ -260,7 +289,8 @@ const Header = () => {
           <div>
             <button
               onClick={() => setMobileDropdown(mobileDropdown === "services" ? null : "services")}
-              className="flex items-center justify-between w-full text-[#e0244a] text-[11px] font-bold tracking-widest uppercase mb-1"
+              aria-expanded={mobileDropdown === "services"}
+              className="flex items-center justify-between w-full min-h-11 text-[#e0244a] text-[11px] font-bold tracking-widest uppercase mb-1"
             >
               <span>Services</span>
               <ChevronDown size={16} className={`text-[#e0244a] transition-transform duration-200 ${mobileDropdown === "services" ? "rotate-180" : ""}`} />
@@ -275,7 +305,7 @@ const Header = () => {
                         key={s.slug}
                         href={`/services/${s.slug}`}
                         onClick={() => setIsOpen(false)}
-                        className="block text-sm font-bold text-[#f1f5f9] hover:text-[#e0244a] py-2 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
+                        className="block text-sm font-bold text-[#f1f5f9] hover:text-[#e0244a] py-3 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
                       >
                         {s.title}
                       </Link>
@@ -290,7 +320,7 @@ const Header = () => {
                         key={s.slug}
                         href={`/services/${s.slug}`}
                         onClick={() => setIsOpen(false)}
-                        className="block text-sm font-bold text-[#f1f5f9] hover:text-[#e0244a] py-2 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
+                        className="block text-sm font-bold text-[#f1f5f9] hover:text-[#e0244a] py-3 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
                       >
                         {s.title}
                       </Link>
@@ -300,7 +330,7 @@ const Header = () => {
                 <Link
                   href="/services"
                   onClick={() => setIsOpen(false)}
-                  className="block text-sm font-extrabold text-[#e0244a] px-2 py-2"
+                  className="block text-sm font-extrabold text-[#e0244a] px-2 py-3"
                 >
                   View all services →
                 </Link>
@@ -313,7 +343,8 @@ const Header = () => {
           <div>
             <button
               onClick={() => setMobileDropdown(mobileDropdown === "universities" ? null : "universities")}
-              className="flex items-center justify-between w-full text-[#C81E3D] text-[11px] font-bold tracking-widest uppercase mb-1"
+              aria-expanded={mobileDropdown === "universities"}
+              className="flex items-center justify-between w-full min-h-11 text-[#C81E3D] text-[11px] font-bold tracking-widest uppercase mb-1"
             >
               <span>Universities</span>
               <ChevronDown size={16} className={`text-[#C81E3D] transition-transform duration-200 ${mobileDropdown === "universities" ? "rotate-180" : ""}`} />
@@ -323,7 +354,7 @@ const Header = () => {
                 <Link
                   href="/universities"
                   onClick={() => setIsOpen(false)}
-                  className="block text-sm font-extrabold text-[#C81E3D] py-2 px-2 rounded-lg hover:bg-[#2B141A] transition-all border-b border-white/10 mb-1"
+                  className="block text-sm font-extrabold text-[#C81E3D] py-3 px-2 rounded-lg hover:bg-[#2B141A] transition-all border-b border-white/10 mb-1"
                 >
                   View All Universities
                 </Link>
@@ -332,7 +363,7 @@ const Header = () => {
                     key={col.id}
                     href={`/universities/${col.id}`}
                     onClick={() => setIsOpen(false)}
-                    className="block text-sm font-bold text-[#f1f5f9] hover:text-[#C81E3D] py-2 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
+                    className="block text-sm font-bold text-[#f1f5f9] hover:text-[#C81E3D] py-3 px-2 rounded-lg hover:bg-[#2B141A] transition-all"
                   >
                     {col.name}
                   </Link>
@@ -342,11 +373,11 @@ const Header = () => {
           </div>
           <div className="h-[1px] bg-[#1b1e27]" />
 
-          <Link href="/" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-[#f1f5f9]">Home</Link>
+          <Link href="/" onClick={() => setIsOpen(false)} className="block py-2 text-lg font-bold text-[#f1f5f9]">Home</Link>
           <div className="h-[1px] bg-white/10" />
-          <Link href="/about" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-[#f1f5f9]">About</Link>
+          <Link href="/about" onClick={() => setIsOpen(false)} className="block py-2 text-lg font-bold text-[#f1f5f9]">About</Link>
           <div className="h-[1px] bg-white/10" />
-          <Link href="/contact-us" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-[#f1f5f9]">Contact Us</Link>
+          <Link href="/contact-us" onClick={() => setIsOpen(false)} className="block py-2 text-lg font-bold text-[#f1f5f9]">Contact Us</Link>
           <div className="h-[1px] bg-white/10" />
           <div className="pt-2 space-y-3" onClick={() => setIsOpen(false)}>
             <PopupTrigger className="w-full flex items-center justify-center gap-2 px-5 py-4 rounded-full bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white text-base font-extrabold shadow-[0_10px_30px_rgba(224,36,74,0.4)]">

@@ -75,8 +75,8 @@ export default function PromoBar() {
     <div className="relative z-[60] w-full border-b border-[#e0244a]/20 bg-gradient-to-r from-[#1a0b10] via-[#2b141a] to-[#1a0b10]">
       <div className="relative flex items-center">
         {/* Marquee viewport */}
-        <div className="marquee relative h-8 sm:h-9 flex-1 overflow-hidden">
-          <div className="animate-marquee absolute inset-y-0 flex w-max items-center text-[10px] sm:text-[11px] font-bold">
+        <div className="marquee relative h-9 flex-1 overflow-hidden">
+          <div className="animate-marquee absolute inset-y-0 flex w-max items-center pr-2 text-[10px] sm:text-[11px] font-bold">
             {track}
             {/* Duplicate for seamless loop */}
             <div aria-hidden="true" className="flex w-max shrink-0 items-center">
@@ -105,16 +105,16 @@ export default function PromoBar() {
           </div>
           {/* Edge fade gradients */}
           <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[#1a0b10] to-transparent" />
-          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#1a0b10] to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#1a0b10] to-transparent" />
         </div>
 
         {/* Dismiss */}
         <button
           onClick={dismiss}
           aria-label="Dismiss announcement"
-          className="z-10 flex h-8 w-8 flex-shrink-0 items-center justify-center text-[#7c8798] hover:text-white transition-colors"
+          className="z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center text-[#7c8798] hover:text-white transition-colors"
         >
-          <X size={13} />
+          <X size={16} />
         </button>
       </div>
     </div>

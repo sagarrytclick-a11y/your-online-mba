@@ -231,7 +231,7 @@ const ScholarshipChecker: React.FC = () => {
                 key={cat}
                 type="button"
                 onClick={() => setCategoryFilter(cat)}
-                className={`px-4 py-2 rounded-full text-[11px] font-extrabold transition-all ${
+                className={`px-4 py-2.5 rounded-full text-[11px] font-extrabold transition-all ${
                   categoryFilter === cat
                     ? "bg-[#C81E3D] text-white"
                     : "bg-[#14161d] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/30 hover:text-[#C81E3D]"

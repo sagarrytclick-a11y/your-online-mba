@@ -18,6 +18,7 @@ import { SPECIALIZATION_OPTIONS } from "../lib/validation";
 import { useCounsellingForm } from "../lib/use-counselling-form";
 import ServiceLeadForm from "./ServiceLeadForm";
 import SwingTag from "./SwingTag";
+import PopupTrigger from "./PopupTrigger";
 
 type Audience = "learners" | "brands";
 
@@ -115,31 +116,31 @@ const HeroSection = () => {
         <div className="lg:col-span-7 space-y-6 md:space-y-7">
 
           {/* Audience toggle — own row */}
-          <div className="inline-flex items-center gap-1 rounded-2xl border border-white/10 bg-[#10131a]/90 backdrop-blur p-1.5 shadow-lg">
+          <div className="inline-flex w-full sm:w-auto items-center justify-between sm:justify-start gap-1 rounded-2xl border border-white/10 bg-[#10131a]/90 backdrop-blur p-1 sm:p-1.5 shadow-lg">
             <button
               type="button"
               onClick={() => setAudience("learners")}
               aria-pressed={!isBrands}
-              className={`flex items-center gap-2 rounded-xl px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold transition-all duration-300 ${
+              className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-5 py-2 sm:py-2.5 text-[11px] leading-tight sm:text-sm font-extrabold transition-all duration-300 ${
                 !isBrands
                   ? "bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white shadow-[0_8px_22px_rgba(224,36,74,0.4)]"
                   : "text-[#a8b3c5] hover:text-white"
               }`}
             >
-              <GraduationCap size={16} />
+              <GraduationCap size={15} className="flex-shrink-0" />
               For Learners
             </button>
             <button
               type="button"
               onClick={() => setAudience("brands")}
               aria-pressed={isBrands}
-              className={`flex items-center gap-2 rounded-xl px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold transition-all duration-300 ${
+              className={`flex flex-1 sm:flex-none items-center justify-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-5 py-2 sm:py-2.5 text-[11px] leading-tight sm:text-sm font-extrabold transition-all duration-300 ${
                 isBrands
                   ? "bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white shadow-[0_8px_22px_rgba(224,36,74,0.4)]"
                   : "text-[#a8b3c5] hover:text-white"
               }`}
             >
-              <Building2 size={16} />
+              <Building2 size={15} className="flex-shrink-0" />
               For EdTech Brands
             </button>
           </div>
@@ -208,13 +209,10 @@ const HeroSection = () => {
           <div className="flex flex-wrap items-center gap-4">
             {!isBrands ? (
               <>
-                <a
-                  href="#lead-form"
-                  className="inline-flex items-center gap-2 h-13 sm:h-14 px-7 sm:px-8 py-4 rounded-full bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold text-sm sm:text-base shadow-[0_15px_40px_rgba(224,36,74,0.4)] hover:shadow-[0_15px_45px_rgba(224,36,74,0.55)] hover:brightness-110 transition-all active:scale-[0.98]"
-                >
+                <PopupTrigger className="group inline-flex items-center gap-2 h-13 sm:h-14 px-7 sm:px-8 py-4 rounded-full bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold text-sm sm:text-base shadow-[0_15px_40px_rgba(224,36,74,0.4)] hover:shadow-[0_15px_45px_rgba(224,36,74,0.55)] hover:brightness-110 transition-all active:scale-[0.98]">
                   Get My MBA Plan
-                  <ArrowRight size={18} />
-                </a>
+                  <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </PopupTrigger>
                 <Link
                   href="/universities"
                   className="inline-flex items-center gap-2 h-13 sm:h-14 px-7 sm:px-8 py-4 rounded-full border border-white/15 text-[#f1f5f9] font-bold text-sm sm:text-base hover:border-[#e0244a]/60 hover:text-white transition-all"
@@ -224,13 +222,13 @@ const HeroSection = () => {
               </>
             ) : (
               <>
-                <a
-                  href="#lead-form"
-                  className="group inline-flex items-center gap-2 h-13 sm:h-14 px-7 sm:px-8 py-4 rounded-full bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold text-sm sm:text-base shadow-[0_15px_40px_rgba(224,36,74,0.4)] hover:brightness-110 transition-all active:scale-[0.98]"
+                <PopupTrigger
+                  variant="service"
+                  className="group inline-flex items-center gap-2 h-13 sm:h-14 px-7 sm:px-8 py-4 rounded-full bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold text-sm sm:text-base shadow-[0_15px_40px_rgba(224,36,74,0.4)] hover:shadow-[0_15px_45px_rgba(224,36,74,0.55)] hover:brightness-110 transition-all active:scale-[0.98]"
                 >
                   Get My Growth Audit
                   <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </PopupTrigger>
                 <Link
                   href="/services"
                   className="inline-flex items-center gap-2 h-13 sm:h-14 px-7 sm:px-8 py-4 rounded-full border border-white/15 text-[#f1f5f9] font-bold text-sm sm:text-base hover:border-[#e0244a]/60 hover:text-white transition-all"

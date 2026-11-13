@@ -76,6 +76,10 @@ const RankingsTable = () => {
           </div>
         </ScrollReveal>
 
+        <p className="swipe-hint mb-2 items-center gap-1.5 text-[11px] font-bold text-[#7c8798]">
+          <span className="text-[#e0244a]">↔</span> Swipe sideways to see every column
+        </p>
+
         <div className="overflow-x-auto custom-scroll rounded-2xl border border-white/10 bg-[#10131a]/60 shadow-[0_25px_60px_rgba(0,0,0,0.4)] backdrop-blur">
           <table className="w-full min-w-[820px] text-left">
             <thead className="bg-[#10131a]">
@@ -146,7 +150,7 @@ const RankingsTable = () => {
                   <td className="px-5 py-4 text-right">
                     <Link
                       href={`/roi-calculator?university=${college.id}`}
-                      className="text-[#C81E3D] font-extrabold hover:underline whitespace-nowrap"
+                      className="inline-flex items-center min-h-9 text-[#C81E3D] font-extrabold hover:underline whitespace-nowrap"
                     >
                       Check ROI
                     </Link>

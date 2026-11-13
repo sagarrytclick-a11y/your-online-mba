@@ -50,7 +50,7 @@ const CTASection = () => {
                 {/* Buttons */}
                 <div className="mt-7 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <button
-                    onClick={open}
+                    onClick={() => open()}
                     className="group flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold text-sm sm:text-base shadow-[0_14px_38px_rgba(224,36,74,0.45)] hover:brightness-110 transition-all active:scale-[0.98]"
                   >
                     <Phone size={18} fill="currentColor" />
@@ -58,7 +58,7 @@ const CTASection = () => {
                     <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
                   <button
-                    onClick={open}
+                    onClick={() => open()}
                     className="flex items-center justify-center gap-2 h-14 px-8 rounded-full border border-white/15 text-[#f1f5f9] font-bold text-sm sm:text-base hover:border-[#e0244a]/50 hover:text-white transition-all active:scale-[0.98]"
                   >
                     Get Free Guidance

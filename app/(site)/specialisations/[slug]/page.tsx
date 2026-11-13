@@ -331,10 +331,10 @@ export default async function SpecialisationPage({ params }: PageProps) {
       <WhatsAppButton />
 
       {/* PDF Floating Widget at bottom-left */}
-      <div className="fixed bottom-6 left-6 z-50">
+      <div className="side-fab fixed bottom-6 left-6 z-50">
         <div className="relative group cursor-pointer flex flex-col items-center">
           <span className="absolute inset-0 rounded-full border-2 border-[#E11D48]/30 scale-110 animate-ping opacity-75"></span>
-          <PopupTrigger className="flex flex-col items-center justify-center w-16 h-16 bg-[#14161d] border border-[#e0244a]/20 rounded-full shadow-xl hover:shadow-2xl transition-all group-hover:scale-105 active:scale-95 relative z-10">
+          <PopupTrigger className="flex flex-col items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-[#14161d] border border-[#e0244a]/20 rounded-full shadow-xl hover:shadow-2xl transition-all group-hover:scale-105 active:scale-95 relative z-10">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E11D48]/10 to-[#C81E3D]/10 flex items-center justify-center mb-0.5">
               <Icons.Download size={18} className="text-[#C81E3D] group-hover:translate-y-0.5 transition-transform" />
             </div>
