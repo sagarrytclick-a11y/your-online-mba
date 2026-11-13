@@ -16,21 +16,21 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center px-4 py-24">
+    <div className="min-h-screen bg-[#10131A] flex items-center justify-center px-4 py-24">
       <div className="max-w-lg text-center space-y-6">
-        <span className="w-16 h-16 rounded-full bg-[#FFF1F2] flex items-center justify-center mx-auto">
+        <span className="w-16 h-16 rounded-full bg-[#2B141A] flex items-center justify-center mx-auto">
           <Icons.TriangleAlert size={28} className="text-[#C81E3D]" />
         </span>
         <div>
-          <h1 className="text-2xl font-black text-[#1E293B] tracking-tight">
+          <h1 className="text-2xl font-black text-[#F1F5F9] tracking-tight">
             Something went wrong on our side
           </h1>
-          <p className="text-sm text-slate-500 font-medium mt-2">
+          <p className="text-sm text-[#8b96a8] font-medium mt-2">
             This is not your fault. Try again, and if it keeps happening our counsellors can look at
             the page for you.
           </p>
           {error.digest && (
-            <p className="text-[10px] text-slate-400 font-semibold mt-2">Ref: {error.digest}</p>
+            <p className="text-[10px] text-[#7c8798] font-semibold mt-2">Ref: {error.digest}</p>
           )}
         </div>
         <div className="flex flex-wrap justify-center gap-3">
@@ -44,7 +44,7 @@ export default function Error({
           </button>
           <Link
             href="/"
-            className="h-12 px-7 border-2 border-slate-200 text-slate-500 font-extrabold rounded-full text-sm transition-all hover:border-slate-300 inline-flex items-center gap-2"
+            className="h-12 px-7 border-2 border-white/10 text-[#8b96a8] font-extrabold rounded-full text-sm transition-all hover:border-white/15 inline-flex items-center gap-2"
           >
             <Icons.Home size={16} />
             Homepage

@@ -71,10 +71,10 @@ const badgeRules: BadgeRule[] = [
 ];
 
 const toneClasses: Record<BadgeRule["tone"], string> = {
-  rose: "bg-[#FFF1F2] border-rose-100 text-[#C81E3D]",
-  emerald: "bg-emerald-50 border-emerald-100 text-emerald-700",
+  rose: "bg-[#2B141A] border-[#e0244a]/20 text-[#C81E3D]",
+  emerald: "bg-emerald-400/10 border-emerald-400/25 text-emerald-400",
   violet: "bg-violet-50 border-violet-100 text-violet-700",
-  amber: "bg-amber-50 border-amber-100 text-amber-700",
+  amber: "bg-amber-400/10 border-amber-400/20 text-amber-400",
 };
 
 const badgeIcons: Record<string, React.ComponentType<{ size?: number }>> = {
@@ -199,9 +199,9 @@ const UniversityDirectory: React.FC = () => {
   return (
     <div className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6 items-start">
-        <aside className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm lg:sticky lg:top-28 space-y-6">
+        <aside className="bg-[#14161d] rounded-2xl border border-white/10 p-6 shadow-sm lg:sticky lg:top-28 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-extrabold text-[#1E293B] flex items-center gap-2">
+            <h2 className="text-sm font-extrabold text-[#F1F5F9] flex items-center gap-2">
               <Icons.SlidersHorizontal size={16} className="text-[#C81E3D]" />
               Filters
             </h2>
@@ -217,7 +217,7 @@ const UniversityDirectory: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="college-search" className="block text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <label htmlFor="college-search" className="block text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               Search
             </label>
             <div className="relative">
@@ -234,13 +234,13 @@ const UniversityDirectory: React.FC = () => {
                   setPage(1);
                 }}
                 placeholder="University or city"
-                className="w-full h-11 pl-10 pr-4 rounded-xl border border-gray-200 text-sm font-semibold text-[#1E293B] placeholder:text-slate-300 focus:border-[#C81E3D] focus:ring-2 focus:ring-rose-100 outline-none transition-all"
+                className="w-full h-11 pl-10 pr-4 rounded-xl border border-white/10 text-sm font-semibold text-[#F1F5F9] placeholder:text-slate-300 focus:border-[#C81E3D] focus:ring-2 focus:ring-[#e0244a]/25 outline-none transition-all"
               />
             </div>
           </div>
 
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               Total fee
             </p>
             <div className="flex flex-wrap gap-2">
@@ -255,7 +255,7 @@ const UniversityDirectory: React.FC = () => {
                   className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold transition-all ${
                     feeBucket === bucket.id
                       ? "bg-[#C81E3D] text-white"
-                      : "bg-slate-50 border border-gray-100 text-slate-500 hover:border-rose-200 hover:text-[#C81E3D]"
+                      : "bg-[#10131a] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/30 hover:text-[#C81E3D]"
                   }`}
                 >
                   {bucket.label}
@@ -265,14 +265,14 @@ const UniversityDirectory: React.FC = () => {
           </div>
 
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               Accreditation
             </p>
             <div className="space-y-2">
               {accreditationOptions.map((opt) => (
                 <label
                   key={opt}
-                  className="flex items-center gap-2.5 text-xs font-bold text-slate-600 cursor-pointer hover:text-[#C81E3D] transition-colors"
+                  className="flex items-center gap-2.5 text-xs font-bold text-[#a8b3c5] cursor-pointer hover:text-[#C81E3D] transition-colors"
                 >
                   <input
                     type="checkbox"
@@ -287,14 +287,14 @@ const UniversityDirectory: React.FC = () => {
           </div>
 
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               Exam mode
             </p>
             <div className="space-y-2">
               {examModeOptions.map((opt) => (
                 <label
                   key={opt}
-                  className="flex items-center gap-2.5 text-xs font-bold text-slate-600 cursor-pointer hover:text-[#C81E3D] transition-colors"
+                  className="flex items-center gap-2.5 text-xs font-bold text-[#a8b3c5] cursor-pointer hover:text-[#C81E3D] transition-colors"
                 >
                   <input
                     type="checkbox"
@@ -309,7 +309,7 @@ const UniversityDirectory: React.FC = () => {
           </div>
 
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">
+            <p className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-2">
               Minimum rating
             </p>
             <div className="flex flex-wrap gap-2">
@@ -324,7 +324,7 @@ const UniversityDirectory: React.FC = () => {
                   className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold transition-all ${
                     minRating === r
                       ? "bg-[#C81E3D] text-white"
-                      : "bg-slate-50 border border-gray-100 text-slate-500 hover:border-rose-200 hover:text-[#C81E3D]"
+                      : "bg-[#10131a] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/30 hover:text-[#C81E3D]"
                   }`}
                 >
                   {r === 0 ? "Any" : `${r}+`}
@@ -336,15 +336,15 @@ const UniversityDirectory: React.FC = () => {
 
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <p className="text-sm text-slate-500 font-semibold">
+            <p className="text-sm text-[#8b96a8] font-semibold">
               Showing{" "}
-              <span className="font-extrabold text-[#1E293B]">
+              <span className="font-extrabold text-[#F1F5F9]">
                 {filtered.length === 0 ? 0 : start + 1}–{Math.min(start + ITEMS_PER_PAGE, filtered.length)}
               </span>{" "}
-              of <span className="font-extrabold text-[#1E293B]">{filtered.length}</span> universities
+              of <span className="font-extrabold text-[#F1F5F9]">{filtered.length}</span> universities
             </p>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Sort</span>
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#7c8798]">Sort</span>
               <select
                 value={sort}
                 onChange={(e) => {
@@ -352,7 +352,7 @@ const UniversityDirectory: React.FC = () => {
                   setPage(1);
                 }}
                 aria-label="Sort universities"
-                className="h-10 px-4 rounded-xl border border-gray-200 bg-white text-xs font-extrabold text-[#1E293B] focus:border-[#C81E3D] focus:ring-2 focus:ring-rose-100 outline-none transition-all cursor-pointer"
+                className="h-10 px-4 rounded-xl border border-white/10 bg-[#14161d] text-xs font-extrabold text-[#F1F5F9] focus:border-[#C81E3D] focus:ring-2 focus:ring-[#e0244a]/25 outline-none transition-all cursor-pointer"
               >
                 {sortOptions.map((opt) => (
                   <option key={opt.key} value={opt.key}>
@@ -364,12 +364,12 @@ const UniversityDirectory: React.FC = () => {
           </div>
 
           {visible.length === 0 ? (
-            <div className="bg-white rounded-3xl border border-gray-100 p-12 text-center space-y-4">
-              <span className="w-14 h-14 mx-auto rounded-2xl bg-[#FFF1F2] flex items-center justify-center">
+            <div className="bg-[#14161d] rounded-3xl border border-white/10 p-12 text-center space-y-4">
+              <span className="w-14 h-14 mx-auto rounded-2xl bg-[#2B141A] flex items-center justify-center">
                 <Icons.SearchX size={24} className="text-[#C81E3D]" />
               </span>
-              <h3 className="text-lg font-extrabold text-[#1E293B]">No universities match those filters</h3>
-              <p className="text-sm text-slate-500 font-medium max-w-sm mx-auto">
+              <h3 className="text-lg font-extrabold text-[#F1F5F9]">No universities match those filters</h3>
+              <p className="text-sm text-[#8b96a8] font-medium max-w-sm mx-auto">
                 Try widening the fee range or removing an accreditation filter.
               </p>
               <button
@@ -389,9 +389,9 @@ const UniversityDirectory: React.FC = () => {
                   <Link
                     key={college.id}
                     href={`/universities/${college.id}`}
-                    className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col"
+                    className="bg-[#14161d] border border-white/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col"
                   >
-                    <div className="relative h-36 overflow-hidden bg-slate-100">
+                    <div className="relative h-36 overflow-hidden bg-[#1b1e27]">
                       <img
                         src={college.image}
                         alt={college.name}
@@ -410,10 +410,10 @@ const UniversityDirectory: React.FC = () => {
                     </div>
 
                     <div className="p-5 flex flex-col flex-1">
-                      <h3 className="text-sm font-extrabold text-[#1E293B] group-hover:text-[#C81E3D] transition-colors leading-tight">
+                      <h3 className="text-sm font-extrabold text-[#F1F5F9] group-hover:text-[#C81E3D] transition-colors leading-tight">
                         {college.name}
                       </h3>
-                      <p className="text-[11px] text-slate-400 font-bold mt-1 flex items-center gap-1">
+                      <p className="text-[11px] text-[#7c8798] font-bold mt-1 flex items-center gap-1">
                         <Icons.MapPin size={10} className="text-[#C81E3D]" />
                         {college.location}
                       </p>
@@ -435,33 +435,33 @@ const UniversityDirectory: React.FC = () => {
                         </div>
                       )}
 
-                      <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-gray-100">
+                      <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-white/10">
                         <div>
-                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">Fee</p>
-                          <p className="text-xs font-black text-[#1E293B] mt-0.5">
+                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-[#7c8798]">Fee</p>
+                          <p className="text-xs font-black text-[#F1F5F9] mt-0.5">
                             ₹{(details.totalFee / 100000).toFixed(2)}L
                           </p>
                         </div>
                         <div>
-                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">Package</p>
-                          <p className="text-xs font-black text-[#1E293B] mt-0.5">
+                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-[#7c8798]">Package</p>
+                          <p className="text-xs font-black text-[#F1F5F9] mt-0.5">
                             ₹{details.avgPackageLpa}L
                           </p>
                         </div>
                         <div>
-                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400">5Y gain</p>
-                          <p className="text-xs font-black text-[#1E293B] mt-0.5">
+                          <p className="text-[9px] font-extrabold uppercase tracking-wider text-[#7c8798]">5Y gain</p>
+                          <p className="text-xs font-black text-[#F1F5F9] mt-0.5">
                             {roi.fiveYearNetGain >= 0 ? "+" : ""}
                             {Math.round(roi.fiveYearNetGain / 100000)}L
                           </p>
                         </div>
                       </div>
 
-                      <p className="text-[11px] text-slate-500 font-medium leading-relaxed line-clamp-2 mt-3 flex-1">
+                      <p className="text-[11px] text-[#8b96a8] font-medium leading-relaxed line-clamp-2 mt-3 flex-1">
                         {college.description}
                       </p>
 
-                      <div className="flex items-center justify-between gap-2 mt-4 pt-4 border-t border-gray-100">
+                      <div className="flex items-center justify-between gap-2 mt-4 pt-4 border-t border-white/10">
                         <RatingStars value={college.rating} size={12} showValue={false} reviewCount={college.totalReviews} />
                         <span className="text-[11px] font-extrabold text-[#C81E3D] group-hover:underline">
                           View details
@@ -493,7 +493,7 @@ const UniversityDirectory: React.FC = () => {
         <p className="text-rose-100 text-sm sm:text-base font-medium max-w-xl mx-auto">
           Get free expert counselling to find the best university matched to your goals and budget.
         </p>
-        <PopupTrigger className="inline-flex items-center gap-2 h-12 px-8 bg-white text-[#C81E3D] font-extrabold rounded-full shadow-lg hover:bg-gray-100 transition-all text-sm">
+        <PopupTrigger className="inline-flex items-center gap-2 h-12 px-8 bg-[#14161d] text-[#C81E3D] font-extrabold rounded-full shadow-lg hover:bg-[#1b1e27] transition-all text-sm">
           <Icons.Phone size={16} />
           Talk to an Expert
         </PopupTrigger>

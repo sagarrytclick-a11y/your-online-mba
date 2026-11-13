@@ -11,6 +11,8 @@ type Enquiry = {
   email: string;
   specialization: string;
   city: string;
+  enquiryType?: "course" | "service";
+  service?: string;
   status: "pending" | "resolved" | "follow-up";
   createdAt: string;
 };
@@ -22,10 +24,16 @@ const STATUS_OPTIONS = [
   { value: "resolved", label: "Resolved" },
 ];
 
+const TYPE_OPTIONS = [
+  { value: "", label: "All Leads" },
+  { value: "course", label: "Course Leads" },
+  { value: "service", label: "Service Leads" },
+];
+
 const STATUS_STYLES: Record<string, { bg: string; text: string }> = {
-  pending: { bg: "bg-amber-50", text: "text-amber-700" },
-  "follow-up": { bg: "bg-blue-50", text: "text-blue-700" },
-  resolved: { bg: "bg-green-50", text: "text-green-700" },
+  pending: { bg: "bg-amber-400/10", text: "text-amber-400" },
+  "follow-up": { bg: "bg-blue-400/10", text: "text-blue-400" },
+  resolved: { bg: "bg-green-400/10", text: "text-green-400" },
 };
 
 const LIMIT = 10;
@@ -37,6 +45,8 @@ export default function AdminDashboard() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [statusFilter, setStatusFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
+  const [counts, setCounts] = useState({ course: 0, service: 0 });
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(true);
@@ -54,6 +64,7 @@ export default function AdminDashboard() {
         limit: String(LIMIT),
       });
       if (statusFilter) params.set("status", statusFilter);
+      if (typeFilter) params.set("type", typeFilter);
       if (search.trim()) params.set("search", search.trim());
 
       const res = await fetch(`/api/admin/enquiries?${params}`);
@@ -65,6 +76,7 @@ export default function AdminDashboard() {
       setEnquiries(data.enquiries || []);
       setTotal(data.total || 0);
       setTotalPages(data.totalPages || 0);
+      setCounts({ course: data.courseCount ?? 0, service: data.serviceCount ?? 0 });
 
       // If current page is empty after delete/filter, go back
       if (data.totalPages > 0 && page > data.totalPages) {
@@ -73,7 +85,7 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-  }, [page, statusFilter, search, router]);
+  }, [page, statusFilter, typeFilter, search, router]);
 
   useEffect(() => {
     // Kick the request off from a frame callback so the first paint is not
@@ -146,15 +158,18 @@ export default function AdminDashboard() {
     });
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
-      <header className="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+    <div className="min-h-screen bg-[#10131A]">
+      <header className="bg-[#14161d] border-b border-white/10 px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-lg sm:text-xl font-black text-[#1E293B]">Enquiries Dashboard</h1>
-          <p className="text-xs text-[#475569] font-medium">{total} total enquiries</p>
+          <h1 className="text-lg sm:text-xl font-black text-[#F1F5F9]">Enquiries Dashboard</h1>
+          <p className="text-xs text-[#a8b3c5] font-medium">
+            {total} total · <span className="text-[#e0244a]">{counts.course} course</span> ·{" "}
+            <span className="text-[#e0244a]">{counts.service} service</span>
+          </p>
         </div>
         <button
           onClick={() => setShowLogoutConfirm(true)}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-[#1E293B] hover:text-[#C81E3D] transition-colors"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-[#F1F5F9] hover:text-[#C81E3D] transition-colors"
         >
           <LogOut size={16} /> Logout
         </button>
@@ -163,14 +178,34 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
           <div className="relative flex-1 sm:flex-none">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B]" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8B96A8]" />
             <input
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Search name, phone, email, city..."
-              className="w-full sm:w-72 h-10 pl-9 pr-4 border border-gray-200 rounded-xl text-sm text-[#1E293B] outline-none focus:border-[#C81E3D] transition-all"
+              placeholder="Search name, phone, email, city, service..."
+              className="w-full sm:w-72 h-10 pl-9 pr-4 border border-white/10 rounded-xl text-sm text-[#F1F5F9] outline-none focus:border-[#C81E3D] transition-all"
             />
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            {TYPE_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => {
+                  setTypeFilter(opt.value);
+                  setPage(1);
+                }}
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                  typeFilter === opt.value
+                    ? "bg-[#C81E3D] text-white"
+                    : "bg-[#1b1e27] border border-white/10 text-[#f1f5f9] hover:border-[#C81E3D]/40"
+                }`}
+              >
+                {opt.label}
+                {opt.value === "course" && ` (${counts.course})`}
+                {opt.value === "service" && ` (${counts.service})`}
+              </button>
+            ))}
           </div>
           <div className="flex gap-2 flex-wrap">
             {STATUS_OPTIONS.map((opt) => (
@@ -183,7 +218,7 @@ export default function AdminDashboard() {
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                   statusFilter === opt.value
                     ? "bg-[#C81E3D] text-white"
-                    : "bg-white border border-gray-200 text-[#1E293B] hover:border-[#C81E3D]/30"
+                    : "bg-[#14161d] border border-white/10 text-[#F1F5F9] hover:border-[#C81E3D]/30"
                 }`}
               >
                 {opt.label}
@@ -192,30 +227,30 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div className="overflow-x-auto">
+        <div className="bg-[#14161d] rounded-2xl shadow-sm border border-white/10 overflow-hidden">
+          <div className="overflow-x-auto custom-scroll">
             <table className="w-full text-sm min-w-[800px]">
               <thead>
-                <tr className="bg-[#F8FAFC] border-b border-gray-100">
-                  <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">Name</th>
-                  <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">Contact</th>
-                  <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">Specialization</th>
-                  <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">City</th>
-                  <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">Status</th>
-                  <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">Date</th>
-                  <th className="text-left px-5 py-4 font-bold text-[#1E293B] text-xs uppercase tracking-wider">Action</th>
+                <tr className="bg-[#10131A] border-b border-white/10">
+                  <th className="text-left px-5 py-4 font-bold text-[#F1F5F9] text-xs uppercase tracking-wider">Name</th>
+                  <th className="text-left px-5 py-4 font-bold text-[#F1F5F9] text-xs uppercase tracking-wider">Contact</th>
+                  <th className="text-left px-5 py-4 font-bold text-[#F1F5F9] text-xs uppercase tracking-wider">Interest</th>
+                  <th className="text-left px-5 py-4 font-bold text-[#F1F5F9] text-xs uppercase tracking-wider">City</th>
+                  <th className="text-left px-5 py-4 font-bold text-[#F1F5F9] text-xs uppercase tracking-wider">Status</th>
+                  <th className="text-left px-5 py-4 font-bold text-[#F1F5F9] text-xs uppercase tracking-wider">Date</th>
+                  <th className="text-left px-5 py-4 font-bold text-[#F1F5F9] text-xs uppercase tracking-wider">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
                   <tr>
                     <td colSpan={7} className="text-center py-20">
-                      <Loader2 size={24} className="animate-spin mx-auto text-[#64748B]" />
+                      <Loader2 size={24} className="animate-spin mx-auto text-[#8B96A8]" />
                     </td>
                   </tr>
                 ) : enquiries.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="text-center py-20 text-[#64748B] font-medium">
+                    <td colSpan={7} className="text-center py-20 text-[#8B96A8] font-medium">
                       No enquiries found
                     </td>
                   </tr>
@@ -223,14 +258,27 @@ export default function AdminDashboard() {
                   enquiries.map((e) => {
                     const st = STATUS_STYLES[e.status] || STATUS_STYLES.pending;
                     return (
-                      <tr key={e._id} className="border-b border-gray-50 hover:bg-[#FAFAFA] transition-colors">
-                        <td className="px-5 py-4 font-bold text-[#1E293B]">{e.name}</td>
+                      <tr key={e._id} className="border-b border-white/5 hover:bg-[#0B0D12] transition-colors">
+                        <td className="px-5 py-4 font-bold text-[#F1F5F9]">{e.name}</td>
                         <td className="px-5 py-4">
-                          <div className="text-[#1E293B] font-semibold">{e.phone}</div>
-                          <div className="text-[#64748B] text-xs">{e.email}</div>
+                          <div className="text-[#F1F5F9] font-semibold">{e.phone}</div>
+                          <div className="text-[#8B96A8] text-xs">{e.email}</div>
                         </td>
-                        <td className="px-5 py-4 text-[#1E293B] font-medium">{e.specialization}</td>
-                        <td className="px-5 py-4 text-[#1E293B]">{e.city}</td>
+                        <td className="px-5 py-4">
+                          <span
+                            className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider mb-1 ${
+                              (e.enquiryType ?? "course") === "service"
+                                ? "bg-[#C81E3D]/15 text-[#e0244a]"
+                                : "bg-blue-400/10 text-blue-400"
+                            }`}
+                          >
+                            {(e.enquiryType ?? "course") === "service" ? "Service" : "Course"}
+                          </span>
+                          <div className="text-[#F1F5F9] font-medium leading-snug">
+                            {e.service || e.specialization || "—"}
+                          </div>
+                        </td>
+                        <td className="px-5 py-4 text-[#F1F5F9]">{e.city}</td>
                         <td className="px-5 py-4">
                           <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold ${st.bg} ${st.text}`}>
                             {e.status === "follow-up"
@@ -238,14 +286,14 @@ export default function AdminDashboard() {
                               : e.status.charAt(0).toUpperCase() + e.status.slice(1)}
                           </span>
                         </td>
-                        <td className="px-5 py-4 text-[#475569] text-xs font-medium">{formatDate(e.createdAt)}</td>
+                        <td className="px-5 py-4 text-[#A8B3C5] text-xs font-medium">{formatDate(e.createdAt)}</td>
                         <td className="px-5 py-4">
                           <div className="flex items-center gap-2">
                             <select
                               value={e.status}
                               onChange={(ev) => handleStatusChange(e._id, ev.target.value)}
                               disabled={updatingId === e._id}
-                              className="px-2 py-1.5 rounded-lg border border-gray-200 text-xs font-bold text-[#1E293B] bg-white outline-none focus:border-[#C81E3D] transition-all disabled:opacity-50 cursor-pointer"
+                              className="px-2 py-1.5 rounded-lg border border-white/10 text-xs font-bold text-[#F1F5F9] bg-[#14161d] outline-none focus:border-[#C81E3D] transition-all disabled:opacity-50 cursor-pointer"
                             >
                               <option value="pending">Pending</option>
                               <option value="follow-up">Follow Up</option>
@@ -253,7 +301,7 @@ export default function AdminDashboard() {
                             </select>
                             <button
                               onClick={() => setDeleteTarget(e)}
-                              className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#C81E3D] hover:bg-red-50 transition-all"
+                              className="p-1.5 rounded-lg text-[#7C8798] hover:text-[#C81E3D] hover:bg-[#2b141a] transition-all"
                               title="Delete"
                             >
                               <Trash2 size={15} />
@@ -291,16 +339,16 @@ export default function AdminDashboard() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="logout-title"
-            className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl p-8 text-center space-y-5"
+            className="relative w-full max-w-sm bg-[#14161d] rounded-2xl shadow-2xl p-8 text-center space-y-5"
           >
-            <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto">
+            <div className="w-14 h-14 bg-[#2b141a] rounded-full flex items-center justify-center mx-auto">
               <LogOut size={26} className="text-[#C81E3D]" />
             </div>
             <div className="space-y-2">
-              <h3 id="logout-title" className="text-lg font-black text-[#1E293B]">
+              <h3 id="logout-title" className="text-lg font-black text-[#F1F5F9]">
                 Are you sure you want to logout?
               </h3>
-              <p className="text-sm text-[#64748B] font-medium">
+              <p className="text-sm text-[#8B96A8] font-medium">
                 You will need to sign in again to access the admin dashboard.
               </p>
             </div>
@@ -308,7 +356,7 @@ export default function AdminDashboard() {
               <button
                 onClick={() => setShowLogoutConfirm(false)}
                 disabled={loggingOut}
-                className="flex-1 h-11 rounded-xl border border-gray-200 text-sm font-bold text-[#1E293B] hover:bg-gray-50 transition-all disabled:opacity-60"
+                className="flex-1 h-11 rounded-xl border border-white/10 text-sm font-bold text-[#F1F5F9] hover:bg-[#10131a] transition-all disabled:opacity-60"
               >
                 Cancel
               </button>
@@ -329,22 +377,22 @@ export default function AdminDashboard() {
       {deleteTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setDeleteTarget(null)} />
-          <div className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl p-8 text-center space-y-5">
-            <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mx-auto">
+          <div className="relative w-full max-w-sm bg-[#14161d] rounded-2xl shadow-2xl p-8 text-center space-y-5">
+            <div className="w-14 h-14 bg-[#2b141a] rounded-full flex items-center justify-center mx-auto">
               <AlertTriangle size={28} className="text-[#C81E3D]" />
             </div>
             <div className="space-y-2">
-              <h3 className="text-lg font-black text-[#1E293B]">Delete Enquiry?</h3>
-              <p className="text-sm text-[#64748B] font-medium">
+              <h3 className="text-lg font-black text-[#F1F5F9]">Delete Enquiry?</h3>
+              <p className="text-sm text-[#8B96A8] font-medium">
                 Are you sure you want to delete{" "}
-                <span className="font-bold text-[#1E293B]">{deleteTarget.name}</span>&apos;s enquiry? This
+                <span className="font-bold text-[#F1F5F9]">{deleteTarget.name}</span>&apos;s enquiry? This
                 action cannot be undone.
               </p>
             </div>
             <div className="flex gap-3 pt-2">
               <button
                 onClick={() => setDeleteTarget(null)}
-                className="flex-1 h-11 rounded-xl border border-gray-200 text-sm font-bold text-[#1E293B] hover:bg-gray-50 transition-all"
+                className="flex-1 h-11 rounded-xl border border-white/10 text-sm font-bold text-[#F1F5F9] hover:bg-[#10131a] transition-all"
               >
                 Cancel
               </button>

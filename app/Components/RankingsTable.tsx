@@ -48,7 +48,7 @@ const RankingsTable = () => {
   }, [sort]);
 
   return (
-    <section className="w-full bg-white py-10 md:py-14 px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full py-10 md:py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <ScrollReveal>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
@@ -63,10 +63,10 @@ const RankingsTable = () => {
                   key={option.id}
                   type="button"
                   onClick={() => setSort(option.id)}
-                  className={`px-4 py-2 rounded-full text-[11px] font-extrabold transition-all ${
+                  className={`px-4 py-2 rounded-full text-[11px] font-extrabold transition-all duration-300 ${
                     sort === option.id
-                      ? "bg-[#C81E3D] text-white"
-                      : "bg-[#F8FAFC] border border-gray-100 text-slate-500 hover:border-rose-200 hover:text-[#C81E3D]"
+                      ? "bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white shadow-[0_6px_18px_rgba(224,36,74,0.4)] scale-105"
+                      : "bg-[#10131A] border border-white/10 text-[#8b96a8] hover:border-[#e0244a]/40 hover:text-[#ff5c7a]"
                   }`}
                 >
                   {option.label}
@@ -76,10 +76,10 @@ const RankingsTable = () => {
           </div>
         </ScrollReveal>
 
-        <div className="overflow-x-auto rounded-2xl border border-gray-100 shadow-sm">
+        <div className="overflow-x-auto custom-scroll rounded-2xl border border-white/10 bg-[#10131a]/60 shadow-[0_25px_60px_rgba(0,0,0,0.4)] backdrop-blur">
           <table className="w-full min-w-[820px] text-left">
-            <thead className="bg-[#FAFBFD]">
-              <tr className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+            <thead className="bg-[#10131a]">
+              <tr className="text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798]">
                 <th className="px-5 py-4">University</th>
                 <th className="px-5 py-4">Accreditation</th>
                 <th className="px-5 py-4 text-right">Total fee</th>
@@ -94,16 +94,16 @@ const RankingsTable = () => {
               {rows.map(({ college, details, roi }) => (
                 <tr
                   key={college.id}
-                  className="border-t border-gray-100 text-xs font-bold hover:bg-[#FAFBFD] transition-colors"
+                  className="border-t border-white/10 text-xs font-bold odd:bg-white/[0.02] hover:bg-[#e0244a]/[0.06] transition-colors"
                 >
                   <td className="px-5 py-4">
                     <Link
                       href={`/universities/${college.id}`}
-                      className="text-[#1E293B] font-extrabold hover:text-[#C81E3D] transition-colors"
+                      className="text-[#F1F5F9] font-extrabold hover:text-[#C81E3D] transition-colors"
                     >
                       {college.name}
                     </Link>
-                    <p className="text-[10px] text-slate-400 font-semibold mt-0.5">
+                    <p className="text-[10px] text-[#7c8798] font-semibold mt-0.5">
                       {college.location}
                       {details.nirfRank !== null && ` · NIRF #${details.nirfRank}`}
                     </p>
@@ -113,32 +113,32 @@ const RankingsTable = () => {
                       {details.approvals.slice(0, 2).map((a) => (
                         <span
                           key={a}
-                          className="px-2 py-0.5 rounded-full bg-[#FFF1F2] border border-rose-100 text-[9px] font-black text-[#C81E3D]"
+                          className="px-2 py-0.5 rounded-full bg-[#2B141A] border border-[#e0244a]/25 text-[9px] font-black text-[#ff5c7a]"
                         >
                           {a}
                         </span>
                       ))}
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-right text-[#1E293B] font-extrabold">
+                  <td className="px-5 py-4 text-right text-[#F1F5F9] font-extrabold">
                     ₹{(details.totalFee / 100000).toFixed(2)}L
                   </td>
-                  <td className="px-5 py-4 text-right text-slate-500">
+                  <td className="px-5 py-4 text-right text-[#8b96a8]">
                     ₹{details.emiMonthly.toLocaleString("en-IN")}
                   </td>
-                  <td className="px-5 py-4 text-right text-slate-500">
+                  <td className="px-5 py-4 text-right text-[#8b96a8]">
                     ₹{details.avgPackageLpa}L
                   </td>
                   <td
                     className={`px-5 py-4 text-right font-black ${
-                      roi.fiveYearNetGain > 0 ? "text-emerald-600" : "text-red-500"
+                      roi.fiveYearNetGain > 0 ? "text-emerald-400" : "text-red-500"
                     }`}
                   >
                     {roi.fiveYearNetGain > 0 ? "+" : "-"}₹
                     {(Math.abs(roi.fiveYearNetGain) / 100000).toFixed(1)}L
                   </td>
                   <td className="px-5 py-4 text-right">
-                    <span className="inline-flex items-center gap-1 text-[#1E293B] font-extrabold">
+                    <span className="inline-flex items-center gap-1 text-[#F1F5F9] font-extrabold">
                       <Icons.Star size={11} className="fill-yellow-400 text-yellow-400" />
                       {college.rating}
                     </span>
@@ -157,7 +157,7 @@ const RankingsTable = () => {
           </table>
         </div>
 
-        <p className="text-[11px] text-slate-400 font-semibold leading-relaxed max-w-3xl">
+        <p className="text-[11px] text-[#7c8798] font-semibold leading-relaxed max-w-3xl">
           The 5-year net gain subtracts the total programme fee and an estimate of the salary you
           forgo while studying, then adds the cumulative salary difference over five years. It is a
           projection, not a promise. Run it at your own salary before deciding.
@@ -166,14 +166,14 @@ const RankingsTable = () => {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/universities"
-            className="h-12 px-7 bg-[#C81E3D] text-white font-extrabold rounded-full text-sm transition-all active:scale-[0.98] inline-flex items-center gap-2"
+            className="h-12 px-7 bg-gradient-to-r from-[#C81E3D] via-[#e0244a] to-[#ff5a3c] text-white font-extrabold rounded-full text-sm transition-all hover:brightness-110 active:scale-[0.98] inline-flex items-center gap-2 shadow-[0_10px_28px_rgba(224,36,74,0.4)]"
           >
             <Icons.Building2 size={16} />
             See all {collegeReviews.length} universities
           </Link>
           <Link
             href="/compare-programs"
-            className="h-12 px-7 border-2 border-slate-200 text-slate-500 font-extrabold rounded-full text-sm transition-all hover:border-slate-300 inline-flex items-center gap-2"
+            className="h-12 px-7 border-2 border-white/10 text-[#8b96a8] font-extrabold rounded-full text-sm transition-all hover:border-white/15 inline-flex items-center gap-2"
           >
             <Icons.Scale size={16} />
             Compare up to three

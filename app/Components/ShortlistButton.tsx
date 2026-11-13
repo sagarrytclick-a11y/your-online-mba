@@ -36,8 +36,8 @@ const ShortlistButton: React.FC<ShortlistButtonProps> = ({
           active
             ? "bg-[#C81E3D] text-white shadow-sm"
             : blocked
-              ? "bg-slate-100 text-slate-400 cursor-not-allowed"
-              : "bg-white/90 text-[#C81E3D] border border-rose-200 hover:bg-white"
+              ? "bg-[#1b1e27] text-[#7c8798] cursor-not-allowed"
+              : "bg-white/90 text-[#C81E3D] border border-[#e0244a]/30 hover:bg-[#14161d]"
         } ${className}`}
       >
         <Check size={12} className={active ? "" : "opacity-0"} />
@@ -59,8 +59,8 @@ const ShortlistButton: React.FC<ShortlistButtonProps> = ({
         active
           ? "bg-[#C81E3D] text-white shadow-md"
           : blocked
-            ? "bg-slate-100 text-slate-400 cursor-not-allowed"
-            : "border-2 border-[#C81E3D] text-[#C81E3D] hover:bg-[#FFF1F2]"
+            ? "bg-[#1b1e27] text-[#7c8798] cursor-not-allowed"
+            : "border-2 border-[#C81E3D] text-[#C81E3D] hover:bg-[#2B141A]"
       } ${className}`}
     >
       <Check size={15} />

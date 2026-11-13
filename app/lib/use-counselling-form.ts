@@ -5,6 +5,7 @@ import {
   emptyCounsellingForm,
   getCounsellingFieldErrors,
   type CounsellingFormState,
+  type EnquiryType,
 } from "@/app/lib/validation";
 import {
   formatCooldown,
@@ -15,11 +16,16 @@ import {
 type Options = {
   onSuccess?: () => void;
   resetDelayMs?: number;
+  /** "course" (default, MBA counselling) or "service" (agency services) */
+  enquiryType?: EnquiryType;
+  /** Pre-selected service title when enquiryType is "service" */
+  defaultService?: string;
 };
 
 export function useCounsellingForm(options: Options = {}) {
-  const { onSuccess, resetDelayMs = 5000 } = options;
-  const [form, setForm] = useState<CounsellingFormState>(emptyCounsellingForm);
+  const { onSuccess, resetDelayMs = 5000, enquiryType = "course", defaultService = "" } = options;
+  const initialForm: CounsellingFormState = { ...emptyCounsellingForm, enquiryType, service: defaultService };
+  const [form, setForm] = useState<CounsellingFormState>(initialForm);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -29,11 +35,11 @@ export function useCounsellingForm(options: Options = {}) {
     if (!submitted) return;
     const timer = setTimeout(() => {
       setSubmitted(false);
-      setForm(emptyCounsellingForm);
+      setForm({ ...emptyCounsellingForm, enquiryType, service: defaultService });
       onSuccess?.();
     }, resetDelayMs);
     return () => clearTimeout(timer);
-  }, [submitted, resetDelayMs, onSuccess]);
+  }, [submitted, resetDelayMs, onSuccess, enquiryType, defaultService]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -111,10 +117,10 @@ export function useCounsellingForm(options: Options = {}) {
 
   const resetForm = useCallback(() => {
     setSubmitted(false);
-    setForm(emptyCounsellingForm);
+    setForm({ ...emptyCounsellingForm, enquiryType, service: defaultService });
     setError("");
     setFieldErrors({});
-  }, []);
+  }, [enquiryType, defaultService]);
 
   return {
     form,

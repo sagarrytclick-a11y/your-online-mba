@@ -128,19 +128,19 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
   if (!started) {
     return (
       <div
-        className={`relative overflow-hidden rounded-3xl border border-gray-100 bg-white p-8 sm:p-12 text-center shadow-sm ${className}`}
+        className={`relative overflow-hidden rounded-3xl border border-white/10 bg-[#14161d] p-8 sm:p-12 text-center shadow-sm ${className}`}
       >
-        <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#FFF1F2] blur-3xl" aria-hidden="true" />
-        <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-rose-50 blur-3xl" aria-hidden="true" />
+        <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#2B141A] blur-3xl" aria-hidden="true" />
+        <div className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-[#2b141a] blur-3xl" aria-hidden="true" />
         <div className="relative space-y-6 max-w-2xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF1F2] text-[#C81E3D] border border-rose-100 text-[11px] font-extrabold uppercase tracking-[0.15em]">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2B141A] text-[#C81E3D] border border-[#e0244a]/20 text-[11px] font-extrabold uppercase tracking-[0.15em]">
             <Icons.Wand2 size={12} />
             Guided Finder
           </span>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#1E293B] tracking-tight leading-tight">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#F1F5F9] tracking-tight leading-tight">
             Find the online MBA that actually fits you
           </h3>
-          <p className="text-sm sm:text-base text-slate-500 font-medium leading-relaxed">
+          <p className="text-sm sm:text-base text-[#8b96a8] font-medium leading-relaxed">
             Answer five quick questions about your budget, specialisation and career goal. We score
             every UGC-approved programme against your answers and show you the top matches, ranked
             with reasons.
@@ -153,7 +153,7 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
             ].map((item) => (
               <span
                 key={item.label}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-slate-50 border border-gray-100 text-[11px] sm:text-xs font-bold text-slate-600"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#10131a] border border-white/10 text-[11px] sm:text-xs font-bold text-[#a8b3c5]"
               >
                 <item.icon size={13} className="text-[#C81E3D]" />
                 {item.label}
@@ -175,9 +175,9 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
 
   return (
     <div
-      className={`rounded-3xl border border-gray-100 bg-white shadow-sm overflow-hidden ${className}`}
+      className={`rounded-3xl border border-white/10 bg-[#14161d] shadow-sm overflow-hidden ${className}`}
     >
-      <div className="h-1.5 w-full bg-slate-100">
+      <div className="h-1.5 w-full bg-[#1b1e27]">
         <div
           className="h-full bg-gradient-to-r from-[#C81E3D] to-[#E8577F] transition-all duration-500"
           style={{ width: `${progress}%` }}
@@ -192,16 +192,16 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
           <button
             type="button"
             onClick={restart}
-            className="text-[11px] font-bold text-slate-400 hover:text-[#C81E3D] transition-colors"
+            className="text-[11px] font-bold text-[#7c8798] hover:text-[#C81E3D] transition-colors"
           >
             Reset
           </button>
         </div>
 
-        <h3 className="text-xl sm:text-2xl font-black text-[#1E293B] tracking-tight mt-2">
+        <h3 className="text-xl sm:text-2xl font-black text-[#F1F5F9] tracking-tight mt-2">
           {meta.question}
         </h3>
-        <p className="text-sm text-slate-500 font-medium mt-2 mb-8">{meta.helper}</p>
+        <p className="text-sm text-[#8b96a8] font-medium mt-2 mb-8">{meta.helper}</p>
 
         {step === "budget" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -214,19 +214,19 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
                   onClick={() => selectBudget(band)}
                   className={`text-left p-5 rounded-2xl border-2 transition-all ${
                     isActive
-                      ? "border-[#C81E3D] bg-[#FFF1F2] shadow-sm"
-                      : "border-gray-100 hover:border-rose-200 hover:bg-rose-50/30"
+                      ? "border-[#C81E3D] bg-[#2B141A] shadow-sm"
+                      : "border-white/10 hover:border-[#e0244a]/30 hover:bg-[#2b141a]/30"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <span
-                      className={`text-sm font-extrabold ${isActive ? "text-[#C81E3D]" : "text-[#1E293B]"}`}
+                      className={`text-sm font-extrabold ${isActive ? "text-[#C81E3D]" : "text-[#F1F5F9]"}`}
                     >
                       {band.label}
                     </span>
                     {isActive && <Icons.CheckCircle2 size={18} className="text-[#C81E3D] shrink-0" />}
                   </div>
-                  <p className="text-xs text-slate-500 font-medium mt-1.5 leading-relaxed">
+                  <p className="text-xs text-[#8b96a8] font-medium mt-1.5 leading-relaxed">
                     {band.description}
                   </p>
                 </button>
@@ -246,19 +246,19 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
                   onClick={() => selectDomain(spec.slug)}
                   className={`text-left p-4 rounded-2xl border-2 transition-all ${
                     isActive
-                      ? "border-[#C81E3D] bg-[#FFF1F2] shadow-sm"
-                      : "border-gray-100 hover:border-rose-200 hover:bg-rose-50/30"
+                      ? "border-[#C81E3D] bg-[#2B141A] shadow-sm"
+                      : "border-white/10 hover:border-[#e0244a]/30 hover:bg-[#2b141a]/30"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <span
-                      className={`text-xs sm:text-sm font-extrabold leading-snug ${isActive ? "text-[#C81E3D]" : "text-[#1E293B]"}`}
+                      className={`text-xs sm:text-sm font-extrabold leading-snug ${isActive ? "text-[#C81E3D]" : "text-[#F1F5F9]"}`}
                     >
                       {spec.title}
                     </span>
                     {isActive && <Icons.CheckCircle2 size={16} className="text-[#C81E3D] shrink-0" />}
                   </div>
-                  <p className="text-[11px] text-slate-400 font-bold mt-1.5">{spec.salaryRange}</p>
+                  <p className="text-[11px] text-[#7c8798] font-bold mt-1.5">{spec.salaryRange}</p>
                 </button>
               );
             })}
@@ -276,16 +276,16 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
                   onClick={() => selectExperience(band)}
                   className={`text-left p-5 rounded-2xl border-2 transition-all ${
                     isActive
-                      ? "border-[#C81E3D] bg-[#FFF1F2] shadow-sm"
-                      : "border-gray-100 hover:border-rose-200 hover:bg-rose-50/30"
+                      ? "border-[#C81E3D] bg-[#2B141A] shadow-sm"
+                      : "border-white/10 hover:border-[#e0244a]/30 hover:bg-[#2b141a]/30"
                   }`}
                 >
                   <span
-                    className={`block text-base font-black ${isActive ? "text-[#C81E3D]" : "text-[#1E293B]"}`}
+                    className={`block text-base font-black ${isActive ? "text-[#C81E3D]" : "text-[#F1F5F9]"}`}
                   >
                     {band.label}
                   </span>
-                  <p className="text-xs text-slate-500 font-medium mt-1.5 leading-relaxed">
+                  <p className="text-xs text-[#8b96a8] font-medium mt-1.5 leading-relaxed">
                     {band.description}
                   </p>
                 </button>
@@ -305,25 +305,25 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
                   onClick={() => toggleApproval(option)}
                   className={`text-left p-5 rounded-2xl border-2 transition-all ${
                     isActive
-                      ? "border-[#C81E3D] bg-[#FFF1F2] shadow-sm"
-                      : "border-gray-100 hover:border-rose-200 hover:bg-rose-50/30"
+                      ? "border-[#C81E3D] bg-[#2B141A] shadow-sm"
+                      : "border-white/10 hover:border-[#e0244a]/30 hover:bg-[#2b141a]/30"
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <span
                       className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                        isActive ? "bg-[#C81E3D] text-white" : "bg-[#FFF1F2] text-[#C81E3D]"
+                        isActive ? "bg-[#C81E3D] text-white" : "bg-[#2B141A] text-[#C81E3D]"
                       }`}
                     >
                       <StepIcon name={option.icon} size={17} />
                     </span>
                     <div className="min-w-0">
                       <span
-                        className={`block text-sm font-extrabold ${isActive ? "text-[#C81E3D]" : "text-[#1E293B]"}`}
+                        className={`block text-sm font-extrabold ${isActive ? "text-[#C81E3D]" : "text-[#F1F5F9]"}`}
                       >
                         {option.label}
                       </span>
-                      <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">
+                      <p className="text-xs text-[#8b96a8] font-medium mt-1 leading-relaxed">
                         {option.description}
                       </p>
                     </div>
@@ -345,25 +345,25 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
                   onClick={() => selectGoal(goal)}
                   className={`text-left p-5 rounded-2xl border-2 transition-all ${
                     isActive
-                      ? "border-[#C81E3D] bg-[#FFF1F2] shadow-sm"
-                      : "border-gray-100 hover:border-rose-200 hover:bg-rose-50/30"
+                      ? "border-[#C81E3D] bg-[#2B141A] shadow-sm"
+                      : "border-white/10 hover:border-[#e0244a]/30 hover:bg-[#2b141a]/30"
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <span
                       className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                        isActive ? "bg-[#C81E3D] text-white" : "bg-[#FFF1F2] text-[#C81E3D]"
+                        isActive ? "bg-[#C81E3D] text-white" : "bg-[#2B141A] text-[#C81E3D]"
                       }`}
                     >
                       <StepIcon name={goal.icon} size={17} />
                     </span>
                     <div className="min-w-0">
                       <span
-                        className={`block text-sm font-extrabold ${isActive ? "text-[#C81E3D]" : "text-[#1E293B]"}`}
+                        className={`block text-sm font-extrabold ${isActive ? "text-[#C81E3D]" : "text-[#F1F5F9]"}`}
                       >
                         {goal.label}
                       </span>
-                      <p className="text-xs text-slate-500 font-medium mt-1 leading-relaxed">
+                      <p className="text-xs text-[#8b96a8] font-medium mt-1 leading-relaxed">
                         {goal.description}
                       </p>
                     </div>
@@ -374,11 +374,11 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
           </div>
         )}
 
-        <div className="flex flex-wrap items-center justify-between gap-3 mt-10 pt-6 border-t border-gray-100">
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-10 pt-6 border-t border-white/10">
           <button
             type="button"
             onClick={goBack}
-            className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-gray-200 text-slate-500 hover:text-[#C81E3D] hover:border-[#C81E3D] text-sm font-extrabold transition-all"
+            className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-white/10 text-[#8b96a8] hover:text-[#C81E3D] hover:border-[#C81E3D] text-sm font-extrabold transition-all"
           >
             <Icons.ArrowLeft size={16} />
             Back
@@ -389,7 +389,7 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
               <button
                 type="button"
                 onClick={goNext}
-                className="h-12 px-5 rounded-full text-sm font-bold text-slate-400 hover:text-[#1E293B] transition-colors"
+                className="h-12 px-5 rounded-full text-sm font-bold text-[#7c8798] hover:text-[#F1F5F9] transition-colors"
               >
                 Skip
               </button>
@@ -398,7 +398,7 @@ const ProgramFinder: React.FC<ProgramFinderProps> = ({
               type="button"
               onClick={goNext}
               disabled={!canAdvance()}
-              className="inline-flex items-center gap-2 h-12 px-7 bg-[#C81E3D] hover:bg-[#B01A33] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-extrabold rounded-full text-sm shadow-lg shadow-rose-100 transition-all active:scale-[0.98]"
+              className="inline-flex items-center gap-2 h-12 px-7 bg-[#C81E3D] hover:bg-[#B01A33] disabled:bg-[#22252f] disabled:text-[#7c8798] disabled:cursor-not-allowed text-white font-extrabold rounded-full text-sm shadow-lg shadow-rose-100 transition-all active:scale-[0.98]"
             >
               {stepIndex === finderStepOrder.length - 1 ? "See my matches" : "Continue"}
               <Icons.ArrowRight size={16} />

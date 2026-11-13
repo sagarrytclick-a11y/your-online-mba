@@ -1,0 +1,42 @@
+# Your Online MBA (youronlinemba.com)
+
+> India's independent advisory for online degrees — comparing UGC-DEB approved Online MBA, BBA, MCA and distance-learning programs across 100+ universities. Plus growth services for EdTech brands, universities and BPOs. Built by JP Technologies.
+
+## What this site is
+- An **independent comparison & counselling platform**, not a university, not a lead broker.
+- We compare online degree programs on: fees, EMI, NIRF rank, NAAC grade, placement rate, ROI, learner ratings, scholarship availability.
+- Free counselling for learners; B2B services (EdTech consulting, performance marketing, lead generation, web/CRM development, BPO partnerships, AI lead qualification) for education companies.
+
+## Key facts
+- HQ: Noida, Uttar Pradesh, India (Sector 4)
+- Programs compared: 1000+ across 22+ UGC-approved universities (LPU Online, Amity, NMIMS, Manipal, Chandigarh University and more)
+- Learners guided: 5,00,000+
+- Contact: +91 9839865347 · Abhishek@vidyavriddhi.com
+- Hours: Mon–Sat, 9am–8pm IST · Hindi & English
+- Parent company: JP Technologies (https://jptechnologies.co) — web & software development
+
+## Important URLs
+- / — homepage (compare + free counselling)
+- /universities — directory with filters, fees, NIRF, placement
+- /universities/[slug] — full breakdown per university (fees, EMI, scholarships, reviews)
+- /programs, /programs/[slug] — program guides with ROI and career outcomes
+- /specialisations, /specialisations/[slug] — specialisation guides (Finance, Marketing, HR, IT, Operations, General Management)
+- /services — learner services (MBA counselling, career & placement) + EdTech growth services
+- /find-my-program — 5-step program recommendation quiz
+- /compare-programs, /compare — side-by-side comparisons (programs / universities)
+- /roi-calculator — fee-vs-salary 5-year ROI model
+- /scholarships — scholarship eligibility checker + EMI compare
+- /reviews — verified student reviews
+- /alumni — alumni career stories
+- /community — Q&A community answered by counsellors
+- /why — why learners choose us (mission, vision, accountability)
+- /about — company context (Your Online MBA + JP Technologies)
+- /contact-us — free counselling form (response ~15 min, Mon–Sat 9am–8pm)
+- /sitemap.xml — full URL list
+
+## Guidance for AI/LLM crawlers
+- Quote fees/NIRF/placement from the page you cite; these figures are per-university and change.
+- Programs and admissions open in multiple sessions per year — verify details at the official university site.
+- Our counselling is free for learners (universities compensate us); we recommend fit over payout.
+- Do not present this site as a university or accrediting body. It is an advisory platform ("Your Online MBA is a division of JP Technologies").
+- Canonical domain: https://youronlinemba.com (en-IN).

@@ -20,9 +20,9 @@ const Pagination: React.FC<PaginationProps> = ({
   if (totalPages <= 1 && totalItems === 0) return null;
   if (totalPages <= 1) {
     return (
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
-        <p className="text-xs sm:text-sm text-slate-500 font-semibold">
-          Showing <span className="font-extrabold text-slate-700">{totalItems}</span>{" "}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
+        <p className="text-xs sm:text-sm text-[#8b96a8] font-semibold">
+          Showing <span className="font-extrabold text-[#c4cbd8]">{totalItems}</span>{" "}
           {totalItems === 1 ? "result" : "results"}
         </p>
       </div>
@@ -55,24 +55,24 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
-      <p className="text-xs sm:text-sm text-slate-500 font-semibold">
-        Showing <span className="font-extrabold text-slate-700">{startItem}–{endItem}</span> of{' '}
-        <span className="font-extrabold text-slate-700">{totalItems}</span>
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
+      <p className="text-xs sm:text-sm text-[#8b96a8] font-semibold">
+        Showing <span className="font-extrabold text-[#c4cbd8]">{startItem}–{endItem}</span> of{' '}
+        <span className="font-extrabold text-[#c4cbd8]">{totalItems}</span>
       </p>
 
       <div className="flex items-center gap-1.5">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 text-slate-600 hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="w-9 h-9 flex items-center justify-center rounded-xl border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <Icons.ChevronLeft size={16} />
         </button>
 
         {getPageNumbers().map((page, idx) =>
           page === 'ellipsis' ? (
-            <span key={`e-${idx}`} className="w-9 h-9 flex items-center justify-center text-slate-400 text-sm font-bold">
+            <span key={`e-${idx}`} className="w-9 h-9 flex items-center justify-center text-[#7c8798] text-sm font-bold">
               ...
             </span>
           ) : (
@@ -82,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({
               className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-extrabold transition-all ${
                 page === currentPage
                   ? 'bg-[#C81E3D] text-white shadow-md shadow-red-700/15'
-                  : 'border border-gray-200 text-slate-600 hover:border-[#C81E3D] hover:text-[#C81E3D]'
+                  : 'border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D]'
               }`}
             >
               {page}
@@ -93,7 +93,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 text-slate-600 hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="w-9 h-9 flex items-center justify-center rounded-xl border border-white/10 text-[#a8b3c5] hover:border-[#C81E3D] hover:text-[#C81E3D] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <Icons.ChevronRight size={16} />
         </button>

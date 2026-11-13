@@ -19,14 +19,14 @@ const suggestions = [
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center px-4 py-24">
+    <div className="min-h-screen bg-[#10131A] flex items-center justify-center px-4 py-24">
       <div className="max-w-xl text-center space-y-8">
         <div>
           <p className="text-6xl sm:text-8xl font-black text-[#C81E3D]/15 tracking-tight">404</p>
-          <h1 className="text-2xl sm:text-4xl font-black text-[#1E293B] tracking-tight -mt-4">
+          <h1 className="text-2xl sm:text-4xl font-black text-[#F1F5F9] tracking-tight -mt-4">
             This page does not exist
           </h1>
-          <p className="text-sm text-slate-500 font-medium mt-3">
+          <p className="text-sm text-[#8b96a8] font-medium mt-3">
             The link may be old, or the programme may have been renamed. These are the pages people
             usually want instead.
           </p>
@@ -37,12 +37,12 @@ export default function NotFound() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-4 hover:border-[#C81E3D]/30 hover:shadow-sm transition-all"
+              className="flex items-center gap-3 bg-[#14161d] border border-white/10 rounded-xl p-4 hover:border-[#C81E3D]/30 hover:shadow-sm transition-all"
             >
-              <span className="w-9 h-9 rounded-lg bg-[#FFF1F2] flex items-center justify-center flex-shrink-0">
+              <span className="w-9 h-9 rounded-lg bg-[#2B141A] flex items-center justify-center flex-shrink-0">
                 <item.icon size={16} className="text-[#C81E3D]" />
               </span>
-              <span className="text-sm font-extrabold text-[#1E293B]">{item.label}</span>
+              <span className="text-sm font-extrabold text-[#F1F5F9]">{item.label}</span>
             </Link>
           ))}
         </div>

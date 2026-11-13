@@ -12,23 +12,23 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#14161d] py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-10">
         
         {/* Header */}
         <div className="space-y-3 text-center">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#1E293B] tracking-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#F1F5F9] tracking-tight">
             Privacy Policy
           </h1>
-          <p className="text-slate-500 text-sm font-medium">
+          <p className="text-[#8b96a8] text-sm font-medium">
             Last updated: January 2026
           </p>
         </div>
 
-        <div className="border-t border-gray-100 pt-10 space-y-8 text-slate-600 text-sm md:text-base leading-relaxed">
+        <div className="border-t border-white/10 pt-10 space-y-8 text-[#a8b3c5] text-sm md:text-base leading-relaxed">
           
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">1. Introduction</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">1. Introduction</h2>
             <p>
               {siteConfig.name} (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
             </p>
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">2. Information We Collect</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">2. Information We Collect</h2>
             <p>We may collect the following types of information:</p>
             <ul className="list-disc pl-6 space-y-2 font-medium">
               <li><strong>Personal Information:</strong> Name, email address, phone number, and other details you provide through our counselling or enquiry forms.</li>
@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">3. How We Use Your Information</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">3. How We Use Your Information</h2>
             <p>We use the collected information for the following purposes:</p>
             <ul className="list-disc pl-6 space-y-2 font-medium">
               <li>To provide personalised career counselling and guidance.</li>
@@ -61,7 +61,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">4. Data Sharing and Disclosure</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">4. Data Sharing and Disclosure</h2>
             <p>
               We do not sell, trade, or rent your personal information to third parties. We may share your data with:
             </p>
@@ -73,14 +73,14 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">5. Data Security</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">5. Data Security</h2>
             <p>
               We implement appropriate technical and organisational measures to protect your personal information against unauthorised access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">6. Your Rights</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">6. Your Rights</h2>
             <p>You have the right to:</p>
             <ul className="list-disc pl-6 space-y-2 font-medium">
               <li>Access, update, or delete your personal information.</li>
@@ -91,32 +91,32 @@ export default function PrivacyPolicy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">7. Cookies</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">7. Cookies</h2>
             <p>
               Our website uses cookies to enhance your browsing experience. You can choose to disable cookies through your browser settings. Please note that some features of the site may not function properly without cookies.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">8. Third-Party Links</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">8. Third-Party Links</h2>
             <p>
               Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of these external sites. We encourage you to review their privacy policies before providing any personal information.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">9. Changes to This Policy</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">9. Changes to This Policy</h2>
             <p>
               We reserve the right to update or modify this Privacy Policy at any time. Changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-extrabold text-[#1E293B]">10. Contact Us</h2>
+            <h2 className="text-xl font-extrabold text-[#F1F5F9]">10. Contact Us</h2>
             <p>
               If you have any questions about this Privacy Policy, please contact us:
             </p>
-            <div className="bg-[#F8FAFC] p-6 rounded-xl border border-gray-100 space-y-2 font-medium">
+            <div className="bg-[#10131A] p-6 rounded-xl border border-white/10 space-y-2 font-medium">
               <p>Email: <a href={`mailto:${siteConfig.email}`} className="text-[#C81E3D] hover:underline">{siteConfig.email}</a></p>
               <p>Phone: <a href={`tel:${siteConfig.phone}`} className="text-[#C81E3D] hover:underline">{siteConfig.phoneDisplay}</a></p>
               <p>Address: {siteConfig.address}, {siteConfig.city}, {siteConfig.state}, {siteConfig.country}</p>
@@ -125,7 +125,7 @@ export default function PrivacyPolicy() {
 
         </div>
 
-        <div className="border-t border-gray-100 pt-8 text-center">
+        <div className="border-t border-white/10 pt-8 text-center">
           <Link href="/" className="text-[#C81E3D] font-bold hover:underline">
             &larr; Back to Home
           </Link>

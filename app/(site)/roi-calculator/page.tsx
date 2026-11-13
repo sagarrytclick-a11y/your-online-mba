@@ -101,11 +101,11 @@ export default async function ROICalculatorPage({ searchParams }: PageProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-24">
+    <div className="min-h-screen bg-[#10131A] pb-24">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={faqSchema} />
 
-      <section className="bg-white border-b border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#14161d] border-b border-white/10 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-6">
           <nav
             aria-label="Breadcrumb"
@@ -114,15 +114,15 @@ export default async function ROICalculatorPage({ searchParams }: PageProps) {
             <Link href="/" className="hover:underline">
               Home
             </Link>
-            <span className="text-slate-400">/</span>
-            <span className="text-slate-500">ROI Calculator</span>
+            <span className="text-[#7c8798]">/</span>
+            <span className="text-[#8b96a8]">ROI Calculator</span>
           </nav>
 
           <div className="max-w-3xl space-y-4">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#1E293B] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#F1F5F9] tracking-tight leading-tight">
               Online MBA ROI calculator
             </h1>
-            <p className="text-slate-500 text-sm sm:text-base font-medium leading-relaxed">
+            <p className="text-[#8b96a8] text-sm sm:text-base font-medium leading-relaxed">
               Most programme pages quote an average package. This one shows what an MBA is worth to
               you specifically: the fee you pay, the salary you give up while studying, the package you
               land on, and the month the whole thing starts paying for itself.
@@ -135,7 +135,7 @@ export default async function ROICalculatorPage({ searchParams }: PageProps) {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFF1F2] border border-rose-100 text-[11px] font-extrabold text-[#C81E3D]"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#2B141A] border border-[#e0244a]/20 text-[11px] font-extrabold text-[#C81E3D]"
                 >
                   {item}
                 </span>
@@ -170,13 +170,13 @@ export default async function ROICalculatorPage({ searchParams }: PageProps) {
               return (
                 <div
                   key={item.title}
-                  className="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm space-y-3"
+                  className="bg-[#14161d] rounded-2xl border border-white/10 p-7 shadow-sm space-y-3"
                 >
-                  <span className="w-11 h-11 rounded-xl bg-[#FFF1F2] flex items-center justify-center">
+                  <span className="w-11 h-11 rounded-xl bg-[#2B141A] flex items-center justify-center">
                     <Icon size={19} className="text-[#C81E3D]" />
                   </span>
-                  <h3 className="text-base font-extrabold text-[#1E293B]">{item.title}</h3>
-                  <p className="text-sm text-slate-500 font-medium leading-relaxed">{item.body}</p>
+                  <h3 className="text-base font-extrabold text-[#F1F5F9]">{item.title}</h3>
+                  <p className="text-sm text-[#8b96a8] font-medium leading-relaxed">{item.body}</p>
                 </div>
               );
             })}
@@ -186,18 +186,18 @@ export default async function ROICalculatorPage({ searchParams }: PageProps) {
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <ScrollReveal>
-          <div className="bg-white rounded-3xl border border-gray-100 p-8 sm:p-10 shadow-sm space-y-6">
-            <h2 className="text-xl sm:text-2xl font-black text-[#1E293B] tracking-tight">
+          <div className="bg-[#14161d] rounded-3xl border border-white/10 p-8 sm:p-10 shadow-sm space-y-6">
+            <h2 className="text-xl sm:text-2xl font-black text-[#F1F5F9] tracking-tight">
               Quick fee reference
             </h2>
-            <p className="text-sm text-slate-500 font-medium">
+            <p className="text-sm text-[#8b96a8] font-medium">
               Total programme fee and starting EMI for every university we track, sorted cheapest
               first. Run the full projection on any of them above.
             </p>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto custom-scroll">
               <table className="w-full min-w-[520px] text-left">
                 <thead>
-                  <tr className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 border-b border-gray-100">
+                  <tr className="text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] border-b border-white/10">
                     <th className="pb-3">University</th>
                     <th className="pb-3 text-right">Total fee</th>
                     <th className="pb-3 text-right">EMI from</th>
@@ -210,22 +210,22 @@ export default async function ROICalculatorPage({ searchParams }: PageProps) {
                     .map((c) => ({ c, d: getUniversityDetailsOrDefaults(c.id) }))
                     .sort((a, b) => a.d.totalFee - b.d.totalFee)
                     .map(({ c, d }) => (
-                      <tr key={c.id} className="border-b border-gray-100 last:border-0 text-xs font-bold">
+                      <tr key={c.id} className="border-b border-white/10 last:border-0 text-xs font-bold">
                         <td className="py-3">
                           <Link
                             href={`/universities/${c.id}`}
-                            className="text-[#1E293B] font-extrabold hover:text-[#C81E3D] transition-colors"
+                            className="text-[#F1F5F9] font-extrabold hover:text-[#C81E3D] transition-colors"
                           >
                             {c.name}
                           </Link>
                         </td>
-                        <td className="py-3 text-right text-[#1E293B]">
+                        <td className="py-3 text-right text-[#F1F5F9]">
                           ₹{(d.totalFee / 100000).toFixed(2)}L
                         </td>
-                        <td className="py-3 text-right text-slate-500">
+                        <td className="py-3 text-right text-[#8b96a8]">
                           ₹{d.emiMonthly.toLocaleString("en-IN")}
                         </td>
-                        <td className="py-3 text-right text-slate-500">₹{d.avgPackageLpa}L</td>
+                        <td className="py-3 text-right text-[#8b96a8]">₹{d.avgPackageLpa}L</td>
                         <td className="py-3 text-right">
                           <Link
                             href={`/roi-calculator?university=${c.id}`}
@@ -245,22 +245,22 @@ export default async function ROICalculatorPage({ searchParams }: PageProps) {
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <ScrollReveal>
-          <h2 className="text-xl sm:text-2xl font-black text-[#1E293B] tracking-tight text-center">
+          <h2 className="text-xl sm:text-2xl font-black text-[#F1F5F9] tracking-tight text-center">
             ROI questions, answered
           </h2>
           <div className="mt-6 space-y-3">
             {faqSchema.mainEntity.map((item) => (
               <details
                 key={item.name}
-                className="group bg-white rounded-2xl border border-gray-100 p-5 shadow-sm"
+                className="group bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm"
               >
                 <summary className="flex items-start justify-between gap-4 cursor-pointer list-none">
-                  <h3 className="text-sm font-extrabold text-[#1E293B] leading-snug">{item.name}</h3>
-                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 group-open:bg-[#C81E3D] group-open:text-white transition-colors">
+                  <h3 className="text-sm font-extrabold text-[#F1F5F9] leading-snug">{item.name}</h3>
+                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-[#1b1e27] flex items-center justify-center text-[#8b96a8] group-open:bg-[#C81E3D] group-open:text-white transition-colors">
                     <Icons.ChevronDown size={15} className="transition-transform group-open:rotate-180" />
                   </span>
                 </summary>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed mt-3">
+                <p className="text-sm text-[#8b96a8] font-medium leading-relaxed mt-3">
                   {item.acceptedAnswer.text}
                 </p>
               </details>

@@ -20,33 +20,35 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   titleClassName = "",
 }) => {
   const isCenter = align === "center";
+  const isOnColor = theme === "dark";
   return (
     <div
-      className={`${isCenter ? "mx-auto max-w-3xl text-center" : "max-w-2xl text-left"} ${className}`}
+      className={`${isCenter ? "mx-auto text-center" : "text-left"} max-w-3xl ${className}`}
     >
       {eyebrow && (
         <span
-          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[0.15em] ${
-            theme === "dark"
-              ? "bg-white/10 text-rose-100 border border-white/15"
-              : "bg-[#FFF1F2] text-[#C81E3D] border border-rose-100"
+          className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.22em] ${
+            isOnColor
+              ? "bg-white/10 text-rose-100 border border-white/20"
+              : "bg-[#e0244a]/10 text-[#ff5c7a] border border-[#e0244a]/30"
           }`}
         >
+          {!isOnColor && <span className="w-1.5 h-1.5 rounded-full bg-[#e0244a] animate-pulse-dot" />}
           {eyebrow}
         </span>
       )}
       <h2
-        className={`mt-4 text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-[1.15] ${
-          theme === "dark" ? "text-white" : "text-[#1E293B]"
+        className={`mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.08] ${
+          isOnColor ? "text-white" : "text-[#f5f7fa]"
         } ${titleClassName}`}
       >
         {title}
       </h2>
       {description && (
         <p
-          className={`mt-4 text-sm sm:text-base font-medium leading-relaxed ${
-            theme === "dark" ? "text-rose-100/90" : "text-slate-500"
-          }`}
+          className={`mt-4 text-sm sm:text-base font-medium leading-relaxed max-w-2xl ${
+            isCenter ? "mx-auto" : ""
+          } ${isOnColor ? "text-rose-100/90" : "text-[#8b96a8]"}`}
         >
           {description}
         </p>

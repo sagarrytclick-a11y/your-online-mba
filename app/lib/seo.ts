@@ -4,7 +4,7 @@ import { siteConfig } from "@/app/data/site";
 export const SITE_URL = "https://youronlinemba.com";
 
 export const defaultDescription =
-  "Compare India's top Online MBA universities: LPU, Amity, NMIMS, Manipal, Chandigarh University & more. UGC-approved programs with EMI options. Get free counselling.";
+  "India's trusted online MBA advisor & EdTech growth partner: compare UGC-approved online MBA universities with free counselling, plus consulting, marketing, lead generation, web development and BPO call-center services for EdTech brands.";
 
 type BuildMetadataInput = {
   title: string;
@@ -24,7 +24,7 @@ export function buildMetadata({
   title,
   description,
   path = "/",
-  image = "/og-image.png",
+  image = "/opengraph-image",
   keywords,
   noIndex = false,
 }: BuildMetadataInput): Metadata {

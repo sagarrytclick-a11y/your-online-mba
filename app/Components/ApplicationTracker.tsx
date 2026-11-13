@@ -18,17 +18,17 @@ const stageMeta: Record<
 > = {
   Shortlisted: {
     icon: Icons.Star,
-    tone: "bg-slate-100 text-slate-600 border-slate-200",
+    tone: "bg-[#1b1e27] text-[#a8b3c5] border-white/10",
     blurb: "Decided to pursue it",
   },
   Documents: {
     icon: Icons.FolderOpen,
-    tone: "bg-amber-50 text-amber-700 border-amber-100",
+    tone: "bg-amber-400/10 text-amber-400 border-amber-400/20",
     blurb: "Gathering marksheets and ID proof",
   },
   Applied: {
     icon: Icons.Send,
-    tone: "bg-blue-50 text-blue-700 border-blue-100",
+    tone: "bg-blue-400/10 text-blue-400 border-blue-400/20",
     blurb: "Form submitted to the university",
   },
   Offer: {
@@ -38,7 +38,7 @@ const stageMeta: Record<
   },
   Enrolled: {
     icon: Icons.GraduationCap,
-    tone: "bg-emerald-50 text-emerald-700 border-emerald-100",
+    tone: "bg-emerald-400/10 text-emerald-400 border-emerald-400/25",
     blurb: "Fee paid, portal active",
   },
 };
@@ -161,14 +161,14 @@ const ApplicationTracker: React.FC = () => {
         {stageOrder.slice(0, 4).map((s) => {
           const Icon = stageMeta[s].icon;
           return (
-            <div key={s} className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
+            <div key={s} className="bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm">
               <span
                 className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-3 ${stageMeta[s].tone}`}
               >
                 <Icon size={16} />
               </span>
-              <p className="text-xl font-black text-[#1E293B]">{stats.byStage[stageOrder.indexOf(s)]}</p>
-              <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mt-0.5">
+              <p className="text-xl font-black text-[#F1F5F9]">{stats.byStage[stageOrder.indexOf(s)]}</p>
+              <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mt-0.5">
                 {s}
               </p>
             </div>
@@ -191,7 +191,7 @@ const ApplicationTracker: React.FC = () => {
               </p>
             </div>
           </div>
-          <PopupTrigger className="flex-shrink-0 h-11 px-6 bg-white text-[#C81E3D] font-extrabold rounded-full text-xs transition-all active:scale-[0.98]">
+          <PopupTrigger className="flex-shrink-0 h-11 px-6 bg-[#14161d] text-[#C81E3D] font-extrabold rounded-full text-xs transition-all active:scale-[0.98]">
             Ask about this deadline
           </PopupTrigger>
         </div>
@@ -200,7 +200,7 @@ const ApplicationTracker: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
         <div className="space-y-4">
           <div className="flex items-center justify-between gap-3 flex-wrap">
-            <h3 className="text-base font-extrabold text-[#1E293B]">
+            <h3 className="text-base font-extrabold text-[#F1F5F9]">
               Your applications ({applications.length})
             </h3>
             <div className="flex gap-2">
@@ -226,11 +226,11 @@ const ApplicationTracker: React.FC = () => {
           </div>
 
           {showAdd && (
-            <div className="bg-white rounded-2xl border-2 border-[#C81E3D]/30 p-5 shadow-sm grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-3 items-end">
+            <div className="bg-[#14161d] rounded-2xl border-2 border-[#C81E3D]/30 p-5 shadow-sm grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-3 items-end">
               <div>
                 <label
                   htmlFor="tracker-college"
-                  className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-1.5"
+                  className="block text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-1.5"
                 >
                   University
                 </label>
@@ -238,7 +238,7 @@ const ApplicationTracker: React.FC = () => {
                   id="tracker-college"
                   value={draftCollege}
                   onChange={(e) => setDraftCollege(e.target.value)}
-                  className="w-full h-11 px-3 rounded-xl border border-gray-200 text-xs font-bold text-[#1E293B] outline-none focus:border-[#C81E3D] cursor-pointer"
+                  className="w-full h-11 px-3 rounded-xl border border-white/10 text-xs font-bold text-[#F1F5F9] outline-none focus:border-[#C81E3D] cursor-pointer"
                 >
                   <option value="any">Select a university</option>
                   {collegeReviews.map((c) => (
@@ -251,7 +251,7 @@ const ApplicationTracker: React.FC = () => {
               <div>
                 <label
                   htmlFor="tracker-spec"
-                  className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-1.5"
+                  className="block text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-1.5"
                 >
                   Specialisation
                 </label>
@@ -259,7 +259,7 @@ const ApplicationTracker: React.FC = () => {
                   id="tracker-spec"
                   value={draftSpec}
                   onChange={(e) => setDraftSpec(e.target.value)}
-                  className="w-full h-11 px-3 rounded-xl border border-gray-200 text-xs font-bold text-[#1E293B] outline-none focus:border-[#C81E3D] cursor-pointer"
+                  className="w-full h-11 px-3 rounded-xl border border-white/10 text-xs font-bold text-[#F1F5F9] outline-none focus:border-[#C81E3D] cursor-pointer"
                 >
                   <option value="any">General MBA</option>
                   {specialisations.map((s) => (
@@ -281,15 +281,15 @@ const ApplicationTracker: React.FC = () => {
           )}
 
           {applications.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center space-y-4">
-              <span className="w-14 h-14 rounded-full bg-[#FFF1F2] flex items-center justify-center mx-auto">
+            <div className="bg-[#14161d] rounded-2xl border border-white/10 p-12 text-center space-y-4">
+              <span className="w-14 h-14 rounded-full bg-[#2B141A] flex items-center justify-center mx-auto">
                 <Icons.FolderOpen size={24} className="text-[#C81E3D]" />
               </span>
               <div>
-                <p className="text-sm font-extrabold text-[#1E293B]">
+                <p className="text-sm font-extrabold text-[#F1F5F9]">
                   Track applications without a spreadsheet
                 </p>
-                <p className="text-xs text-slate-500 font-medium mt-1.5 max-w-sm mx-auto">
+                <p className="text-xs text-[#8b96a8] font-medium mt-1.5 max-w-sm mx-auto">
                   Everything is stored in this browser. No account, nothing sent to us until you talk to
                   a counsellor.
                 </p>
@@ -306,7 +306,7 @@ const ApplicationTracker: React.FC = () => {
                   <button
                     type="button"
                     onClick={importShortlist}
-                    className="h-10 px-5 border-2 border-slate-200 text-slate-500 font-extrabold rounded-full text-[11px] inline-flex items-center gap-1.5"
+                    className="h-10 px-5 border-2 border-white/10 text-[#8b96a8] font-extrabold rounded-full text-[11px] inline-flex items-center gap-1.5"
                   >
                     Import shortlist
                   </button>
@@ -323,17 +323,17 @@ const ApplicationTracker: React.FC = () => {
               return (
                 <div
                   key={a.id}
-                  className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 shadow-sm space-y-4"
+                  className="bg-[#14161d] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-sm space-y-4"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <Link
                         href={`/universities/${a.collegeId}`}
-                        className="text-sm font-extrabold text-[#1E293B] hover:text-[#C81E3D] transition-colors"
+                        className="text-sm font-extrabold text-[#F1F5F9] hover:text-[#C81E3D] transition-colors"
                       >
                         {college?.name ?? a.collegeId}
                       </Link>
-                      <p className="text-[11px] text-slate-500 font-bold mt-0.5">
+                      <p className="text-[11px] text-[#8b96a8] font-bold mt-0.5">
                         {spec?.title ?? "General MBA"} · {formatInr(details.totalFee)}
                       </p>
                     </div>
@@ -350,18 +350,18 @@ const ApplicationTracker: React.FC = () => {
                       <div
                         key={s}
                         className={`flex-1 h-1.5 rounded-full ${
-                          i <= stageIndex ? "bg-[#C81E3D]" : "bg-slate-100"
+                          i <= stageIndex ? "bg-[#C81E3D]" : "bg-[#1b1e27]"
                         }`}
                       />
                     ))}
                   </div>
-                  <p className="text-[10px] font-bold text-slate-400">{stageMeta[a.stage].blurb}</p>
+                  <p className="text-[10px] font-bold text-[#7c8798]">{stageMeta[a.stage].blurb}</p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label
                         htmlFor={`action-${a.id}`}
-                        className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-1.5"
+                        className="block text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-1.5"
                       >
                         Next action
                       </label>
@@ -376,13 +376,13 @@ const ApplicationTracker: React.FC = () => {
                             )
                           )
                         }
-                        className="w-full h-10 px-3 rounded-xl border border-gray-200 text-xs font-bold text-[#1E293B] outline-none focus:border-[#C81E3D]"
+                        className="w-full h-10 px-3 rounded-xl border border-white/10 text-xs font-bold text-[#F1F5F9] outline-none focus:border-[#C81E3D]"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor={`date-${a.id}`}
-                        className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-1.5"
+                        className="block text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-1.5"
                       >
                         Due date
                       </label>
@@ -397,7 +397,7 @@ const ApplicationTracker: React.FC = () => {
                             )
                           )
                         }
-                        className="w-full h-10 px-3 rounded-xl border border-gray-200 text-xs font-bold text-[#1E293B] outline-none focus:border-[#C81E3D]"
+                        className="w-full h-10 px-3 rounded-xl border border-white/10 text-xs font-bold text-[#F1F5F9] outline-none focus:border-[#C81E3D]"
                       />
                     </div>
                   </div>
@@ -405,7 +405,7 @@ const ApplicationTracker: React.FC = () => {
                   <div>
                     <label
                       htmlFor={`notes-${a.id}`}
-                      className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400 mb-1.5"
+                      className="block text-[10px] font-extrabold uppercase tracking-wider text-[#7c8798] mb-1.5"
                     >
                       Notes
                     </label>
@@ -415,18 +415,18 @@ const ApplicationTracker: React.FC = () => {
                       onChange={(e) => updateNotes(a.id, e.target.value)}
                       rows={2}
                       placeholder="Counsellor name, document numbers, questions to ask..."
-                      className="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-xs font-semibold text-[#1E293B] placeholder:text-slate-400 outline-none focus:border-[#C81E3D] resize-none"
+                      className="w-full px-3 py-2.5 rounded-xl border border-white/10 text-xs font-semibold text-[#F1F5F9] placeholder:text-[#7c8798] outline-none focus:border-[#C81E3D] resize-none"
                     />
                   </div>
 
-                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-gray-100">
+                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-white/10">
                     <div className="flex gap-1.5">
                       <button
                         type="button"
                         onClick={() => moveStage(a.id, -1)}
                         disabled={stageIndex === 0}
                         aria-label="Move back a stage"
-                        className="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-slate-400 hover:border-slate-300 hover:text-slate-600 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-[#7c8798] hover:border-white/15 hover:text-[#a8b3c5] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                       >
                         <Icons.ChevronLeft size={15} />
                       </button>
@@ -435,7 +435,7 @@ const ApplicationTracker: React.FC = () => {
                         onClick={() => moveStage(a.id, 1)}
                         disabled={stageIndex === stageOrder.length - 1}
                         aria-label="Move forward a stage"
-                        className="w-9 h-9 rounded-lg border border-gray-200 flex items-center justify-center text-slate-400 hover:border-[#C81E3D] hover:text-[#C81E3D] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                        className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-[#7c8798] hover:border-[#C81E3D] hover:text-[#C81E3D] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
                       >
                         <Icons.ChevronRight size={15} />
                       </button>
@@ -443,7 +443,7 @@ const ApplicationTracker: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => removeApplication(a.id)}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-slate-400 hover:text-red-500 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#7c8798] hover:text-red-500 transition-colors"
                     >
                       <Icons.Trash2 size={13} />
                       Remove
@@ -456,18 +456,18 @@ const ApplicationTracker: React.FC = () => {
         </div>
 
         <div className="space-y-4 lg:sticky lg:top-28">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm space-y-4">
-            <h3 className="text-sm font-extrabold text-[#1E293B] flex items-center gap-2">
+          <div className="bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm space-y-4">
+            <h3 className="text-sm font-extrabold text-[#F1F5F9] flex items-center gap-2">
               <Icons.FolderCheck size={15} className="text-[#C81E3D]" />
               Document checklist
             </h3>
-            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+            <div className="h-2 bg-[#1b1e27] rounded-full overflow-hidden">
               <div
-                className="h-full bg-emerald-500 rounded-full transition-all"
+                className="h-full bg-emerald-400/100 rounded-full transition-all"
                 style={{ width: `${(docsDone / checklist.length) * 100}%` }}
               />
             </div>
-            <p className="text-[10px] font-bold text-slate-400">
+            <p className="text-[10px] font-bold text-[#7c8798]">
               {docsDone} of {checklist.length} ready
             </p>
             <ul className="space-y-2">
@@ -486,7 +486,7 @@ const ApplicationTracker: React.FC = () => {
                     />
                     <span
                       className={`text-[11px] font-bold leading-snug ${
-                        checklistState[i] ? "text-slate-400 line-through" : "text-slate-600"
+                        checklistState[i] ? "text-[#7c8798] line-through" : "text-[#a8b3c5]"
                       }`}
                     >
                       {doc}
@@ -498,10 +498,10 @@ const ApplicationTracker: React.FC = () => {
           </div>
 
           {stats.committed > 0 && (
-            <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-              <h3 className="text-sm font-extrabold text-[#1E293B]">Fee committed</h3>
-              <p className="text-2xl font-black text-[#1E293B] mt-2">{formatInr(stats.committed)}</p>
-              <p className="text-[10px] font-bold text-slate-400 mt-1">
+            <div className="bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm">
+              <h3 className="text-sm font-extrabold text-[#F1F5F9]">Fee committed</h3>
+              <p className="text-2xl font-black text-[#F1F5F9] mt-2">{formatInr(stats.committed)}</p>
+              <p className="text-[10px] font-bold text-[#7c8798] mt-1">
                 Across applications at the offer or enrolled stage
               </p>
               <Link
@@ -514,9 +514,9 @@ const ApplicationTracker: React.FC = () => {
             </div>
           )}
 
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm space-y-3">
-            <h3 className="text-sm font-extrabold text-[#1E293B]">How this stays private</h3>
-            <p className="text-[11px] text-slate-500 font-medium leading-relaxed">
+          <div className="bg-[#14161d] rounded-2xl border border-white/10 p-5 shadow-sm space-y-3">
+            <h3 className="text-sm font-extrabold text-[#F1F5F9]">How this stays private</h3>
+            <p className="text-[11px] text-[#8b96a8] font-medium leading-relaxed">
               This tracker lives in your browser&apos;s local storage. Clearing site data wipes it, and
               nothing is sent to us until you share it with a counsellor.
             </p>

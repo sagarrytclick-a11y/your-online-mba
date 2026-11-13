@@ -11,6 +11,7 @@ export async function GET(req: NextRequest) {
 
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status");
+  const type = searchParams.get("type");
   const search = (searchParams.get("search") || "").trim();
   const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
   const limit = Math.min(50, Math.max(1, parseInt(searchParams.get("limit") || "10")));
@@ -27,17 +28,41 @@ export async function GET(req: NextRequest) {
       { email: regex },
       { city: regex },
       { specialization: regex },
+      { service: regex },
     ];
   }
 
-  const [enquiries, total] = await Promise.all([
+  // Counts ignore the type filter so the UI can always show both totals
+  const countFilter = { ...filter };
+
+  if (type === "course") {
+    // Include legacy rows that predate the enquiryType field
+    filter.$and = [
+      ...(Array.isArray(filter.$and) ? (filter.$and as unknown[]) : []),
+      { $or: [{ enquiryType: "course" }, { enquiryType: { $exists: false } }] },
+    ];
+  } else if (type === "service") {
+    filter.enquiryType = "service";
+  }
+
+  const [enquiries, total, courseCount, serviceCount] = await Promise.all([
     Enquiry.find(filter).sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit).lean(),
     Enquiry.countDocuments(filter),
+    // Legacy rows predate enquiryType — count them as course leads
+    Enquiry.countDocuments({
+      $and: [
+        countFilter,
+        { $or: [{ enquiryType: "course" }, { enquiryType: { $exists: false } }] },
+      ],
+    }),
+    Enquiry.countDocuments({ ...countFilter, enquiryType: "service" }),
   ]);
 
   return NextResponse.json({
     enquiries,
     total,
+    courseCount,
+    serviceCount,
     page,
     limit,
     totalPages: Math.max(1, Math.ceil(total / limit) || 1),

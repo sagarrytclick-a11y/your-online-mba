@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getAdminSessionFromCookies } from "@/app/lib/admin-auth";
+import AdminSessionGuard from "@/app/Components/AdminSessionGuard";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -14,5 +15,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect("/admin/login");
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <AdminSessionGuard />
+    </>
+  );
 }

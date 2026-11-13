@@ -63,16 +63,16 @@ const ComparisonSection = () => {
   ];
 
   return (
-    <section className="relative w-full bg-[#FAFBFD] py-10 md:py-14 px-4 sm:px-6 md:px-8 border-t border-slate-100/50">
+    <section className="relative w-full bg-white/[0.03] py-10 md:py-14 px-4 sm:px-6 md:px-8 border-t border-white/5">
       
       <div className="max-w-7xl mx-auto space-y-8 md:space-y-10 relative z-10">
         
         {/* Header */}
         <div className="text-center space-y-3">
-          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#1E293B] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-[#F1F5F9] tracking-tight leading-tight">
             Online vs Distance vs Regular MBA
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl mx-auto">
+          <p className="text-[#8b96a8] text-sm sm:text-base font-medium max-w-xl mx-auto">
             Compare learning formats and discover why Online MBA is the smartest.
           </p>
         </div>
@@ -83,10 +83,10 @@ const ComparisonSection = () => {
             return (
               <div 
                 key={idx}
-                className={`bg-white rounded-[28px] overflow-hidden transition-all duration-300 relative ${
+                className={`bg-[#14161d] rounded-[28px] overflow-hidden transition-all duration-300 relative ${
                   format.highlighted 
                     ? "border-2 border-[#C81E3D] shadow-xl shadow-red-700/5 -translate-y-1 md:-translate-y-2"
-                    : "border border-gray-100 shadow-sm hover:shadow-md"
+                    : "border border-white/10 shadow-sm hover:shadow-md"
                 }`}
               >
                 
@@ -104,7 +104,7 @@ const ComparisonSection = () => {
                   className={`p-6 text-center text-lg sm:text-xl font-bold relative z-10 ${
                     format.highlighted 
                       ? "bg-[#C81E3D] text-white" 
-                      : "bg-slate-50/50 border-b border-gray-100 text-slate-800"
+                      : "bg-[#10131a]/50 border-b border-white/10 text-[#f1f5f9]"
                   }`}
                 >
                   {format.title}
@@ -117,15 +117,15 @@ const ComparisonSection = () => {
                     return (
                       <div 
                         key={fIdx}
-                        className="flex items-center justify-between gap-4 py-2 border-b border-slate-50 last:border-b-0"
+                        className="flex items-center justify-between gap-4 py-2 border-b border-white/5 last:border-b-0"
                       >
-                        <span className="text-slate-600 font-semibold text-xs sm:text-sm">
+                        <span className="text-[#a8b3c5] font-semibold text-xs sm:text-sm">
                           {feature}
                         </span>
                         
                         {/* Check or Cross Circle */}
                         {isAvailable ? (
-                          <div className="w-5 h-5 rounded-full bg-[#10B981] flex items-center justify-center flex-shrink-0 shadow-sm shadow-emerald-500/10">
+                          <div className="w-5 h-5 rounded-full bg-[#34D399] flex items-center justify-center flex-shrink-0 shadow-sm shadow-emerald-500/10">
                             <Check size={11} className="text-white stroke-[4]" />
                           </div>
                         ) : (
