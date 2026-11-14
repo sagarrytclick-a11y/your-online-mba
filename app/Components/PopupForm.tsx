@@ -61,9 +61,8 @@ function LearnerPopupBody({ onClose }: { onClose: () => void }) {
     error,
     fieldErrors,
     handleChange,
-    handleBlur,
     handleSubmit,
-  } = useCounsellingForm({ onSuccess: onClose, resetDelayMs: 5000 });
+  } = useCounsellingForm({ onSuccess: onClose, resetDelayMs: 5000, validateOnBlur: false });
 
   if (submitted) {
     return (
@@ -110,7 +109,7 @@ function LearnerPopupBody({ onClose }: { onClose: () => void }) {
           <div>
             <input
               name="name" autoFocus
-              value={form.name} onChange={handleChange} onBlur={handleBlur}
+              value={form.name} onChange={handleChange}
               type="text" autoComplete="name" maxLength={60} placeholder="Full name *"
               className={inputClass}
             />
@@ -119,7 +118,7 @@ function LearnerPopupBody({ onClose }: { onClose: () => void }) {
           <div>
             <input
               name="phone"
-              value={form.phone} onChange={handleChange} onBlur={handleBlur}
+              value={form.phone} onChange={handleChange}
               type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} placeholder="Mobile number *"
               className={inputClass}
             />
@@ -129,7 +128,7 @@ function LearnerPopupBody({ onClose }: { onClose: () => void }) {
         <div>
           <input
             name="email"
-            value={form.email} onChange={handleChange} onBlur={handleBlur}
+            value={form.email} onChange={handleChange}
             type="email" autoComplete="email" maxLength={100} placeholder="Work / personal email *"
             className={inputClass}
           />
@@ -138,7 +137,7 @@ function LearnerPopupBody({ onClose }: { onClose: () => void }) {
         <div className="relative">
           <select
             name="specialization"
-            value={form.specialization} onChange={handleChange} onBlur={handleBlur}
+            value={form.specialization} onChange={handleChange}
             className={selectClass}
           >
             <option value="" disabled>I&apos;m interested in *</option>
@@ -156,7 +155,7 @@ function LearnerPopupBody({ onClose }: { onClose: () => void }) {
         <div>
           <input
             name="city"
-            value={form.city} onChange={handleChange} onBlur={handleBlur}
+            value={form.city} onChange={handleChange}
             type="text" autoComplete="address-level2" maxLength={50} placeholder="City *"
             className={inputClass}
           />
@@ -192,13 +191,13 @@ function ServicePopupBody({ onClose }: { onClose: () => void }) {
     error,
     fieldErrors,
     handleChange,
-    handleBlur,
     handleSubmit,
   } = useCounsellingForm({
     enquiryType: "service",
     defaultService: "Lead Generation & Sales Solutions",
     onSuccess: onClose,
     resetDelayMs: 6000,
+    validateOnBlur: false,
   });
 
   if (submitted) {
@@ -246,7 +245,7 @@ function ServicePopupBody({ onClose }: { onClose: () => void }) {
           <div>
             <input
               name="name" autoFocus
-              value={form.name} onChange={handleChange} onBlur={handleBlur}
+              value={form.name} onChange={handleChange}
               type="text" autoComplete="name" maxLength={60} placeholder="Full name *"
               className={inputClass}
             />
@@ -255,7 +254,7 @@ function ServicePopupBody({ onClose }: { onClose: () => void }) {
           <div>
             <input
               name="phone"
-              value={form.phone} onChange={handleChange} onBlur={handleBlur}
+              value={form.phone} onChange={handleChange}
               type="tel" inputMode="numeric" autoComplete="tel" maxLength={10} placeholder="Phone *"
               className={inputClass}
             />
@@ -265,7 +264,7 @@ function ServicePopupBody({ onClose }: { onClose: () => void }) {
         <div>
           <input
             name="email"
-            value={form.email} onChange={handleChange} onBlur={handleBlur}
+            value={form.email} onChange={handleChange}
             type="email" autoComplete="email" maxLength={100} placeholder="Work email *"
             className={inputClass}
           />
@@ -274,7 +273,7 @@ function ServicePopupBody({ onClose }: { onClose: () => void }) {
         <div className="relative">
           <select
             name="service"
-            value={form.service} onChange={handleChange} onBlur={handleBlur}
+            value={form.service} onChange={handleChange}
             className={selectClass}
           >
             <option value="" disabled>Which service do you need? *</option>
@@ -292,7 +291,7 @@ function ServicePopupBody({ onClose }: { onClose: () => void }) {
         <div>
           <input
             name="city"
-            value={form.city} onChange={handleChange} onBlur={handleBlur}
+            value={form.city} onChange={handleChange}
             type="text" autoComplete="address-level2" maxLength={50} placeholder="City *"
             className={inputClass}
           />

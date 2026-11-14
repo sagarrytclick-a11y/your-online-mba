@@ -20,10 +20,21 @@ type Options = {
   enquiryType?: EnquiryType;
   /** Pre-selected service title when enquiryType is "service" */
   defaultService?: string;
+  /**
+   * Validate a field when it loses focus. Defaults to true.
+   * Popup forms set this to false so validation only runs on submit.
+   */
+  validateOnBlur?: boolean;
 };
 
 export function useCounsellingForm(options: Options = {}) {
-  const { onSuccess, resetDelayMs = 5000, enquiryType = "course", defaultService = "" } = options;
+  const {
+    onSuccess,
+    resetDelayMs = 5000,
+    enquiryType = "course",
+    defaultService = "",
+    validateOnBlur = true,
+  } = options;
   const initialForm: CounsellingFormState = { ...emptyCounsellingForm, enquiryType, service: defaultService };
   const [form, setForm] = useState<CounsellingFormState>(initialForm);
   const [loading, setLoading] = useState(false);
@@ -64,17 +75,18 @@ export function useCounsellingForm(options: Options = {}) {
 
   const handleBlur = useCallback(
     (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+      if (!validateOnBlur) return;
       const { name } = e.target;
       const errors = getCounsellingFieldErrors(form);
       if (errors[name]) {
         setFieldErrors((prev) => ({ ...prev, [name]: errors[name] }));
       }
     },
-    [form]
+    [form, validateOnBlur]
   );
 
   const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setError("");
       setFieldErrors({});
@@ -89,6 +101,11 @@ export function useCounsellingForm(options: Options = {}) {
       if (Object.keys(errors).length > 0) {
         setFieldErrors(errors);
         setError("Please fix the highlighted fields");
+
+        // Move focus to the first invalid field so the user sees the error.
+        const firstInvalid = Object.keys(errors)[0];
+        const field = e.currentTarget.querySelector<HTMLElement>(`[name="${firstInvalid}"]`);
+        field?.focus();
         return;
       }
 
